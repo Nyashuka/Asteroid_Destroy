@@ -16,15 +16,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable))
-        {
-            if (!damageable.MakeDamage(_damage))
-            {
-                DeathActionEvent?.Invoke();
-            }
+        //if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        //{
+        //    if (!damageable.MakeDamage(_damage))
+        //    {
+        //        DeathActionEvent?.Invoke();
+        //    }
 
-            Destroy(gameObject);
-        }
+        //    Destroy(gameObject);
+        //}
     }
 }
 

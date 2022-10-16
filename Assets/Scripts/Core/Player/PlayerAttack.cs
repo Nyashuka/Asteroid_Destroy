@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private BulletPoolProvider _bulletPoolProvider;
+    
     [SerializeField] private Transform _bulletSpawnPosition;
-
     [SerializeField] private float _attackCooldown;
+
+    [SerializeField] private BulletPoolProvider _bulletPoolProvider;
+
     private float _nextAttackTime = 0;
 
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     private void Update()

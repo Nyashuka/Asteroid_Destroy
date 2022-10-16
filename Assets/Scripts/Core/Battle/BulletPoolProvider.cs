@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System;
 
-public class BulletPoolProvider
+public class BulletPoolProvider : MonoBehaviour
 {
     [SerializeField] private BulletPool _enemiesPool;
     [SerializeField] private BulletPool _playerPool;
 
     //public static BulletPoolProvider Instance { get; private set; }
 
-    //private void Awake()
+    //public void Awake()
     //{
     //    Instance = this;
     //}
