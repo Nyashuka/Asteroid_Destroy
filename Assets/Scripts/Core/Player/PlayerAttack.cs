@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    
+    [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private float _attackCooldown;
 
-    [SerializeField] private BulletPoolProvider _bulletPoolProvider;
+    private BulletPoolNoMonoBeh _bulletPoolNoMonoBeh;
+    //[SerializeField] private BulletPoolProvider _bulletPoolProvider;
 
     private float _nextAttackTime = 0;
 
+    private void Start()
+    {
+        _bulletPoolNoMonoBeh = new BulletPoolNoMonoBeh(_bulletPrefab);
+    }
 
     // Update is called once per frame
     private void Update()
@@ -20,8 +25,9 @@ public class PlayerAttack : MonoBehaviour
         {
             _nextAttackTime = Time.time + _attackCooldown;
 
-            _bulletPoolProvider.GetPool(BulletSide.Player).GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolProvider.GetPool(BulletSide.Player));
-
+            //_bulletPoolProvider.GetPool(BulletSide.Player).GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolProvider.GetPool(BulletSide.Player));
+            
+            _bulletPoolNoMonoBeh.GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolNoMonoBeh);
         }
     }
 }
