@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 {
     private BulletPool _bulletPool;
 
-    public void Init(BulletPool bulletPool)
+    public void Init(BulletPoolNoMonoBeh bulletPool)
     {
         _bulletPool = bulletPool;
     }
