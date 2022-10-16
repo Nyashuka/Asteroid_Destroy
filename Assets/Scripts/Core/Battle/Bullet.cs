@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private BulletPool _bulletPool;
+    private BulletPoolNoMonoBeh _bulletPool;
 
     public void Init(BulletPoolNoMonoBeh bulletPool)
     {
