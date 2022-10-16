@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public event Action OnHealthChanged;
+    public event Action<int> OnHealthChanged;
     public event Action OnDeath;
 
     [SerializeField] private readonly int _maxHealth;
-    private readonly int _minHealth;
 
     private int _currentHealth;
 
@@ -23,14 +22,18 @@ public class Health : MonoBehaviour
         if (_currentHealth == _maxHealth)
             return;
 
-        _currentHealth--;
+        _currentHealth++;
+
+        OnHealthChanged?.Invoke(_currentHealth);
     }
 
     private void DecreaseHealt()
     {
-        if(_currentHealth == 0)
+        if (_currentHealth == 0)
+            OnDeath?.Invoke();
 
+        _currentHealth--;
 
-        _currentHealth++;
+        OnHealthChanged?.Invoke(_currentHealth);
     }
 }

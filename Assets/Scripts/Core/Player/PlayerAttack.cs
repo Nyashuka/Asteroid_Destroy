@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private BulletPoolProvider _bulletPoolProvider;
     [SerializeField] private Transform _bulletSpawnPosition;
 
     [SerializeField] private float _attackCooldown;
@@ -22,7 +22,8 @@ public class PlayerAttack : MonoBehaviour
         {
             _nextAttackTime = Time.time + _attackCooldown;
 
-            Destroy(Instantiate(_bulletPrefab, _bulletSpawnPosition.position, _bulletSpawnPosition.rotation), 5);
+            _bulletPoolProvider.GetPool(BulletSide.Player).GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolProvider.GetPool(BulletSide.Player));
+
         }
     }
 }

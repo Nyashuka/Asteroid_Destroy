@@ -1,0 +1,47 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class BulletPool : MonoBehaviour
+{
+    [SerializeField] private Bullet _bulletPrefab;
+    private const int QUANTITY_BULLETS = 100;
+
+    private readonly Queue<Bullet> _bulletsPool = new Queue<Bullet>();
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        for (int i = 0; i < QUANTITY_BULLETS; i++)
+        {
+            _bulletsPool.Enqueue(CreateBullet());
+        }
+    }
+
+    private Bullet CreateBullet()
+    {
+        Bullet bullet = Instantiate(_bulletPrefab, transform, false);
+        bullet.gameObject.SetActive(false);
+
+        return bullet;
+    }
+
+    public Bullet GetBullet(Vector3 position)
+    {
+        Bullet bullet = _bulletsPool.Count == 0 ? CreateBullet() : _bulletsPool.Dequeue();
+
+        bullet.gameObject.SetActive(true);
+        bullet.transform.position = position;
+        
+        return bullet;
+    }
+
+    public void ReturnBullet(Bullet bullet)
+    {
+        _bulletsPool.Enqueue(bullet);
+        bullet.gameObject.SetActive(false);
+    }
+}
