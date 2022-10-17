@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerGun : MonoBehaviour, IDamager
 {
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPosition;
@@ -11,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
     private BulletPoolNoMonoBeh _bulletPoolNoMonoBeh;
 
     private float _nextAttackTime = 0;
+
+    public event Action<IEnemy> KilledEnemy;
 
     private void Start()
     {
@@ -26,5 +29,11 @@ public class PlayerAttack : MonoBehaviour
 
             _bulletPoolNoMonoBeh.GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolNoMonoBeh);
         }
+    }
+
+    public void TryDamage(bool killed)
+    {
+        if (killed)
+            KilledEnemy?.Invoke();
     }
 }

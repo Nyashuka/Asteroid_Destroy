@@ -17,11 +17,8 @@ public class Bullet : MonoBehaviour, IPoolObject
     {
         if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            //if (!damageable.GetDamage())
-            //{
-            //    //DeathActionEvent?.Invoke();
-            //}
-            damageable.GetDamage();
+            _damager.TryDamage(damageable.GetDamage());
+            HitEvent?.Invoke();
         }
     }
 }

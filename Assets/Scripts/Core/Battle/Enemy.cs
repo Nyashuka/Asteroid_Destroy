@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour, IDamageable
         _health.DecreaseHealth();
     }
 
-
+    bool IDamageable.GetDamage()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 

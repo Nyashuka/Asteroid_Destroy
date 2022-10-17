@@ -2,6 +2,6 @@
 
 public interface IDamager
 {
-    bool TryDamage();
+    void TryDamage(bool killed);
 }
 

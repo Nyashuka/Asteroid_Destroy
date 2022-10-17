@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Score : MonoBehaviour
 {
@@ -8,10 +10,15 @@ public class Score : MonoBehaviour
 
     private const int AMOUNT_SCORE_TO_ADD = 50;
 
+    private Dictionary<Type, int> _scoresAmountToAdd = new Dictionary<Type, int>()
+    {
+        { typeof(Asteroid), 50 },
+    };
+
     public void AddScore(IEnemy killedEnemy)
     {
-        if (killedEnemy is Asteroid)
-            _currentScore += AMOUNT_SCORE_TO_ADD;
+        if(_scoresAmountToAdd.TryGetValue(killedEnemy.GetType(), out var score))
+            _currentScore += score;
     }
 }
 
