@@ -9,13 +9,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float _attackCooldown;
 
     private BulletPoolNoMonoBeh _bulletPoolNoMonoBeh;
-    //[SerializeField] private BulletPoolProvider _bulletPoolProvider;
 
     private float _nextAttackTime = 0;
 
     private void Start()
     {
-        _bulletPoolNoMonoBeh = new BulletPoolNoMonoBeh(_bulletPrefab);
+        _bulletPoolNoMonoBeh = new BulletPoolNoMonoBeh(_bulletPrefab, 20);
     }
 
     // Update is called once per frame
@@ -25,8 +24,6 @@ public class PlayerAttack : MonoBehaviour
         {
             _nextAttackTime = Time.time + _attackCooldown;
 
-            //_bulletPoolProvider.GetPool(BulletSide.Player).GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolProvider.GetPool(BulletSide.Player));
-            
             _bulletPoolNoMonoBeh.GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolNoMonoBeh);
         }
     }

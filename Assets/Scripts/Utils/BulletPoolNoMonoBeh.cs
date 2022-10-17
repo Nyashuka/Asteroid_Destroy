@@ -8,36 +8,38 @@ using UnityEngine;
 
 public class BulletPoolNoMonoBeh
 {
-    private Bullet _bulletPrefab;
-    private const int QUANTITY_BULLETS = 100;
+    private Bullet _objectPrefab;
+    private readonly int _quantityObjects;
 
-    private readonly Queue<Bullet> _bulletsPool = new Queue<Bullet>();
+    private readonly Queue<Bullet> _objectsPool = new Queue<Bullet>();
 
-    public BulletPoolNoMonoBeh(Bullet bulletPrefab)
+    public BulletPoolNoMonoBeh(Bullet bulletPrefab, int quantityObjects)
     {
-        _bulletPrefab = bulletPrefab;
+        _objectPrefab = bulletPrefab;
+        _quantityObjects = quantityObjects;
         Init();
     }
 
     private void Init()
     {
-        for (int i = 0; i < QUANTITY_BULLETS; i++)
+        for (int i = 0; i < _quantityObjects; i++)
         {
-            _bulletsPool.Enqueue(CreateBullet());
+            _objectsPool.Enqueue(CreateBullet());
         }
     }
 
     private Bullet CreateBullet()
     {
-        Bullet bullet = UnityEngine.Object.Instantiate(_bulletPrefab);
+        Bullet bullet = UnityEngine.Object.Instantiate(_objectPrefab);
         bullet.gameObject.SetActive(false);
+        //bullet.HitEvent += ReturnBullet;
 
         return bullet;
     }
 
     public Bullet GetBullet(Vector3 position)
     {
-        Bullet bullet = _bulletsPool.Count == 0 ? CreateBullet() : _bulletsPool.Dequeue();
+        Bullet bullet = _objectsPool.Count == 0 ? CreateBullet() : _objectsPool.Dequeue();
 
         bullet.gameObject.SetActive(true);
         bullet.transform.position = position;
@@ -47,7 +49,7 @@ public class BulletPoolNoMonoBeh
 
     public void ReturnBullet(Bullet bullet)
     {
-        _bulletsPool.Enqueue(bullet);
+        _objectsPool.Enqueue(bullet);
         bullet.gameObject.SetActive(false);
     }
 }

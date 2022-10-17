@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
-    private void IncreaseHealth()
+    public void IncreaseHealth()
     {
         if (_currentHealth == _maxHealth)
             return;
@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         OnHealthChanged?.Invoke(_currentHealth);
     }
 
-    private void DecreaseHealt()
+    public void DecreaseHealth()
     {
         if (_currentHealth == 0)
             OnDeath?.Invoke();

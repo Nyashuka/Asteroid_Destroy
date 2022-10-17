@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolObject
 {
+    public event Action HitEvent;
+
     private BulletPoolNoMonoBeh _bulletPool;
+    private IDamager _damager;
 
     public void Init(BulletPoolNoMonoBeh bulletPool)
     {
@@ -16,15 +15,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.TryGetComponent(out IDamageable damageable))
-        //{
-        //    if (!damageable.MakeDamage(_damage))
-        //    {
-        //        DeathActionEvent?.Invoke();
-        //    }
-
-        //    Destroy(gameObject);
-        //}
+        if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            //if (!damageable.GetDamage())
+            //{
+            //    //DeathActionEvent?.Invoke();
+            //}
+            damageable.GetDamage();
+        }
     }
 }
 
