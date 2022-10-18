@@ -15,11 +15,12 @@ public abstract class PlayerDamager : MonoBehaviour
     {      
         if(other.gameObject.TryGetComponent(out Enemy damageable))
         {            
-            if(!damageable.TryDamageOrKill())
+            if(damageable.TryDamageOrKill())
             {               
                 Killed?.Invoke(damageable);    
-                Destroy(damageable);
+                Destroy(damageable.gameObject);
             }
+            
         }
     }
 }

@@ -16,7 +16,6 @@ public class Health : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
-        HealthChanged += DebugHealth;
     }
 
     public void IncreaseHealth()
@@ -37,11 +36,5 @@ public class Health : MonoBehaviour
         _currentHealth--;
 
         HealthChanged?.Invoke(_currentHealth);
-    }
-
-    private void DebugHealth(int a)
-    {
-        Debug.Log(gameObject);
-        Debug.Log(_currentHealth);
     }
 }

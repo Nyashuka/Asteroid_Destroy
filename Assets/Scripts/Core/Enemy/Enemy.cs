@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, IDamageable, IScorable
+public abstract class Enemy : PoolableObject, IDamageable, IScorable
 {
     [SerializeField] private Health _enemyHealth;
 
@@ -8,6 +8,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable, IScorable
     {
         _enemyHealth.DecreaseHealth();
 
-        return _enemyHealth.CurrentHealth < 0;
+        return _enemyHealth.CurrentHealth <= 0;
     }
 }

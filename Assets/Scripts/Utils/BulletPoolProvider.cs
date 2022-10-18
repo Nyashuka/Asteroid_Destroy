@@ -3,8 +3,8 @@ using System;
 
 public class BulletPoolProvider : MonoBehaviour
 {
-    [SerializeField] private BulletPool _enemiesPool;
-    [SerializeField] private BulletPool _playerPool;
+    [SerializeField] private ObjectPool _enemiesPool;
+    [SerializeField] private ObjectPool _playerPool;
 
     //public static BulletPoolProvider Instance { get; private set; }
 
@@ -13,7 +13,7 @@ public class BulletPoolProvider : MonoBehaviour
     //    Instance = this;
     //}
 
-    public BulletPool GetPool(BulletSide bulletSide)
+    public ObjectPool GetPool(BulletSide bulletSide)
     {
         switch(bulletSide)
         {
