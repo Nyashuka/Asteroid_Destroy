@@ -883,15 +883,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0ddba86375e44ca30286087bbb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroidPrefabs: []
+  _asteroidPrefabs:
+  - {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _pauseBeforeFirstWave: 5
   _spawnRate: 0.5
   _waveRate: 2
-  _returnAfter: 15
+  _returnTime: 15
   _asteroidsInWaveMin: 10
   _asteroidsInWaveMax: 50
   _spawnHeight: 12
   _spawnBoundary: {fileID: 1222505582}
+  _enemyPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
 --- !u!4 &1397887623
 Transform:
   m_ObjectHideFlags: 0
@@ -1072,7 +1074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2044956355
 MonoBehaviour:
   m_ObjectHideFlags: 0
