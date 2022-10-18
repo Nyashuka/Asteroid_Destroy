@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         _player.DeathEvent += EndTheGame;
-        _player.KillEnemy += AddScore;
+        _player.KilledEnemy += AddScore;
     }
 
     private void EndTheGame()
@@ -16,7 +16,7 @@ public class Game : MonoBehaviour
         // some logic
     }
 
-    private void AddScore(IEnemy killedEnemy)
+    private void AddScore(Enemy killedEnemy)
     {
         _score.AddScore(killedEnemy);
     }

@@ -6,20 +6,20 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private Health _health;
-    [SerializeField] private IDamager _playerGun;
+    [SerializeField] private PlayerGun _playerGun;
 
     public event Action DeathEvent;
-    public event Action<IEnemy> KillEnemy;
+    public event Action<Enemy> KilledEnemy;
 
 
     public void Start()
     {
-        _health.OnDeath += AnnounceDeath;
-        десь.Killed += AnnounceKill;
+        _health.Death += AnnounceDeath;
+        _playerGun.KilledEnemy += AnnounceKill;
     }
-    private void AnnounceDeath(IEnemy killedEnemy)
+    private void AnnounceKill(Enemy killedEnemy)
     {
-        KillEnemy?.Invoke(killedEnemy);
+        KilledEnemy?.Invoke(killedEnemy);
     }
 
     public void GetDamage()
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour, IDamageable
         DeathEvent?.Invoke();
     }
 
-    bool IDamageable.GetDamage()
+    bool IDamageable.TryDamageOrKill()
     {
         throw new NotImplementedException();
     }

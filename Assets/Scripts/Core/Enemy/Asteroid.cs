@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Asteroid : IEnemy
+public class Asteroid : Enemy
 {
     
 }

@@ -15,7 +15,7 @@ public class Score : MonoBehaviour
         { typeof(Asteroid), 50 },
     };
 
-    public void AddScore(IEnemy killedEnemy)
+    public void AddScore(Enemy killedEnemy)
     {
         if(_scoresAmountToAdd.TryGetValue(killedEnemy.GetType(), out var score))
             _currentScore += score;

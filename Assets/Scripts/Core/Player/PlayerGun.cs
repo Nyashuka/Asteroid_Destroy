@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGun : MonoBehaviour, IDamager
+public class PlayerGun : MonoBehaviour
 {
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPosition;
@@ -13,7 +13,7 @@ public class PlayerGun : MonoBehaviour, IDamager
 
     private float _nextAttackTime = 0;
 
-    public event Action<IEnemy> KilledEnemy;
+    public event Action<Enemy> KilledEnemy;
 
     private void Start()
     {
@@ -27,13 +27,11 @@ public class PlayerGun : MonoBehaviour, IDamager
         {
             _nextAttackTime = Time.time + _attackCooldown;
 
-            _bulletPoolNoMonoBeh.GetBullet(_bulletSpawnPosition.position).Init(_bulletPoolNoMonoBeh);
+            Bullet bullet = _bulletPoolNoMonoBeh.GetBullet(_bulletSpawnPosition.position);
+            bullet.Init(_bulletPoolNoMonoBeh);
+            bullet.SetKillAction(KilledEnemy);
         }
     }
 
-    public void TryDamage(bool killed)
-    {
-        if (killed)
-            KilledEnemy?.Invoke();
-    }
+
 }

@@ -639,6 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 942414826}
+  _playerGun: {fileID: 2062591050}
 --- !u!114 &942414824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,6 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce0c72cb148bf64bbbfec6498678960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
