@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayersDataStorage : MonoBehaviour
 {
+    [SerializeField] private ServicesProvider _servicesProvider;
+
     private List<PlayerData> _playersData;
-    private JsonSaveSystem _saveSystem;
+    public PlayerData _currentPlayer { get; private set; }
    
     private void Start()
     {
         DontDestroyOnLoad(this);
 
-        _saveSystem = new JsonSaveSystem();
-        _playersData = new JsonSaveSystem().Load().GetPlayersDatas();
+       _playersData = _servicesProvider.saveSystem.Load().GetPlayersData();
     }
 
     public PlayerData TryGetPlayer(string username)
@@ -22,10 +23,11 @@ public class PlayersDataStorage : MonoBehaviour
         return player;
     }
 
-    public void UpdatePlayerData(PlayerData playerData)
+    public void UpdatePlayerData(int score)
     {
-        var a = TryGetPlayer(playerData.Username); 
-        a = playerData;
+        _currentPlayer.UpdateScore(score);
+        
+        SaveData();
     }
 
     public bool TryCreateNewPlayer(string username)
@@ -42,7 +44,7 @@ public class PlayersDataStorage : MonoBehaviour
 
     public void SaveData()
     {
-        _saveSystem.Save(new SaveData(_playersData));
+        _servicesProvider.saveSystem.Save(new SaveData(_playersData));
     }
 }
 

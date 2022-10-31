@@ -4,28 +4,33 @@ using System.Collections.Generic;
 [Serializable]
 public class SaveData
 {
-    public List<PlayerDataDTO> playersDatas;
+    public List<PlayerDataDTO> playersData;
 
-    public SaveData(List<PlayerData> receivedlayersDatas)
+    public SaveData()
     {
-        playersDatas = new List<PlayerDataDTO>();
+        playersData = new List<PlayerDataDTO>();
+    }
 
-        foreach (PlayerData data in receivedlayersDatas)
+    public SaveData(List<PlayerData> receivedlayersData)
+    {
+        playersData = new List<PlayerDataDTO>();
+
+        foreach (PlayerData data in receivedlayersData)
         {
-            playersDatas.Add(new PlayerDataDTO(data));
+            playersData.Add(new PlayerDataDTO(data));
         }
     }
 
-    public List<PlayerData> GetPlayersDatas()
+    public List<PlayerData> GetPlayersData()
     {
-        List<PlayerData> returnPlayerDatas = new List<PlayerData>();
+        List<PlayerData> returnPlayerData = new List<PlayerData>();
 
-        foreach (var data in playersDatas)
+        foreach (var data in playersData)
         {
-            returnPlayerDatas.Add(new PlayerData(data.username, data.maxScore, data.lastScore));
+            returnPlayerData.Add(new PlayerData(data.username, data.maxScore, data.lastScore));
         }
 
-        return returnPlayerDatas;
+        return returnPlayerData;
     }
 }
 

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Enemy : PoolableObject
 {
+    [SerializeField] private EnemyTypes _enemyType;
     [SerializeField] private Health _enemyHealth;
     public event Action<Enemy> EnemyDeath;
+    public EnemyTypes EnemyType => _enemyType;
 
     public void Start()
     {
@@ -25,4 +27,6 @@ public class Enemy : PoolableObject
     {
         EnemyDeath?.Invoke(this);
     }
+
+ 
 }

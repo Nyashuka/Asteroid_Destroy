@@ -10,6 +10,7 @@ public class JsonSaveSystem : ISaveSystem
     public JsonSaveSystem()
     {
         _filePath = Application.persistentDataPath + "/save_data.json";
+        Debug.Log(_filePath);
     }
 
     public void Save(SaveData saveData)
@@ -27,7 +28,7 @@ public class JsonSaveSystem : ISaveSystem
         string receivedJsonData = "";
 
         if (!File.Exists(_filePath))
-            return new SaveData(new List<PlayerData>());
+            return new SaveData();
 
         using (StreamReader reader = new StreamReader(_filePath))
         {
@@ -36,7 +37,7 @@ public class JsonSaveSystem : ISaveSystem
 
         if (string.IsNullOrEmpty(receivedJsonData))
         {
-            return new SaveData(new List<PlayerData>());
+            return new SaveData();
         }
 
         return JsonUtility.FromJson<SaveData>(receivedJsonData);
