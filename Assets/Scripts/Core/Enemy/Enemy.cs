@@ -1,18 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class Enemy : PoolableObject, IDamageable, IScorable
+public class Enemy : PoolableObject
 {
     [SerializeField] private Health _enemyHealth;
+    public event Action<Enemy> EnemyDeath;
+
+    public void Start()
+    {
+        _enemyHealth.Death += AnounceDeath;
+    }
 
     public override void Init()
     {
-        throw new System.NotImplementedException();
+        _enemyHealth.Reset();
     }
 
-    public bool TryDamageOrKill()
+    public void TryDamage()
     {
         _enemyHealth.DecreaseHealth();
+    }
 
-        return _enemyHealth.CurrentHealth <= 0;
+    public void AnounceDeath()
+    {
+        EnemyDeath?.Invoke(this);
     }
 }

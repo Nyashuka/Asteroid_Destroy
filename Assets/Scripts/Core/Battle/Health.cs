@@ -30,11 +30,19 @@ public class Health : MonoBehaviour
 
     public void DecreaseHealth()
     {
-        if (_currentHealth == 0)
-            Death?.Invoke();
-
         _currentHealth--;
 
+        if (_currentHealth <= 0)
+        {
+            _currentHealth = 0;
+            Death?.Invoke();
+        }
+
         HealthChanged?.Invoke(_currentHealth);
+    }
+
+    public void Reset()
+    {
+        _currentHealth = _maxHealth;
     }
 }

@@ -1,13 +1,22 @@
 ﻿using System;
 using UnityEngine;
 
-public class Bullet : PlayerDamager, IPoolObject
+public class Bullet : PoolableObject
 {
-    private BulletPoolNoMonoBeh _bulletPool;
+    public event Action<Bullet> Hit;
 
-    public void Init(BulletPoolNoMonoBeh bulletPool)
+    public override void Init()
     {
-        _bulletPool = bulletPool;
+      
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out Enemy damageable))
+        {
+            damageable.TryDamage();
+            Hit?.Invoke(this);
+        }
     }
 }
 

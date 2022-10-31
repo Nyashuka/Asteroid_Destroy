@@ -2,15 +2,17 @@
 using System.Collections;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour 
+public class ObjectPool
 {
+    private readonly GameObject _parentForPoolObjects;
     private readonly PoolableObject _objectPrefab;
     private readonly int _quantityObjects = 100;
 
     private readonly Queue<PoolableObject> _objectsPool = new Queue<PoolableObject>();
 
-    public ObjectPool(PoolableObject objectPrefab, int quantityObjects)
+    public ObjectPool(PoolableObject objectPrefab, int quantityObjects, GameObject gameObject)
     {
+        _parentForPoolObjects = gameObject;
         _objectPrefab = objectPrefab;
         _quantityObjects = quantityObjects;
         Init();
@@ -26,7 +28,7 @@ public class ObjectPool : MonoBehaviour
 
     private PoolableObject CreateObject()
     {
-        PoolableObject createdObject = Object.Instantiate(_objectPrefab);
+        PoolableObject createdObject = Object.Instantiate(_objectPrefab, _parentForPoolObjects.transform);
         createdObject.gameObject.SetActive(false);
 
         return createdObject;

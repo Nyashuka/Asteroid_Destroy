@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BoundaryObjectDestroyer : MonoBehaviour
 {
+    public void Start()
+    {
+        
+    }
     public void OnTriggerExit(Collider other)
     {
         Destroy(other.gameObject);

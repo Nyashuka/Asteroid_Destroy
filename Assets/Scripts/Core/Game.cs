@@ -3,17 +3,20 @@
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private Score _score;
+    private PlayersDataStorage _playersDataStorage;
+    private PlayerData _currentPlayer;
 
     private void Start()
     {
         _player.DeathEvent += EndTheGame;
-        _player.KilledEnemy += AddScore;
+        _enemyFactory.EnemyDeath += AddScore;
     }
 
     private void EndTheGame()
     { 
-        // some logic
+        
     }
 
     private void AddScore(Enemy killedEnemy)

@@ -2,6 +2,6 @@
 
 public interface IDamageable
 {
-    bool TryDamageOrKill();
+    bool TryDamage();
 }
 

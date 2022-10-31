@@ -251,6 +251,68 @@ Transform:
   m_Father: {fileID: 262940806}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &302081689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302081690}
+  m_Layer: 0
+  m_Name: Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302081690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302081689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.425098, y: 0.10179591, z: -2.625375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 825609429}
+  - {fileID: 615542071}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615542070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615542071}
+  m_Layer: 0
+  m_Name: AsteroidsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &615542071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615542070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 302081690}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &639462908
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,13 +566,43 @@ RectTransform:
   - {fileID: 924444760}
   - {fileID: 1475394769}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &825609428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825609429}
+  m_Layer: 0
+  m_Name: BulletsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &825609429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825609428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 302081690}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &924444759
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +694,7 @@ GameObject:
   - component: {fileID: 942414823}
   - component: {fileID: 942414824}
   - component: {fileID: 942414826}
+  - component: {fileID: 942414825}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -654,6 +747,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.035
   _boundary: {fileID: 1222505582}
+--- !u!114 &942414825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942414821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d56799c6f0a694ca37f9634e5b9e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &942414826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +932,7 @@ BoxCollider:
   m_GameObject: {fileID: 1222505581}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 20, y: 10, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
@@ -849,7 +957,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222505581}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 027046509c9d57a4b89dd189d2b23186, type: 3}
   m_Name: 
@@ -883,17 +991,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0ddba86375e44ca30286087bbb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentForPoolObjects: {fileID: 615542070}
   _asteroidPrefabs:
   - {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _pauseBeforeFirstWave: 5
   _spawnRate: 0.5
   _waveRate: 2
-  _returnTime: 15
+  _returnTime: 10
   _asteroidsInWaveMin: 10
   _asteroidsInWaveMax: 50
   _spawnHeight: 12
   _spawnBoundary: {fileID: 1222505582}
-  _enemyPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
+  _objectPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
 --- !u!4 &1397887623
 Transform:
   m_ObjectHideFlags: 0
@@ -906,7 +1015,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475394768
 GameObject:
@@ -1000,6 +1109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e666e8ada5d7938448ff37c213ec6243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerHealth: {fileID: 942414826}
+  _healthView: {fileID: 1475394770}
 --- !u!1 &1496539690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1122,7 @@ GameObject:
   - component: {fileID: 1496539691}
   - component: {fileID: 1496539692}
   - component: {fileID: 1496539693}
+  - component: {fileID: 1496539694}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1030,7 +1142,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1496539692
 MonoBehaviour:
@@ -1045,6 +1157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 942414823}
+  _enemyFactory: {fileID: 1397887622}
   _score: {fileID: 1496539693}
 --- !u!114 &1496539693
 MonoBehaviour:
@@ -1058,59 +1171,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362291e6c7592bd4c938ff3923f4dbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2044956354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2044956356}
-  - component: {fileID: 2044956355}
-  m_Layer: 0
-  m_Name: Scripts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2044956355
+--- !u!114 &1496539694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044956354}
+  m_GameObject: {fileID: 1496539690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ce2df15505a8e54e8f310629318305c, type: 3}
+  m_Script: {fileID: 11500000, guid: 89ebad45cc1b62946852b83ca521695e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroidPrefabs:
-  - {fileID: 4929926448619037329, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
-  _pauseBeforeFirstWave: 5
-  _spawnRate: 0.5
-  _waveRate: 2
-  _destroyAfter: 10
-  _asteroidsInWaveMin: 10
-  _asteroidsInWaveMax: 50
-  _spawnHeight: 12
-  _spawnBoundary: {fileID: 1222505582}
---- !u!4 &2044956356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044956354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22915158, y: -0.48310935, z: -0.14852872}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  _scoreText: {fileID: 924444761}
+  _score: {fileID: 1496539693}
 --- !u!1 &2062591048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc644ffaa2f6504d96c8250f3852539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentForPoolObjects: {fileID: 825609428}
   _bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
   _bulletSpawnPosition: {fileID: 1188419953}
   _attackCooldown: 0.5
