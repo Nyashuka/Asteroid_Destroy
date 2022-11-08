@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayersDataStorage : MonoBehaviour
+public class PlayersDataManager : MonoBehaviour
 {
-    [SerializeField] private ServicesProvider _servicesProvider;
+    private ISaveSystem _saveSystem;
 
     private List<PlayerData> _playersData;
     public PlayerData _currentPlayer { get; private set; }
-   
+
     private void Start()
     {
         DontDestroyOnLoad(this);
-
-       _playersData = _servicesProvider.saveSystem.Load().GetPlayersData();
+        _saveSystem = ServicesProvider.Instance.SaveSystem;
+        _playersData = _saveSystem.Load().GetPlayersData();
     }
 
     public PlayerData TryGetPlayer(string username)
@@ -26,13 +27,13 @@ public class PlayersDataStorage : MonoBehaviour
     public void UpdatePlayerData(int score)
     {
         _currentPlayer.UpdateScore(score);
-        
+
         SaveData();
     }
 
     public bool TryCreateNewPlayer(string username)
     {
-        if(TryGetPlayer(username) != null)
+        if (TryGetPlayer(username) != null)
         {
             return false;
         }
@@ -44,7 +45,7 @@ public class PlayersDataStorage : MonoBehaviour
 
     public void SaveData()
     {
-        _servicesProvider.saveSystem.Save(new SaveData(_playersData));
+        _saveSystem.Save(new SaveData(_playersData));
     }
 }
 

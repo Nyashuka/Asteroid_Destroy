@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Bullet : PoolableObject
 {
-    public event Action<Bullet> Hit;
+    public event Action<PoolableObject> Hit;
 
     public override void Init()
     {
@@ -12,9 +12,9 @@ public class Bullet : PoolableObject
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out Enemy damageable))
+        if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            damageable.TryDamage();
+            damageable.GetDamage();
             Hit?.Invoke(this);
         }
     }

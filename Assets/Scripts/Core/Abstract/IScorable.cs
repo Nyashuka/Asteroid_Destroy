@@ -1,6 +1,0 @@
-﻿
-public interface IScorable
-{
-
-}
-

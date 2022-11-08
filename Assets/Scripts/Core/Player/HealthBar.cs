@@ -14,8 +14,8 @@ public class HealthBar : MonoBehaviour
         _playerHealth.HealthChanged += OnHealthChanged;
     }
 
-    private void OnHealthChanged(int obj)
+    private void OnHealthChanged(int value)
     {
-        _healthView.text = obj.ToString();
+        _healthView.text = value.ToString();
     }
 }

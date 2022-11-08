@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Enemy : PoolableObject
+public class Enemy : PoolableObject, IDamageable
 {
     [SerializeField] private EnemyTypes _enemyType;
     [SerializeField] private Health _enemyHealth;
@@ -18,15 +18,13 @@ public class Enemy : PoolableObject
         _enemyHealth.Reset();
     }
 
-    public void TryDamage()
-    {
-        _enemyHealth.DecreaseHealth();
-    }
-
     public void AnounceDeath()
     {
         EnemyDeath?.Invoke(this);
     }
 
- 
+    public void GetDamage()
+    {
+        _enemyHealth.DecreaseHealth();
+    }
 }

@@ -1,6 +1,7 @@
 
 
-public interface ISaveSystem 
+public interface ISaveSystem
 {
-   void Save(SaveData saveData);
+    void Save(SaveData saveData);
+    SaveData Load();
 }

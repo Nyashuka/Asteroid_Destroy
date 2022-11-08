@@ -40,14 +40,7 @@ public class EnemyFactory : MonoBehaviour
 
             for (int i = 0; i < countAsteroids; i++)
             {
-                Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(_spawnBoundary.xMin, _spawnBoundary.xMax), 0, _spawnHeight);
-                //Quaternion spawnRotation = Quaternion.identity;
-
-                PoolableObject spawnEnemy = _objectsPool.GetObject(spawnPosition);
-                spawnEnemy.Init();
-                ((Enemy)spawnEnemy).EnemyDeath += AnounceEntityDeath;
-                StartCoroutine(ReturnBulletWithTime(spawnEnemy, _returnTime));
-                
+                SpawnEnemy();
 
                 yield return new WaitForSeconds(_spawnRate);
             }
@@ -56,17 +49,36 @@ public class EnemyFactory : MonoBehaviour
         }
     }
 
+    private void SpawnEnemy()
+    {
+        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(_spawnBoundary.xMin, _spawnBoundary.xMax),
+                                                            0,
+                                                            _spawnHeight);
+
+        //Quaternion spawnRotation = Quaternion.identity;
+
+        PoolableObject spawnEnemy = _objectsPool.GetObject(spawnPosition);
+        spawnEnemy.Init();
+        ((Enemy)spawnEnemy).EnemyDeath += AnounceEntityDeath;
+
+
+
+        StartCoroutine(ReturnEnemyWithTime(spawnEnemy, _returnTime));
+    }
+
     public void AnounceEntityDeath(Enemy enemy)
     {
         EnemyDeath?.Invoke(enemy);
         _objectsPool.ReturnObjectToPool(enemy);
     }
 
-    private IEnumerator ReturnBulletWithTime(PoolableObject objectToReturn, float timeForReturn)
+    private IEnumerator ReturnEnemyWithTime(PoolableObject objectToReturn, float timeForReturn)
     {
         yield return new WaitForSeconds(timeForReturn);
 
         _objectsPool.ReturnObjectToPool(objectToReturn);
     }
+
+
 }
 

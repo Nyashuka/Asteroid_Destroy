@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
 
     private Camera _mainCamera;
 
+    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
+
     private void Start()
     {
         _mainCamera = Camera.main;
@@ -16,6 +18,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        if (IsPaused)
+            return;
+
         if (Input.GetMouseButton(0))
         {
             Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);

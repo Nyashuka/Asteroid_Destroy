@@ -45,4 +45,9 @@ public class Health : MonoBehaviour
     {
         _currentHealth = _maxHealth;
     }
+
+    public void MakeDamage()
+    {
+        DecreaseHealth();
+    }
 }

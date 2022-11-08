@@ -6,10 +6,9 @@ public abstract class PlayerDamager : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {      
-        if(other.gameObject.TryGetComponent(out Enemy damageable))
+        if(other.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            damageable.TryDamage();
-            
+            damageable.GetDamage();  
         }
     }
 }

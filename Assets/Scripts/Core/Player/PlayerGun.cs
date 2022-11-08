@@ -11,24 +11,37 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private float _attackCooldown;
 
-    private ObjectPool _bulletPoolNoMonoBeh;
+    private ObjectPool _bulletPool;
 
     private float _nextAttackTime = 0;
 
+    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
     private void Start()
     {
-        _bulletPoolNoMonoBeh = new ObjectPool(_bulletPrefab, 20, _parentForPoolObjects);
+        _bulletPool = new ObjectPool(_bulletPrefab, 20, _parentForPoolObjects);
     }
 
     private void Update()
     {
-        if(Input.GetMouseButton(0) && _nextAttackTime < Time.time)
-        {
-            _nextAttackTime = Time.time + _attackCooldown;
+        if (IsPaused)
+            return;
 
-            Bullet bullet = (Bullet)_bulletPoolNoMonoBeh.GetObject(_bulletSpawnPosition.position);
-            bullet.Hit += _bulletPoolNoMonoBeh.ReturnObjectToPool;
+        if (_nextAttackTime > Time.time)
+            return;
+
+        _nextAttackTime = Time.time + _attackCooldown;
+
+        Attack();
+    }
+
+    private void Attack()
+    {
+        if (Input.GetMouseButton(0) || Input.touchCount == 1)
+        {
+            Bullet bullet = (Bullet)_bulletPool.GetObject(_bulletSpawnPosition.position);
+            bullet.Hit += _bulletPool.ReturnObjectToPool;
+  
         }
     }
 }
