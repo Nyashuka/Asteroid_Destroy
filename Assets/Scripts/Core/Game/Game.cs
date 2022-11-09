@@ -11,12 +11,12 @@ public class Game : MonoBehaviour
     {
         _player.DeathEvent += EndTheGame;
         _enemyFactory.EnemyDeath += AddScore;
-
     }
 
     private void EndTheGame()
     {
-       // _playersDataStorage.UpdatePlayerData(_score.Value);
+        Destroy(_player);
+
     }
 
     private void AddScore(Enemy killedEnemy)

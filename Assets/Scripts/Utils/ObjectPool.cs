@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    private readonly GameObject _parentForPoolObjects;
+    private readonly Transform _parentForPoolObjects;
     private readonly PoolableObject _objectPrefab;
     private readonly int _quantityObjects = 100;
 
     private readonly Queue<PoolableObject> _objectsPool = new Queue<PoolableObject>();
 
-    public ObjectPool(PoolableObject objectPrefab, int quantityObjects, GameObject gameObject)
+    public ObjectPool(PoolableObject objectPrefab, int quantityObjects, Transform parentObject)
     {
-        _parentForPoolObjects = gameObject;
+        _parentForPoolObjects = parentObject;
         _objectPrefab = objectPrefab;
         _quantityObjects = quantityObjects;
         Init();
@@ -28,7 +28,7 @@ public class ObjectPool
 
     private PoolableObject CreateObject()
     {
-        PoolableObject createdObject = Object.Instantiate(_objectPrefab, _parentForPoolObjects.transform);
+        PoolableObject createdObject = Object.Instantiate(_objectPrefab, _parentForPoolObjects);
         createdObject.gameObject.SetActive(false);
 
         return createdObject;

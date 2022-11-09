@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Core.MainMenu
+namespace Assets.Scripts.Core.View
 {
     public class LoginView : MonoBehaviour
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ButtonsMenuSubscriber : MonoBehaviour
+public class MainMenuButtonsSubscriber : MonoBehaviour
 {
     [SerializeField] private string _sceneForStartGame;
     [Header("Buttons")]

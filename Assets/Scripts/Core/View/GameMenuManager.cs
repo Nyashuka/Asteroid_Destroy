@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.View;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,11 +6,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameMenu : MonoBehaviour
+public class GameMenuManager : MonoBehaviour
 {
-    [SerializeField] private Image _menuPanel;
 
+    [SerializeField] private Image _menuPanel;
+    //[SerializeField] private Image _menuPanel;
     [SerializeField] private Text _gameOverText;
+    [Header("Buttons")]
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _exitToMenuButton;
@@ -19,9 +22,17 @@ public class GameMenu : MonoBehaviour
     {
         _pauseButton.onClick.AddListener(OnPauseButtonClicked);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
+        _restartButton.onClick.AddListener(OnRestartGameButtonClicked);
+
         _exitToMenuButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         });
+    }
+
+    private void OnRestartGameButtonClicked()
+    {
+        ServicesProvider.Instance.PauseManager.SetPaused(false);
+        SceneManager.LoadScene(1);
     }
 
     private void OnPauseButtonClicked()

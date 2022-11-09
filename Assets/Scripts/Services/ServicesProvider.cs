@@ -1,3 +1,4 @@
+using Assets.Scripts.Services.Pause;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,13 @@ public class ServicesProvider : MonoBehaviour
     private void Initialize()
     {
         SaveSystem = new JsonSaveSystem();
+
         PauseManager = new PauseManager();
+        InitializePauseManger();
+    }
+
+    private void InitializePauseManger()
+    {
+        PauseManager.Register(new GamePauseBehaviour());
     }
 }

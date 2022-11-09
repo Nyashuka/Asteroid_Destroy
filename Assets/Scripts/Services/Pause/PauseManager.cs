@@ -20,7 +20,7 @@ public class PauseManager : IPauseHandler
 
     public void SetPaused(bool isPaused)
     {
-        IsPaused = isPaused;
+        IsPaused = isPaused;    
 
         foreach (var handler in _pauseHandlers)
         {

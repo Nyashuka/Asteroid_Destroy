@@ -9,10 +9,18 @@ public class RecordsListView : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < 30; i++)
+        int count = 30;
+        float size = 100 * count + count * 20;
+
+        if(size > _parent.GetComponent<RectTransform>().sizeDelta.y)
+            _parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, size);
+        
+
+        for (int i = 0; i < count; i++)
         {
             _recordPrefab.Init("Test" + i, Random.Range(1214, 8090));
             Instantiate(_recordPrefab, _parent);
         }
     }
+
 }

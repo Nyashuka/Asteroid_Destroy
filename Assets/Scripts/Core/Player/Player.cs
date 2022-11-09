@@ -12,7 +12,12 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
 
     public void Start()
     {
-        _health.Death += AnnounceDeath;
+        _health.Death += OnDeath;
+    }
+
+    private void OnDeath()
+    {
+        AnnounceDeath();
     }
 
     public void GetDamage()

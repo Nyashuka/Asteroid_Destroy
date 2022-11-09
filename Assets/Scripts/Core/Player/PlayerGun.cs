@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    [SerializeField] private GameObject _parentForPoolObjects;
+    [SerializeField] private Transform _parentForPoolObjects;
 
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPosition;
@@ -41,7 +41,14 @@ public class PlayerGun : MonoBehaviour
         {
             Bullet bullet = (Bullet)_bulletPool.GetObject(_bulletSpawnPosition.position);
             bullet.Hit += _bulletPool.ReturnObjectToPool;
-  
+            StartCoroutine(ReturnBulletInPool(bullet));
         }
+    }
+
+    private IEnumerator ReturnBulletInPool(Bullet bullet)
+    {
+        yield return new WaitForSeconds(5);
+
+        _bulletPool.ReturnObjectToPool(bullet);
     }
 }

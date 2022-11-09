@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 
-public class EnemyFactory : MonoBehaviour 
+public class EnemyFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject _parentForPoolObjects;
+    [SerializeField] private Transform _parentForPoolObjects;
     [SerializeField] private Asteroid[] _asteroidPrefabs;
     [Header("Timings")]
     [SerializeField] private float _pauseBeforeFirstWave = 5;
@@ -55,13 +55,9 @@ public class EnemyFactory : MonoBehaviour
                                                             0,
                                                             _spawnHeight);
 
-        //Quaternion spawnRotation = Quaternion.identity;
-
         PoolableObject spawnEnemy = _objectsPool.GetObject(spawnPosition);
         spawnEnemy.Init();
         ((Enemy)spawnEnemy).EnemyDeath += AnounceEntityDeath;
-
-
 
         StartCoroutine(ReturnEnemyWithTime(spawnEnemy, _returnTime));
     }
@@ -78,7 +74,6 @@ public class EnemyFactory : MonoBehaviour
 
         _objectsPool.ReturnObjectToPool(objectToReturn);
     }
-
 
 }
 
