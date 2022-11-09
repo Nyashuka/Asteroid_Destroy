@@ -7,6 +7,7 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
 {
     [SerializeField] private Health _health;
     [SerializeField] private PlayerGun _playerGun;
+    [SerializeField] private GameObject _deathVFX;
 
     public event Action DeathEvent;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
 
     private void OnDeath()
     {
+        Destroy(Instantiate(_deathVFX, transform.position, transform.rotation), 1f);
         AnnounceDeath();
     }
 

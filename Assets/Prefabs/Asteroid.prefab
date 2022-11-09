@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 0
   _enemyHealth: {fileID: 7454813158603149841}
+  _deathVFX: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
 --- !u!114 &339979860432071672
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -64,6 +64,6 @@ public class PlayerMove : MonoBehaviour
         //    //transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed);
         //}
 
-        transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed);
+        transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed * Time.deltaTime);
     }
 }

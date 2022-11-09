@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Game : MonoBehaviour
 {
@@ -6,6 +7,10 @@ public class Game : MonoBehaviour
     [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private Score _score;
     private PlayersDataManager _playersDataStorage;
+
+    private bool _isGameOver;
+
+    public event Action GameOverEvent;
 
     private void Start()
     {
@@ -15,12 +20,16 @@ public class Game : MonoBehaviour
 
     private void EndTheGame()
     {
-        Destroy(_player);
-
+        _isGameOver = true;
+        GameOverEvent?.Invoke();
+        Destroy(_player.gameObject);
     }
 
     private void AddScore(Enemy killedEnemy)
     {
+        if (_isGameOver)
+            return;
+
         _score.AddScore(killedEnemy);
     }
 }

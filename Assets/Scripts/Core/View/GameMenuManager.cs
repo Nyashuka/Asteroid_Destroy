@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameMenuManager : MonoBehaviour
 {
-
+    [SerializeField] private Game _game;
     [SerializeField] private Image _menuPanel;
     //[SerializeField] private Image _menuPanel;
     [SerializeField] private Text _gameOverText;
@@ -23,16 +23,20 @@ public class GameMenuManager : MonoBehaviour
         _pauseButton.onClick.AddListener(OnPauseButtonClicked);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
         _restartButton.onClick.AddListener(OnRestartGameButtonClicked);
+        _exitToMenuButton.onClick.AddListener(OnExitToMenuButtonClicked);
 
-        _exitToMenuButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(1);
-        });
+        _game.GameOverEvent += OnGameOver;
+    }
+
+    private void OnExitToMenuButtonClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnRestartGameButtonClicked()
     {
         ServicesProvider.Instance.PauseManager.SetPaused(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
 
     private void OnPauseButtonClicked()
