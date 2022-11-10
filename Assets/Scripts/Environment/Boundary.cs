@@ -12,6 +12,7 @@ public class Boundary : MonoBehaviour
     [SerializeField] private float _xCorrection;
     [SerializeField] private float _zMaxCorrection;
     [SerializeField] private float _zMinCorrection;
+    [SerializeField] private MeshRenderer _gameBoard;
 
     private void Start()
     {
@@ -25,14 +26,21 @@ public class Boundary : MonoBehaviour
 
         float widthScreen = Screen.width;
         float heightScreen = Screen.height;
-        float x = 0;
 
-        x = widthScreen / heightScreen * Camera.main.orthographicSize;
-        
         zMax = Camera.main.orthographicSize - _zMaxCorrection;
         zMin = -Camera.main.orthographicSize + _zMinCorrection;
 
-        xMin = -x - _xCorrection;
-        xMax = x + _xCorrection;
+        if (widthScreen < heightScreen)
+        {
+            float x = widthScreen / heightScreen * Camera.main.orthographicSize;
+
+            xMin = -x - _xCorrection;
+            xMax = x + _xCorrection;
+        }
+        else
+        {
+            xMin = -_gameBoard.bounds.size.x / 2 - _xCorrection;
+            xMax = _gameBoard.bounds.size.x / 2 + _xCorrection;
+        }
     }
 }

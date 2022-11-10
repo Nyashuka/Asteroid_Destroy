@@ -8,6 +8,7 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
     [SerializeField] private Health _health;
     [SerializeField] private PlayerGun _playerGun;
     [SerializeField] private GameObject _deathVFX;
+    public Health Health => _health;
 
     public event Action DeathEvent;
 
