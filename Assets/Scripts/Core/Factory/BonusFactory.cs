@@ -8,27 +8,33 @@ public class BonusFactory : MonoBehaviour
     [SerializeField] private int[] _chanceTable;
     [SerializeField] private int _dropChance;
 
-    [SerializeField] private IBattleBonus[] _bonuses;
+    [SerializeField] private string[] _bonuses;
 
     [SerializeField] private EnemyFactory _enemyFactory;
+
+    int _totalChance;
     
     public void Start()
     {
         _enemyFactory.EnemyDeath += Spawn;
+        _totalChance = _chanceTable.Sum();
     }
 
     private void Spawn(Enemy enemy)
     {
-        int totalChance = _chanceTable.Sum();
-
-        int dropedChance = Random.Range(0, totalChance);
+        int dropedChance = Random.Range(0, _totalChance);
 
         for (int i = 0; i < _chanceTable.Length; i++)
         {
-            if(dropedChance <= 0)
-                SpawnBonus(_bonuses[i]);
-
-            dropedChance -= _chanceTable[i];
+            if (dropedChance <= _chanceTable[i])
+            {
+                Debug.Log(_bonuses[i]);
+                return;
+            }
+            else
+            {
+                dropedChance -= _chanceTable[i];
+            }
         }
     }
 
