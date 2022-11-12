@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
-    [SerializeField] private Boundary _boundary;
+    [SerializeField] private ScreenBoundary _boundary;
 
     private Camera _mainCamera;
 

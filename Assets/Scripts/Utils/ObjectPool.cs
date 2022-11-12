@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ObjectPool
+public class ObjectPool<T>
 {
     private readonly Transform _parentForPoolObjects;
     private readonly PoolableObject _objectPrefab;
@@ -46,9 +46,11 @@ public class ObjectPool
 
     public void ReturnObjectToPool(PoolableObject objectToReturn)
     {
+        if (!(objectToReturn is T))
+            return;
+
         _objectsPool.Enqueue(objectToReturn);
         objectToReturn.gameObject.SetActive(false);
     }
-
     
 }

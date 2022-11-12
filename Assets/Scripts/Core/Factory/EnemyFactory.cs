@@ -11,23 +11,23 @@ public class EnemyFactory : MonoBehaviour
     [SerializeField] private float _pauseBeforeFirstWave = 5;
     [SerializeField] private float _spawnRate = 0.5f;
     [SerializeField] private float _waveRate = 2;
-    [SerializeField] private float _returnTime = 10f;
     [Header("Count")]
     [SerializeField] private int _asteroidsInWaveMin = 10;
     [SerializeField] private int _asteroidsInWaveMax = 50;
     [Header("Boundaries")]
     [SerializeField] private float _spawnHeight = 12;
-    [SerializeField] private Boundary _spawnBoundary;
+    [SerializeField] private ScreenBoundary _spawnBoundary;
+    [SerializeField] private WorldBoundary _boundary;
+    [SerializeField] private PoolableObject _objectPrefab;
+
+    private ObjectPool<Enemy> _objectsPool;
 
     public event Action<Enemy> EnemyDeath;
-
-    [SerializeField] private Enemy _objectPrefab;
-    private ObjectPool _objectsPool;
-
     public void Start()
     {
-        _objectsPool = new ObjectPool(_objectPrefab, 50, _parentForPoolObjects);
+        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
         StartCoroutine(Spawn());
+        _boundary.LeftWorld += _objectsPool.ReturnObjectToPool;
     }
 
     private IEnumerator Spawn()
@@ -55,11 +55,9 @@ public class EnemyFactory : MonoBehaviour
                                                             0,
                                                             _spawnHeight);
 
-        PoolableObject spawnEnemy = _objectsPool.GetObject(spawnPosition);
-        spawnEnemy.Init();
-        ((Enemy)spawnEnemy).EnemyDeath += AnounceEntityDeath;
+        Enemy spawnedEnemy = (Enemy)_objectsPool.GetObject(spawnPosition);
 
-        StartCoroutine(ReturnEnemyWithTime(spawnEnemy, _returnTime));
+        spawnedEnemy.EnemyDeath += AnounceEntityDeath;
     }
 
     public void AnounceEntityDeath(Enemy enemy)
@@ -67,13 +65,5 @@ public class EnemyFactory : MonoBehaviour
         EnemyDeath?.Invoke(enemy);
         _objectsPool.ReturnObjectToPool(enemy);
     }
-
-    private IEnumerator ReturnEnemyWithTime(PoolableObject objectToReturn, float timeForReturn)
-    {
-        yield return new WaitForSeconds(timeForReturn);
-
-        _objectsPool.ReturnObjectToPool(objectToReturn);
-    }
-
 }
 

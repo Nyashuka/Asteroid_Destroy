@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boundary : MonoBehaviour
+public class ScreenBoundary : MonoBehaviour
 {
     public float xMin { get; private set; }
     public float xMax { get; private set; }
     public float zMin { get; private set; }
     public float zMax { get; private set; }
 
-    [SerializeField] private float _xCorrection;
-    [SerializeField] private float _zMaxCorrection;
-    [SerializeField] private float _zMinCorrection;
+    [SerializeField] private float _xCorrection; //  -0.3
+    [SerializeField] private float _zMaxCorrection; //  2
+    [SerializeField] private float _zMinCorrection; // 0.5
     [SerializeField] private MeshRenderer _gameBoard;
 
     private void Start()

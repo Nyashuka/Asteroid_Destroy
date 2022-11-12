@@ -10,8 +10,9 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private float _attackCooldown;
+    [SerializeField] private WorldBoundary _worldBoundary;
 
-    private ObjectPool _bulletPool;
+    private ObjectPool<Bullet> _bulletPool;
 
     private float _nextAttackTime = 0;
 
@@ -19,7 +20,8 @@ public class PlayerGun : MonoBehaviour
 
     private void Start()
     {
-        _bulletPool = new ObjectPool(_bulletPrefab, 20, _parentForPoolObjects);
+        _bulletPool = new ObjectPool<Bullet>(_bulletPrefab, 20, _parentForPoolObjects);
+        _worldBoundary.LeftWorld += _bulletPool.ReturnObjectToPool;
     }
 
     private void Update()
@@ -41,14 +43,7 @@ public class PlayerGun : MonoBehaviour
         {
             Bullet bullet = (Bullet)_bulletPool.GetObject(_bulletSpawnPosition.position);
             bullet.Hit += _bulletPool.ReturnObjectToPool;
-            StartCoroutine(ReturnBulletInPool(bullet));
         }
     }
 
-    private IEnumerator ReturnBulletInPool(Bullet bullet)
-    {
-        yield return new WaitForSeconds(5);
-
-        _bulletPool.ReturnObjectToPool(bullet);
-    }
 }

@@ -15,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private int _asteroidsInWaveMax;
     [Header("Boundaries")]
     [SerializeField] private float _spawnHeight;
-    [SerializeField] private Boundary _spawnBoundary;
+    [SerializeField] private ScreenBoundary _spawnBoundary;
 
     private void Start()
     {

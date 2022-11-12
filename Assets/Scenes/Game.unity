@@ -1983,7 +1983,7 @@ BoxCollider:
   m_GameObject: {fileID: 1222505581}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20, y: 10, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2249,18 +2249,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0ddba86375e44ca30286087bbb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _parentForPoolObjects: {fileID: 615542071}
   _asteroidPrefabs:
   - {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _pauseBeforeFirstWave: 1
   _spawnRate: 0.5
   _waveRate: 2
-  _returnTime: 10
   _asteroidsInWaveMin: 10
   _asteroidsInWaveMax: 50
   _spawnHeight: 12
   _spawnBoundary: {fileID: 1222505582}
-  _objectPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
+  _boundary: {fileID: 1222505585}
 --- !u!4 &1397887623
 Transform:
   m_ObjectHideFlags: 0
@@ -2287,12 +2287,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e810919a62886544f9514890fd686a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chanceTable: 0a0000002d0000002d000000
-  _dropChance: 0
   _bonuses:
   - heal
   - shield
   - triple shot
+  _chanceTable: 0a0000002d0000002d000000
+  _dropChance: 15
   _enemyFactory: {fileID: 1397887622}
 --- !u!1 &1475394768
 GameObject:
@@ -2954,6 +2954,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
   _bulletSpawnPosition: {fileID: 1188419953}
   _attackCooldown: 0.5
+  _worldBoundary: {fileID: 1222505585}
 --- !u!1 &2114091892
 GameObject:
   m_ObjectHideFlags: 0

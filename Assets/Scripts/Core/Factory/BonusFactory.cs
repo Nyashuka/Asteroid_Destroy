@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class BonusFactory : MonoBehaviour
 {
+    [SerializeField] private string[] _bonuses;
     [SerializeField] private int[] _chanceTable;
     [SerializeField] private int _dropChance;
 
-    [SerializeField] private string[] _bonuses;
-
     [SerializeField] private EnemyFactory _enemyFactory;
 
-    int _totalChance;
+    private int _totalChance;
     
     public void Start()
     {
@@ -22,6 +19,9 @@ public class BonusFactory : MonoBehaviour
 
     private void Spawn(Enemy enemy)
     {
+        if (Random.Range(0, 100) > _dropChance)
+            return;
+
         int dropedChance = Random.Range(0, _totalChance);
 
         for (int i = 0; i < _chanceTable.Length; i++)
@@ -38,8 +38,4 @@ public class BonusFactory : MonoBehaviour
         }
     }
 
-    private void SpawnBonus(IBattleBonus battleBonus)
-    {
-        // spawn obj
-    }
 }

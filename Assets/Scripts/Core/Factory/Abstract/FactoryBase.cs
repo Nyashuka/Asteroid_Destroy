@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class FactoryBase : MonoBehaviour
 {
-    [SerializeField] protected Enemy _objectPrefab;
-    protected ObjectPool _objectsPool;
+    [SerializeField] protected PoolableObject _objectPrefab;
+   
+
+
 }
