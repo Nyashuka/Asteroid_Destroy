@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HealBonus : MonoBehaviour
+public class HealBonus : BattleBonus
 {
-    private void OnTriggerEnter(Collider other)
+    protected override void ApplyBonus(Player player)
     {
-        if (other.TryGetComponent(out Player player))
-        {
-            player.Heal();
-            Destroy(gameObject);
-        }
+        player.Heal();
     }
 }
