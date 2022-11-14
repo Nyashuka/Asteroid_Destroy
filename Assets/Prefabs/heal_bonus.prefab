@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8182118474256567355}
   - component: {fileID: 2901840108852920921}
   - component: {fileID: 5186746902875067011}
-  - component: {fileID: 6790871645932306012}
   - component: {fileID: 3577556005540979385}
+  - component: {fileID: 3781694081702443920}
   m_Layer: 8
   m_Name: heal_bonus
   m_TagString: Untagged
@@ -97,18 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6790871645932306012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8962897020455806739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75103a0a45aec554aa2ae329d31b9f39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3577556005540979385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +110,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: -5
+--- !u!114 &3781694081702443920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962897020455806739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85440dc117bd6db409b0273c9e00f48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buff:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: ShieldBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
+      data:
+        _duration: 0
