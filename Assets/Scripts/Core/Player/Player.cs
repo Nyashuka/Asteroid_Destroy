@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Player.Bonuses;
 using Assets.Scripts.Core.Player.Bonuses.Abstract;
 using System;
 using System.Collections;
@@ -27,11 +28,6 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
 
     public void GetDamage()
     {
-        foreach (var battle in _buffs)
-        {
-            if (battle is ShieldBonus)
-                return;
-        }
         _health.DecreaseHealth();
     }
 
@@ -50,12 +46,19 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
         // other.TryGetValue<IPermanentBuff>(out var permanent)
         // other.TryGetValue<ITimedBuff>(out var timed)
 
-        if (other.TryGetComponent(out BuffEffect buffEffect))
+        if (other.TryGetComponent(out BuffContainer buffContainer))
         {
-            if (buffEffect is PermanentBuff)
-                buffEffect.Apply();
+            BuffEffect buff = buffContainer.GetBuff();
+
+            if (buff is PermanentBuff)
+            {
+                buff.Apply();
+            }    
             else
-                _buffs.Add((TimedBuff)buffEffect);
+            {
+                _buffs.Add((TimedBuff)buff);
+            }
+                
         }
     }
 }

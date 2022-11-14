@@ -9,15 +9,16 @@ namespace Assets.Scripts.Core.Player.Bonuses
     {
         private IHealeable _healeableObject;
 
+        public override void Init(GameObject baffOwner)
+        {
+            _healeableObject = baffOwner.GetComponent<IHealeable>();
+        }
+
         public override void Apply()
         {
             _healeableObject.Heal();
             _buffIsEnded = true;
         }
 
-        public override void Destroy()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

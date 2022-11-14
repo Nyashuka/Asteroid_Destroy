@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3577556005540979385}
   - component: {fileID: 3781694081702443920}
   m_Layer: 8
-  m_Name: heal_bonus
+  m_Name: heal_buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,4 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: ShieldBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
-      data:
-        _duration: 0
+      type: {class: HealBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}

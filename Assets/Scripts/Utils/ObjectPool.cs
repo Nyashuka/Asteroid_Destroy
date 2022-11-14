@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ObjectPool<T>
+public class ObjectPool<T> where T : PoolableObject
 {
     private readonly Transform _parentForPoolObjects;
     private readonly PoolableObject _objectPrefab;

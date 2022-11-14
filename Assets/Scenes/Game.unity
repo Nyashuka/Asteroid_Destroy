@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &101889317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101889318}
+  m_Layer: 0
+  m_Name: CetralGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101889318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101889317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0504, z: 0.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2062591049}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172922220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,11 +1449,10 @@ GameObject:
   - component: {fileID: 942414823}
   - component: {fileID: 942414824}
   - component: {fileID: 942414826}
-  - component: {fileID: 942414825}
   - component: {fileID: 942414828}
   - component: {fileID: 942414827}
   - component: {fileID: 942414829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1442,7 +1471,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3882271672247896972}
-  - {fileID: 1188419953}
   - {fileID: 2062591049}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1476,21 +1504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _boundary: {fileID: 1222505582}
---- !u!114 &942414825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942414821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d56799c6f0a694ca37f9634e5b9e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _layer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &942414826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,7 +1922,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052228798}
   m_CullTransparentMesh: 1
---- !u!1 &1188419952
+--- !u!1 &1101226752
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1917,27 +1930,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1188419953}
+  - component: {fileID: 1101226753}
   m_Layer: 0
-  m_Name: BulletSpawnPosition
+  m_Name: RightGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1188419953
+--- !u!4 &1101226753
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188419952}
+  m_GameObject: {fileID: 1101226752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0504, z: 0.78}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 942414822}
-  m_RootOrder: 1
+  m_Father: {fileID: 2062591049}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1222505581
 GameObject:
@@ -2249,7 +2262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd0ddba86375e44ca30286087bbb471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _parentForPoolObjects: {fileID: 615542071}
   _asteroidPrefabs:
   - {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
@@ -2261,6 +2273,7 @@ MonoBehaviour:
   _spawnHeight: 12
   _spawnBoundary: {fileID: 1222505582}
   _boundary: {fileID: 1222505585}
+  _objectPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
 --- !u!4 &1397887623
 Transform:
   m_ObjectHideFlags: 0
@@ -2907,6 +2920,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903925044}
   m_CullTransparentMesh: 1
+--- !u!1 &1977684920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977684921}
+  m_Layer: 0
+  m_Name: LeftGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977684921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977684920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2062591049}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062591048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,9 +2977,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 101889318}
+  - {fileID: 1977684921}
+  - {fileID: 1101226753}
   m_Father: {fileID: 942414822}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2062591050
 MonoBehaviour:
@@ -2952,8 +2998,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parentForPoolObjects: {fileID: 825609429}
   _bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
-  _bulletSpawnPosition: {fileID: 1188419953}
+  _bulletSpawnPosition: {fileID: 101889318}
   _attackCooldown: 0.5
+  _countBulletsInPool: 100
   _worldBoundary: {fileID: 1222505585}
 --- !u!1 &2114091892
 GameObject:

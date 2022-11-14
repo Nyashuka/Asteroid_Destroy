@@ -28,6 +28,8 @@ public class EnemyFactory : MonoBehaviour
         _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
         StartCoroutine(Spawn());
         _boundary.LeftWorld += _objectsPool.ReturnObjectToPool;
+
+
     }
 
     private IEnumerator Spawn()

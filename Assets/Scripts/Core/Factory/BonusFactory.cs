@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BonusFactory : MonoBehaviour
 {
-    [SerializeField] private string[] _bonuses;
+    [SerializeField] private GameObject[] _bonuses;
     [SerializeField] private int[] _chanceTable;
     [SerializeField] private int _dropChance;
 
@@ -28,7 +28,7 @@ public class BonusFactory : MonoBehaviour
         {
             if (dropedChance <= _chanceTable[i])
             {
-                Debug.Log(_bonuses[i]);
+                Instantiate(_bonuses[i], enemy.transform.position, Quaternion.identity);
                 return;
             }
             else

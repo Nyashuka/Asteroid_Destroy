@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Core.Player.Bonuses.Abstract;
+using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
             throw new System.NotImplementedException();
         }
 
-        public override void Destroy()
+        public override void Init(GameObject baffOwner)
         {
             throw new System.NotImplementedException();
         }

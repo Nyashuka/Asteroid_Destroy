@@ -10,6 +10,6 @@ namespace Assets.Scripts.Core.Player.Bonuses.Abstract
 {
     public abstract class PermanentBuff : BuffEffect
     {
-
+        
     }
 }
