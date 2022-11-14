@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
-    public class HealBuff : PermanentBuff
+    public class HealBuff : PermanentBuff, ISupportBuff
     {
         private IHealeable _healeableObject;
 

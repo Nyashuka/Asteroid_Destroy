@@ -27,6 +27,10 @@ public class PlayerGun : MonoBehaviour
         _worldBoundary.LeftWorld += _bulletPool.ReturnObjectToPool;
 
         _playerAttack = new SimplePlayerAttack();
+
+        var atk = new MultiShotBuff();
+        atk.Init(this.gameObject);
+        _playerAttack = atk;
     }
 
     private void Update()

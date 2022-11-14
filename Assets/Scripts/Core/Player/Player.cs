@@ -3,6 +3,7 @@ using Assets.Scripts.Core.Player.Bonuses.Abstract;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IHealeable
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
     [SerializeField] private Health _health;
     [SerializeField] private PlayerGun _playerGun;
     [SerializeField] private GameObject _deathVFX;
-    [SerializeField] private List<TimedBuff> _buffs;
+    private List<TimedBuff> _buffs = new List<TimedBuff>();
     public Health Health => _health;
 
     public event Action DeathEvent;
@@ -50,6 +51,11 @@ public class Player : MonoBehaviour, IDamageable, IHealeable
         {
             BuffEffect buff = buffContainer.GetBuff();
 
+            if (buff is ISupportBuff)
+                buff.Init(this.gameObject);
+            else if (buff is IAttackBuff)
+                buff.Init(_playerGun.gameObject);
+               
             if (buff is PermanentBuff)
             {
                 buff.Apply();

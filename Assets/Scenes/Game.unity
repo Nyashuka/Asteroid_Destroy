@@ -2301,9 +2301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bonuses:
-  - heal
-  - shield
-  - triple shot
+  - {fileID: 8962897020455806739, guid: 95335518da3fd484b99a50779cc8ab93, type: 3}
+  - {fileID: 8962897020455806739, guid: 456eeb3830bdab34280517dea5dc265a, type: 3}
+  - {fileID: 8962897020455806739, guid: e66a4b13168fc5b46a2a35648d6c8e0f, type: 3}
   _chanceTable: 0a0000002d0000002d000000
   _dropChance: 15
   _enemyFactory: {fileID: 1397887622}

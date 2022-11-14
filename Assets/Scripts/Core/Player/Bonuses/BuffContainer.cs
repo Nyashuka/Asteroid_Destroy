@@ -10,7 +10,6 @@ namespace Assets.Scripts.Core.Player.Bonuses
 
         public BuffEffect GetBuff()
         {
-
             Destroy(gameObject);
             return _buff;
         }
