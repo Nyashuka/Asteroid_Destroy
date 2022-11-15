@@ -6,26 +6,17 @@ namespace Assets.Scripts.Core.Player.Bonuses
 {
     public class MultiShotBuff : TimedBuff, IPlayerAttack
     {
-        private int _countShots = 0;
+        [SerializeField] private float _distanceBetweenBullets = 0.3f;
+        [SerializeField] private int _countShots;
+
         private int _skippBullet = 0;
-        private const float _distanceBetweenBullets = 0.3f;
-
-        public override void Apply()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Attack(ObjectPool<Bullet> pool, Transform basePosition)
-        {
-
-            Spawn1(pool, basePosition.position);
-
-        }
-        private void Spawn1(ObjectPool<Bullet> pool, Vector3 basePosition)
+        private IPlayerAttack _oldAttack;
+        
+        public void Attack(ObjectPool<Bullet> pool, Vector3 basePosition)
         {
             Bullet bullet;
-
             Vector3 newPosition;
+
             if (_countShots % 2 == 0)
                 newPosition = new Vector3((basePosition.x + _countShots / 2 * _distanceBetweenBullets) - _distanceBetweenBullets / 2,
                                               basePosition.y, basePosition.z);
@@ -39,20 +30,28 @@ namespace Assets.Scripts.Core.Player.Bonuses
             {
                 bullet = (Bullet)pool.GetObject(newPosition);
 
-
                 newPosition = new Vector3(newPosition.x - _distanceBetweenBullets,
                                           basePosition.y, basePosition.z);
-
 
                 bullet.Hit += pool.ReturnObjectToPool;
             }
         }
 
-        public override void Init(GameObject baffOwner)
+        public override void Init(Player buffOwner)
         {
-            _countShots = 15;
-
             _skippBullet = (_countShots - 1) / 2 + 1;
+            _buffOwner = buffOwner;
+        }
+
+        public override void Activate()
+        {
+            _oldAttack = _buffOwner.PlayerGun.PlayerAttack;
+            _buffOwner.PlayerGun.ChangeAttackImplementation(this);
+        }
+
+        protected override void End()
+        {
+            _buffOwner.PlayerGun.ChangeAttackImplementation(_oldAttack);
         }
     }
 }

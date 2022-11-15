@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Core.Battle.Abstract;
+using System;
 using UnityEngine;
 
 public class Bullet : PoolableObject
@@ -10,11 +11,16 @@ public class Bullet : PoolableObject
       
     }
 
+    private void OnDisable()
+    {
+        Hit = null;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            damageable.GetDamage();
+            damageable.MakeDamage(1);
             Hit?.Invoke(this);
         }
     }

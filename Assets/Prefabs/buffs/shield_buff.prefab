@@ -129,4 +129,4 @@ MonoBehaviour:
     00000000:
       type: {class: ShieldBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
       data:
-        _duration: 0
+        _duration: 10

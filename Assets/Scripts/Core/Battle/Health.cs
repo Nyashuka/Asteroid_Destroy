@@ -28,9 +28,9 @@ public class Health : MonoBehaviour
         HealthChanged?.Invoke(_currentHealth);
     }
 
-    public void DecreaseHealth()
+    public void DecreaseHealth(int countHealth)
     {
-        _currentHealth--;
+        _currentHealth -= countHealth;
 
         if (_currentHealth <= 0)
         {
@@ -46,8 +46,4 @@ public class Health : MonoBehaviour
         _currentHealth = _maxHealth;
     }
 
-    public void MakeDamage()
-    {
-        DecreaseHealth();
-    }
 }

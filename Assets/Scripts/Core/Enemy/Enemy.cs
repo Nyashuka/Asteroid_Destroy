@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Core.Battle.Abstract;
+using System;
 using UnityEngine;
 
 public class Enemy : PoolableObject, IDamageable
@@ -8,11 +9,17 @@ public class Enemy : PoolableObject, IDamageable
     [SerializeField] private GameObject _deathVFX;
 
     public event Action<Enemy> EnemyDeath;
+
     public EnemyTypes EnemyType => _enemyType;
 
     public void Start()
     {
         _enemyHealth.Death += AnounceDeath;
+    }
+
+    private void OnDisable()
+    {
+        EnemyDeath = null;
     }
 
     public override void Init()
@@ -26,8 +33,8 @@ public class Enemy : PoolableObject, IDamageable
         EnemyDeath?.Invoke(this);
     }
 
-    public void GetDamage()
+    public void MakeDamage(int damage)
     {
-        _enemyHealth.DecreaseHealth();
+        _enemyHealth.DecreaseHealth(damage);
     }
 }

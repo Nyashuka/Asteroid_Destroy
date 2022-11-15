@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Core.Player;
+using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour

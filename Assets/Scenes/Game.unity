@@ -1487,9 +1487,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b086764e1e72f4aa051e673df2f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageable:
+    id: 0
   _health: {fileID: 942414826}
   _playerGun: {fileID: 2062591050}
   _deathVFX: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
+  references:
+    version: 1
+    00000000:
+      type: {class: SimpleDamageable, ns: Assets.Scripts.Core.Player, asm: Assembly-CSharp}
+      data:
+        _health: {fileID: 942414826}
 --- !u!114 &942414824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1922,36 +1930,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052228798}
   m_CullTransparentMesh: 1
---- !u!1 &1101226752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1101226753}
-  m_Layer: 0
-  m_Name: RightGun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1101226753
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101226752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2062591049}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1222505581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,36 +2898,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903925044}
   m_CullTransparentMesh: 1
---- !u!1 &1977684920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1977684921}
-  m_Layer: 0
-  m_Name: LeftGun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1977684921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977684920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2062591049}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062591048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,8 +2927,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 101889318}
-  - {fileID: 1977684921}
-  - {fileID: 1101226753}
   m_Father: {fileID: 942414822}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3000,7 +2946,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
   _bulletSpawnPosition: {fileID: 101889318}
   _attackCooldown: 0.5
-  _countBulletsInPool: 100
+  _countBulletsInPool: 10
   _worldBoundary: {fileID: 1222505585}
 --- !u!1 &2114091892
 GameObject:

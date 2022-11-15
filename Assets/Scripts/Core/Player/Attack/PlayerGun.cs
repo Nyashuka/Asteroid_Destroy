@@ -1,6 +1,7 @@
 using Assets.Scripts.Core.Player.Attack;
 using Assets.Scripts.Core.Player.Attack.Abstract;
 using Assets.Scripts.Core.Player.Bonuses;
+using System;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
@@ -17,9 +18,10 @@ public class PlayerGun : MonoBehaviour
 
     private float _nextAttackTime = 0;
 
-    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
-
     private IPlayerAttack _playerAttack;
+
+    public IPlayerAttack PlayerAttack => _playerAttack;
+    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
     private void Start()
     {
@@ -27,10 +29,6 @@ public class PlayerGun : MonoBehaviour
         _worldBoundary.LeftWorld += _bulletPool.ReturnObjectToPool;
 
         _playerAttack = new SimplePlayerAttack();
-
-        var atk = new MultiShotBuff();
-        atk.Init(this.gameObject);
-        _playerAttack = atk;
     }
 
     private void Update()
@@ -50,7 +48,12 @@ public class PlayerGun : MonoBehaviour
     {
         if (Input.GetMouseButton(0) || Input.touchCount == 1)
         {
-            _playerAttack.Attack(_bulletPool, _bulletSpawnPosition);
+            _playerAttack.Attack(_bulletPool, _bulletSpawnPosition.position);
         }
+    }
+
+    public void ChangeAttackImplementation(IPlayerAttack attackImplementation)
+    {
+        _playerAttack = attackImplementation;
     }
 }

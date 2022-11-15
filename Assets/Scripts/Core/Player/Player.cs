@@ -1,70 +1,105 @@
+using Assets.Scripts.Core.Battle.Abstract;
 using Assets.Scripts.Core.Player.Bonuses;
 using Assets.Scripts.Core.Player.Bonuses.Abstract;
+using BetterAttributes.Runtime.Attributes.Select;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, IHealeable
+namespace Assets.Scripts.Core.Player
 {
-    [SerializeField] private Health _health;
-    [SerializeField] private PlayerGun _playerGun;
-    [SerializeField] private GameObject _deathVFX;
-    private List<TimedBuff> _buffs = new List<TimedBuff>();
-    public Health Health => _health;
-
-    public event Action DeathEvent;
-
-    public void Start()
+    public class Player : MonoBehaviour, IHealeable, IDamageable
     {
-        _health.Death += OnDeath;
-    }
+        [SelectImplementation][SerializeReference] private IDamageable _damageable = new SimpleDamageable();
 
-    private void OnDeath()
-    {
-        Destroy(Instantiate(_deathVFX, transform.position, transform.rotation), 1f);
-        AnnounceDeath();
-    }
+        [SerializeField] private Health _health;
+        [SerializeField] private PlayerGun _playerGun;
+        [SerializeField] private GameObject _deathVFX;
 
-    public void GetDamage()
-    {
-        _health.DecreaseHealth();
-    }
+        private List<TimedBuff> _buffs = new List<TimedBuff>();
 
-    public void Heal()
-    {
-        _health.IncreaseHealth();
-    }
+        public Health Health => _health;
+        public PlayerGun PlayerGun => _playerGun;
+        private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
+        public IDamageable Damageable => _damageable;
 
-    private void AnnounceDeath()
-    {
-        DeathEvent?.Invoke();
-    }
+        public event Action DeathEvent;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // other.TryGetValue<IPermanentBuff>(out var permanent)
-        // other.TryGetValue<ITimedBuff>(out var timed)
-
-        if (other.TryGetComponent(out BuffContainer buffContainer))
+        private void Start()
         {
-            BuffEffect buff = buffContainer.GetBuff();
+            _health.Death += OnDeath;
+        }
 
-            if (buff is ISupportBuff)
-                buff.Init(this.gameObject);
-            else if (buff is IAttackBuff)
-                buff.Init(_playerGun.gameObject);
-               
-            if (buff is PermanentBuff)
+        private void Update()
+        {
+            if (IsPaused)
+                return;
+
+            foreach (var buff in _buffs.ToList())
             {
-                buff.Apply();
-            }    
-            else
-            {
-                _buffs.Add((TimedBuff)buff);
+                buff.Tick(Time.deltaTime);
+                if (buff.IsFinished)
+                {
+                    _buffs.Remove(buff);
+                }
             }
-                
+        }
+
+        public void MakeDamage(int damage)
+        {
+            _damageable.MakeDamage(damage);
+        }
+
+        private void OnDeath()
+        {
+            Destroy(Instantiate(_deathVFX, transform.position, transform.rotation), 1f);
+            AnnounceDeath();
+        }
+
+        public void Heal()
+        {
+            _health.IncreaseHealth();
+        }
+
+        private void AnnounceDeath()
+        {
+            DeathEvent?.Invoke();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            // other.TryGetValue<IPermanentBuff>(out var permanent)
+            // other.TryGetValue<ITimedBuff>(out var timed)
+
+            if (other.TryGetComponent(out BuffContainer buffContainer))
+            {
+                BuffEffect buff = buffContainer.GetBuff();
+
+                buff.Init(this);
+
+                if (buff is PermanentBuff permanentBuff)
+                {
+                    permanentBuff.Apply();
+                }
+                else if (buff is TimedBuff timedBuff)
+                {
+                    if (!_buffs.Contains(timedBuff))
+                    {
+                        _buffs.Add(timedBuff);
+
+                        timedBuff.Activate();
+                    }
+                }
+
+            }
+        }
+
+        public void ChangeDamageable(IDamageable damageable)
+        {
+            _damageable = damageable;
         }
     }
 }
+
+

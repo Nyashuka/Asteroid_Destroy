@@ -9,7 +9,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
     {
         private IHealeable _healeableObject;
 
-        public override void Init(GameObject baffOwner)
+        public override void Init(Player baffOwner)
         {
             _healeableObject = baffOwner.GetComponent<IHealeable>();
         }

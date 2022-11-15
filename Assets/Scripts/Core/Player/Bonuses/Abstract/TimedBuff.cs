@@ -1,10 +1,4 @@
-﻿using Assets.Scripts.Core.Player.Bonuses.ScriptableScripts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses.Abstract
 {
@@ -12,6 +6,19 @@ namespace Assets.Scripts.Core.Player.Bonuses.Abstract
     {
         [SerializeField] protected float _duration;
 
+        public abstract void Activate();
 
+        public void Tick(float delta)
+        {
+            _duration -= delta;
+            Debug.Log(_duration);
+            if (_duration <= 0)
+            {
+                End();
+                _buffIsEnded = true;
+            }
+        }
+
+        protected abstract void End();
     }
 }

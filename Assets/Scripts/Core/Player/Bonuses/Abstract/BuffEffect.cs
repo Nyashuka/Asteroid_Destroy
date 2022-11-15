@@ -1,17 +1,13 @@
-﻿using Assets.Scripts.Core.Player.Bonuses.ScriptableScripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses.Abstract
 {
     public abstract class BuffEffect 
     {
-        protected GameObject _buffOwner;
+        protected Player _buffOwner;
         protected bool _buffIsEnded;
+        public bool IsFinished => _buffIsEnded;
 
-        public abstract void Init(GameObject baffOwner);
-
-        public abstract void Apply();
-
-     
+        public abstract void Init(Player baffOwner);
     }
 }

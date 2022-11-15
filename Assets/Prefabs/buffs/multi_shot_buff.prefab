@@ -127,6 +127,8 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: TrippleShotBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
+      type: {class: MultiShotBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
       data:
-        _duration: 0
+        _duration: 10
+        _distanceBetweenBullets: 0.3
+        _countShots: 3

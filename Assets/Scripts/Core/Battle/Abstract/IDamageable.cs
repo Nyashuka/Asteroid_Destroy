@@ -1,7 +1,10 @@
 ﻿
-
-public interface IDamageable
+namespace Assets.Scripts.Core.Battle.Abstract
 {
-    void GetDamage();
+    public interface IDamageable
+    {
+        void MakeDamage(int damage);
+    }
 }
+
 

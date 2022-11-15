@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Assets.Scripts.Core.Battle.Abstract;
 using UnityEngine;
 
 public class Damager : MonoBehaviour
@@ -7,7 +7,7 @@ public class Damager : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            damageable.GetDamage();
+            damageable.MakeDamage(1);
         }
     }
 }

@@ -1,18 +1,30 @@
-﻿using Assets.Scripts.Core.Player.Bonuses.Abstract;
-using UnityEngine;
+﻿using Assets.Scripts.Core.Battle.Abstract;
+using Assets.Scripts.Core.Player.Bonuses.Abstract;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
-    public class ShieldBuff : TimedBuff
+    public class ShieldBuff : TimedBuff, IDamageable
     {
-        public override void Apply()
+        private IDamageable _oldDamageable;
+        public override void Activate()
         {
-            throw new System.NotImplementedException();
+            _oldDamageable = _buffOwner.Damageable;
+            _buffOwner.ChangeDamageable(this);
         }
 
-        public override void Init(GameObject baffOwner)
+        public void MakeDamage(int damage)
         {
-            throw new System.NotImplementedException();
+            _buffOwner.Health.DecreaseHealth(0);
+        }
+
+        public override void Init(Player buffOwner)
+        {
+           _buffOwner = buffOwner;
+        }
+
+        protected override void End()
+        {
+            _buffOwner.ChangeDamageable(_oldDamageable);
         }
     }
 }
