@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private Score _score;
-    private PlayersDataManager _playersDataStorage;
+    public PlayerDataManager PlayersDataStorage => ServicesProvider.Instance.PlayerDataManager;
 
     private bool _isGameOver;
 
@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
+        ServicesProvider.Instance.PauseManager.SetPaused(false);
         _player.DeathEvent += EndTheGame;
         _enemyFactory.EnemyDeath += AddScore;
     }
@@ -24,6 +25,7 @@ public class Game : MonoBehaviour
         _isGameOver = true;
         GameOverEvent?.Invoke();
         Destroy(_player.gameObject);
+        PlayersDataStorage.UpdatePlayerData(_score.Value);
     }
 
     private void AddScore(Enemy killedEnemy)

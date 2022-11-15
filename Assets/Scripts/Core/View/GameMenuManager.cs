@@ -10,6 +10,7 @@ public class GameMenuManager : MonoBehaviour
 {
     [SerializeField] private Game _game;
     [SerializeField] private Image _menuPanel;
+    [SerializeField] private GameObject _saveRecordPanel;
     //[SerializeField] private Image _menuPanel;
     [SerializeField] private Text _gameOverText;
     [Header("Buttons")]
@@ -17,6 +18,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _exitToMenuButton;
     [SerializeField] private Button _pauseButton;
+    [SerializeField] private Button _saveRecordButton;
 
     private void Start()
     {
@@ -24,8 +26,14 @@ public class GameMenuManager : MonoBehaviour
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
         _restartButton.onClick.AddListener(OnRestartGameButtonClicked);
         _exitToMenuButton.onClick.AddListener(OnExitToMenuButtonClicked);
+        _saveRecordButton.onClick.AddListener(OnSaveRecordButtonClicked);
 
         _game.GameOverEvent += OnGameOver;
+    }
+
+    private void OnSaveRecordButtonClicked()
+    {
+        _saveRecordPanel.SetActive(true);
     }
 
     private void OnExitToMenuButtonClicked()
@@ -58,6 +66,7 @@ public class GameMenuManager : MonoBehaviour
         ShowGeneral();
         _gameOverText.gameObject.SetActive(true);
         _restartButton.gameObject.SetActive(true);
+        _saveRecordButton.gameObject.SetActive(true);
     }
 
     private void ShowGeneral()

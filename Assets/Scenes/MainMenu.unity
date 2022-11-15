@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 244766867}
   - component: {fileID: 244766869}
   - component: {fileID: 244766868}
+  - component: {fileID: 244766870}
   m_Layer: 5
   m_Name: max_score
   m_TagString: Untagged
@@ -416,6 +417,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244766866}
   m_CullTransparentMesh: 1
+--- !u!114 &244766870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244766866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e51f0559017f054b8a1b3b90ba9255a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: 'Max score:'
+  _textBox: {fileID: 244766868}
 --- !u!1 &270730158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _recordPrefab: {fileID: 1008310338437079000, guid: 1128b8246a891fc4abe66d0c1c54c102, type: 3}
+  _recordHeight: 0
   _parent: {fileID: 1092940327}
 --- !u!1 &2082884505
 GameObject:

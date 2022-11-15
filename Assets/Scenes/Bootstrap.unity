@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821860337}
   - component: {fileID: 821860336}
+  - component: {fileID: 821860338}
   m_Layer: 0
   m_Name: bootstrap_data
   m_TagString: Untagged
@@ -152,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4704452a0ee9b6e41b509e6d3d5b9792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDataManager: {fileID: 821860338}
 --- !u!4 &821860337
 Transform:
   m_ObjectHideFlags: 0
@@ -166,3 +168,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821860338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821860335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d57446006483114d84a4b3138d9cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

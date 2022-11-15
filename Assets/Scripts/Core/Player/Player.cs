@@ -17,7 +17,8 @@ namespace Assets.Scripts.Core.Player
         [SerializeField] private PlayerGun _playerGun;
         [SerializeField] private GameObject _deathVFX;
 
-        private List<TimedBuff> _buffs = new List<TimedBuff>();
+       // private List<TimedBuff> _buffs = new List<TimedBuff>();
+        private Dictionary<Type,TimedBuff> _buffs = new Dictionary<Type,TimedBuff>();
 
         public Health Health => _health;
         public PlayerGun PlayerGun => _playerGun;
@@ -36,12 +37,12 @@ namespace Assets.Scripts.Core.Player
             if (IsPaused)
                 return;
 
-            foreach (var buff in _buffs.ToList())
+            foreach (var buff in new List<TimedBuff>(_buffs.Values))
             {
                 buff.Tick(Time.deltaTime);
                 if (buff.IsFinished)
                 {
-                    _buffs.Remove(buff);
+                    _buffs.Remove(buff.GetType());
                 }
             }
         }
@@ -84,14 +85,15 @@ namespace Assets.Scripts.Core.Player
                 }
                 else if (buff is TimedBuff timedBuff)
                 {
-                    if (!_buffs.Contains(timedBuff))
+                    Type buffType = timedBuff.GetType();
+                    if (_buffs.ContainsKey(buffType))
                     {
-                        _buffs.Add(timedBuff);
-
-                        timedBuff.Activate();
+                        _buffs.Remove(buffType);
                     }
-                }
 
+                    _buffs.Add(buffType, timedBuff);
+                    timedBuff.Activate();   
+                }
             }
         }
 

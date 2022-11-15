@@ -3,10 +3,12 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Core.View
 {
-    public class LoginView : MonoBehaviour
+    public class SaveRecord : MonoBehaviour
     {
+        [SerializeField] private GameObject _saveRecordPanel;
         [SerializeField] private InputField _usernameInputField;
-        [SerializeField] private Button _loginButton;
+        [SerializeField] private Score _score;
+        [SerializeField] private Button _saveButton;
 
         private void Start()
         {
@@ -14,6 +16,7 @@ namespace Assets.Scripts.Core.View
             { 
                 return ValidateUsername(addedChar); 
             };
+            _saveButton.onClick.AddListener(Save);
         }
 
         private char ValidateUsername(char charToValidate)
@@ -22,6 +25,12 @@ namespace Assets.Scripts.Core.View
                 return '\0';
 
             return charToValidate;
+        }
+
+        private void Save()
+        {
+            ServicesProvider.Instance.PlayerDataManager.SaveSomePlayer(_usernameInputField.text, _score.Value);
+            _saveRecordPanel.SetActive(false);
         }
     }
 }

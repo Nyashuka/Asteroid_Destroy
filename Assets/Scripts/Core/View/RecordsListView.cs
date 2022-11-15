@@ -5,20 +5,23 @@ using UnityEngine;
 public class RecordsListView : MonoBehaviour
 {
     [SerializeField] private RecordView _recordPrefab;
+    [SerializeField] private int _recordHeight; // 100 is good size
     [SerializeField] private Transform _parent;
 
     public void Start()
     {
-        int count = 30;
-        float size = 100 * count + count * 20;
+        List<PlayerData> playerData = ServicesProvider.Instance.PlayerDataManager.PlayersData;
+
+        int count = playerData.Count;
+        float size = _recordHeight * count + count * 20; // i forgot what is 20 
 
         if(size > _parent.GetComponent<RectTransform>().sizeDelta.y)
             _parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, size);
         
 
-        for (int i = 0; i < count; i++)
+        foreach (var player in playerData)
         {
-            _recordPrefab.Init("Test" + i, Random.Range(1214, 8090));
+            _recordPrefab.Init(player.Username, player.MaxScore);
             Instantiate(_recordPrefab, _parent);
         }
     }
