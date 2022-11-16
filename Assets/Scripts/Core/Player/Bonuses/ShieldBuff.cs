@@ -22,7 +22,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
            _buffOwner = buffOwner;
         }
 
-        protected override void End()
+        public override void End()
         {
             _buffOwner.ChangeDamageable(_oldDamageable);
         }

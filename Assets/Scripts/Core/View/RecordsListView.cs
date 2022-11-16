@@ -6,17 +6,19 @@ public class RecordsListView : MonoBehaviour
 {
     [SerializeField] private RecordView _recordPrefab;
     [SerializeField] private int _recordHeight; // 100 is good size
-    [SerializeField] private Transform _parent;
+    [SerializeField] private RectTransform _parent;
 
     public void Start()
     {
         List<PlayerData> playerData = ServicesProvider.Instance.PlayerDataManager.PlayersData;
+        playerData.Sort();
+        playerData.Reverse();
 
         int count = playerData.Count;
         float size = _recordHeight * count + count * 20; // i forgot what is 20 
 
-        if(size > _parent.GetComponent<RectTransform>().sizeDelta.y)
-            _parent.GetComponent<RectTransform>().sizeDelta = new Vector2(0, size);
+        if(size > _parent.sizeDelta.y)
+            _parent.sizeDelta = new Vector2(0, size);
         
 
         foreach (var player in playerData)

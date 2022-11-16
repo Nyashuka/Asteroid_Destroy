@@ -8,6 +8,7 @@ public class Game : MonoBehaviour
     [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private Score _score;
     public PlayerDataManager PlayersDataStorage => ServicesProvider.Instance.PlayerDataManager;
+    public Score Score => _score;
 
     private bool _isGameOver;
 

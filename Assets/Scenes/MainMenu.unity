@@ -1908,7 +1908,7 @@ GameObject:
   - component: {fileID: 1732113129}
   - component: {fileID: 1732113131}
   m_Layer: 0
-  m_Name: Subscribers
+  m_Name: view_scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1932,7 +1932,6 @@ MonoBehaviour:
   _quitButton: {fileID: 678250088}
   _backButton: {fileID: 2082884507}
   _recordsList: {fileID: 1413788094}
-  _currentPanel: {fileID: 0}
 --- !u!4 &1732113130
 Transform:
   m_ObjectHideFlags: 0

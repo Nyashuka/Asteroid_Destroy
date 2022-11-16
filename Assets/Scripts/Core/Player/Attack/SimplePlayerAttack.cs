@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Core.Player.Attack.Abstract;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Attack

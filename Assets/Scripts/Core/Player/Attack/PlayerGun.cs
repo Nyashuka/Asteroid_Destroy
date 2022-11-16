@@ -1,7 +1,5 @@
 using Assets.Scripts.Core.Player.Attack;
 using Assets.Scripts.Core.Player.Attack.Abstract;
-using Assets.Scripts.Core.Player.Bonuses;
-using System;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour

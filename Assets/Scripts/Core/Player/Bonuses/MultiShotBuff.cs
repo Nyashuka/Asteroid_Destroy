@@ -49,7 +49,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
             _buffOwner.PlayerGun.ChangeAttackImplementation(this);
         }
 
-        protected override void End()
+        public override void End()
         {
             _buffOwner.PlayerGun.ChangeAttackImplementation(_oldAttack);
         }

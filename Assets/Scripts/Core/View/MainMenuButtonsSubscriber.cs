@@ -12,7 +12,7 @@ public class MainMenuButtonsSubscriber : MonoBehaviour
     [SerializeField] private Button _backButton;
     [Header("Panels")]
     [SerializeField] private GameObject _recordsList;
-    [SerializeField] private GameObject _currentPanel;
+    private GameObject _currentPanel;
 
     public void Start()
     {

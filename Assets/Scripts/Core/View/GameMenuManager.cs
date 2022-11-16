@@ -39,6 +39,7 @@ public class GameMenuManager : MonoBehaviour
     private void OnExitToMenuButtonClicked()
     {
         SceneManager.LoadScene("MainMenu");
+        ServicesProvider.Instance.PlayerDataManager.UpdatePlayerData(_game.Score.Value);
     }
 
     private void OnRestartGameButtonClicked()

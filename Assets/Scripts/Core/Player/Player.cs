@@ -16,8 +16,9 @@ namespace Assets.Scripts.Core.Player
         [SerializeField] private Health _health;
         [SerializeField] private PlayerGun _playerGun;
         [SerializeField] private GameObject _deathVFX;
+        [SerializeField] private BuffIndicator _buffIndicator;
 
-       // private List<TimedBuff> _buffs = new List<TimedBuff>();
+        // private List<TimedBuff> _buffs = new List<TimedBuff>();
         private Dictionary<Type,TimedBuff> _buffs = new Dictionary<Type,TimedBuff>();
 
         public Health Health => _health;
@@ -42,6 +43,7 @@ namespace Assets.Scripts.Core.Player
                 buff.Tick(Time.deltaTime);
                 if (buff.IsFinished)
                 {
+                    _buffIndicator.Remove(buff.GetType());
                     _buffs.Remove(buff.GetType());
                 }
             }
@@ -88,10 +90,13 @@ namespace Assets.Scripts.Core.Player
                     Type buffType = timedBuff.GetType();
                     if (_buffs.ContainsKey(buffType))
                     {
+                        _buffs[buffType].End();
+                        _buffIndicator.Remove(buffType);
                         _buffs.Remove(buffType);
                     }
 
                     _buffs.Add(buffType, timedBuff);
+                    _buffIndicator.Add(buffType, timedBuff.IndicatorIamge);
                     timedBuff.Activate();   
                 }
             }
