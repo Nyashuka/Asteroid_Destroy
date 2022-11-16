@@ -1,7 +1,4 @@
 ﻿using Assets.Scripts.Core.Player.Bonuses.Abstract;
-using Assets.Scripts.Core.Player.Bonuses.ScriptableScripts;
-using System;
-using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
@@ -11,7 +8,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
 
         public override void Init(Player baffOwner)
         {
-            _healeableObject = baffOwner.GetComponent<IHealeable>();
+            _healeableObject = baffOwner;
         }
 
         public override void Apply()

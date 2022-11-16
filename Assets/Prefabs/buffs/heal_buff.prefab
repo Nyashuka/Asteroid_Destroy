@@ -119,11 +119,7 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: MultiShotBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
-      data:
-        _duration: 0
-        _distanceBetweenBullets: 0.3
-        _countShots: 0
+      type: {class: HealBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
 --- !u!1001 &2173875131181808199
 PrefabInstance:
   m_ObjectHideFlags: 0

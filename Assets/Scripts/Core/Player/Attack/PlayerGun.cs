@@ -46,6 +46,7 @@ public class PlayerGun : MonoBehaviour
     {
         if (Input.GetMouseButton(0) || Input.touchCount == 1)
         {
+            Debug.Log($"{nameof(_playerAttack)} is null: {_playerAttack == null}, {nameof(_bulletSpawnPosition)} is null {_bulletSpawnPosition == null}");
             _playerAttack.Attack(_bulletPool, _bulletSpawnPosition.position);
         }
     }
