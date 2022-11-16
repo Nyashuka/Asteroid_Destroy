@@ -8,7 +8,6 @@ public class JsonSaveSystem : ISaveSystem
     public JsonSaveSystem()
     {
         _filePath = Application.persistentDataPath + "/save_data.json";
-        Debug.Log(_filePath);
     }
 
     public void Save(SaveData saveData)
