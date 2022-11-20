@@ -4,7 +4,6 @@ using Assets.Scripts.Core.Player.Bonuses.Abstract;
 using BetterAttributes.Runtime.Attributes.Select;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.Player
@@ -49,11 +48,7 @@ namespace Assets.Scripts.Core.Player
             }
         }
 
-        public void MakeDamage(int damage)
-        {
-            _damageable.MakeDamage(damage);
-        }
-
+        
         private void OnDeath()
         {
             Destroy(Instantiate(_deathVFX, transform.position, transform.rotation), 1f);
@@ -100,6 +95,11 @@ namespace Assets.Scripts.Core.Player
                     timedBuff.Activate();   
                 }
             }
+        }
+
+        public void MakeDamage(int damage)
+        {
+            _damageable.MakeDamage(damage);
         }
 
         public void ChangeDamageable(IDamageable damageable)

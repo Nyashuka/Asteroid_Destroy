@@ -16,21 +16,30 @@ public class MainMenuButtonsSubscriber : MonoBehaviour
 
     public void Start()
     {
-        _playButton.onClick.AddListener(() => {
-            SceneManager.LoadScene(_sceneForStartGame);
-        });
+        _playButton.onClick.AddListener(OnPlayButtonClicked);
 
-        _recordsButton.onClick.AddListener(() => {
-            _recordsList.gameObject.SetActive(true);
-            _currentPanel = _recordsList;
-            _backButton.gameObject.SetActive(true);
-        });
+        _recordsButton.onClick.AddListener(OnRecordButtonClicked);
 
-        _quitButton.onClick.AddListener(() => { 
-            Application.Quit();
-        });
+        _quitButton.onClick.AddListener(OnQuitButtonClicked);
 
         _backButton.onClick.AddListener(OnBackButtonClicked);
+    }
+
+    private void OnPlayButtonClicked()
+    {
+        SceneManager.LoadScene(_sceneForStartGame);
+    }
+
+    private void OnRecordButtonClicked()
+    {
+        _recordsList.gameObject.SetActive(true);
+        _currentPanel = _recordsList;
+        _backButton.gameObject.SetActive(true);
+    }
+
+    private void OnQuitButtonClicked()
+    {
+        Application.Quit();
     }
 
     private void OnBackButtonClicked()

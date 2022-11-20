@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Player.UserInput;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,9 +10,21 @@ public class PlayerMove : MonoBehaviour
 
     private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
+    private IUserInput _userInput;
+
     private void Start()
     {
         _mainCamera = Camera.main;
+
+#if UNITY_ANDROID
+        _userInput = new AndroidUserInput();
+#endif
+
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+        _userInput = new PCUserInput();
+#endif
+
+        _userInput.MoveEvent += MovePlayer;
     }
 
     private void Update()
@@ -19,19 +32,7 @@ public class PlayerMove : MonoBehaviour
         if (IsPaused)
             return;
 
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            MovePlayer(mousePosition);
-            return;
-        }
-
-        if (Input.touchCount == 1)
-        {
-            Touch touch = Input.touches[0];
-            Vector3 touchPosition = _mainCamera.ScreenToWorldPoint(touch.position);
-            MovePlayer(touchPosition);
-        }
+        _userInput.Update();
     }
 
     private void MovePlayer(Vector3 pressedPosition)
@@ -39,28 +40,8 @@ public class PlayerMove : MonoBehaviour
         pressedPosition.y = transform.position.y;
         pressedPosition.z += 1f;
 
-        if(pressedPosition.z > _boundary.zMax)
-        {
-            pressedPosition.z = _boundary.zMax;
-        }
-        if(pressedPosition.z < _boundary.zMin)
-        {
-            pressedPosition.z = _boundary.zMin;
-        }
-        if(pressedPosition.x > _boundary.xMax)
-        {
-            pressedPosition.x = _boundary.xMax;
-        }
-        if (pressedPosition.x < _boundary.xMin)
-        {
-            pressedPosition.x = _boundary.xMin;
-        }
-
-        //if (pressedPosition.z <= _boundary.zMax && pressedPosition.z >= _boundary.zMin &&
-        //    pressedPosition.x <= _boundary.xMax && pressedPosition.x >= _boundary.xMin)
-        //{
-        //    //transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed);
-        //}
+        pressedPosition.z = Mathf.Clamp(pressedPosition.z, _boundary.zMin, _boundary.zMax);
+        pressedPosition.x = Mathf.Clamp(pressedPosition.x, _boundary.xMin, _boundary.xMax);
 
         transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed * Time.deltaTime);
     }

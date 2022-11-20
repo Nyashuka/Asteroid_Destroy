@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-
-
 public class EnemyFactory : MonoBehaviour
 {
     [SerializeField] private Transform _parentForPoolObjects;
@@ -21,13 +19,14 @@ public class EnemyFactory : MonoBehaviour
     [SerializeField] private PoolableObject _objectPrefab;
 
     private ObjectPool<Enemy> _objectsPool;
-
     public event Action<Enemy> EnemyDeath;
+
     public void Start()
     {
         _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
-        StartCoroutine(Spawn());
         _boundary.LeftWorld += _objectsPool.ReturnObjectToPool;
+
+        StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn()
