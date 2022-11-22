@@ -12,7 +12,9 @@ public class MainMenuButtonsSubscriber : MonoBehaviour
     [SerializeField] private Button _backButton;
     [Header("Panels")]
     [SerializeField] private GameObject _recordsList;
+    [SerializeField] private GameObject _mainMenuUIPanel;
     private GameObject _currentPanel;
+    private GameObject _previousPanel;
 
     public void Start()
     {
@@ -33,8 +35,11 @@ public class MainMenuButtonsSubscriber : MonoBehaviour
     private void OnRecordButtonClicked()
     {
         _recordsList.gameObject.SetActive(true);
-        _currentPanel = _recordsList;
+        _mainMenuUIPanel.SetActive(false);    
         _backButton.gameObject.SetActive(true);
+
+        _currentPanel = _recordsList;
+        _previousPanel = _mainMenuUIPanel;
     }
 
     private void OnQuitButtonClicked()
@@ -46,6 +51,7 @@ public class MainMenuButtonsSubscriber : MonoBehaviour
     {
         _currentPanel.SetActive(false);
         _backButton.gameObject.SetActive(false);
+        _previousPanel.SetActive(true);
     }
 
 }
