@@ -19,6 +19,7 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private Button _exitToMenuButton;
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _saveRecordButton;
+    [SerializeField] private Button _saveButton;
 
     private void Start()
     {
@@ -26,14 +27,26 @@ public class GameMenuManager : MonoBehaviour
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
         _restartButton.onClick.AddListener(OnRestartGameButtonClicked);
         _exitToMenuButton.onClick.AddListener(OnExitToMenuButtonClicked);
-        _saveRecordButton.onClick.AddListener(OnSaveRecordButtonClicked);
+        _saveRecordButton.onClick.AddListener(OnToSaveRecordButtonClicked);
+        _saveButton.onClick.AddListener(OnSaveButtonClicked);
 
         _game.GameOverEvent += OnGameOver;
     }
 
-    private void OnSaveRecordButtonClicked()
+    private void OnSaveButtonClicked()
+    {
+        _saveRecordPanel.SetActive(false);
+        _restartButton.gameObject.SetActive(true);
+        _saveRecordButton.gameObject.SetActive(true);
+        _exitToMenuButton.gameObject.SetActive(true);
+    }
+
+    private void OnToSaveRecordButtonClicked()
     {
         _saveRecordPanel.SetActive(true);
+        _restartButton.gameObject.SetActive(false);
+        _saveRecordButton.gameObject.SetActive(false);
+        _exitToMenuButton.gameObject.SetActive(false);
     }
 
     private void OnExitToMenuButtonClicked()

@@ -16,6 +16,7 @@ namespace Assets.Scripts.Core.View
             { 
                 return ValidateUsername(addedChar); 
             };
+
             _saveButton.onClick.AddListener(Save);
         }
 
@@ -30,7 +31,6 @@ namespace Assets.Scripts.Core.View
         private void Save()
         {
             ServicesProvider.Instance.PlayerDataManager.SaveSomePlayer(_usernameInputField.text, _score.Value);
-            _saveRecordPanel.SetActive(false);
         }
     }
 }
