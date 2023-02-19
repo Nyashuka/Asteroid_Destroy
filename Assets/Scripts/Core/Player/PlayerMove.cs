@@ -1,10 +1,10 @@
 using Assets.Scripts.Core.Player.UserInput;
+using Assets.Scripts.Core.Utils;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float _speed = 1;
-    [SerializeField] private ScreenBoundary _boundary;
 
     private Camera _mainCamera;
 
@@ -40,8 +40,8 @@ public class PlayerMove : MonoBehaviour
         pressedPosition.y = transform.position.y;
         pressedPosition.z += 1f;
 
-        pressedPosition.z = Mathf.Clamp(pressedPosition.z, _boundary.zMin, _boundary.zMax);
-        pressedPosition.x = Mathf.Clamp(pressedPosition.x, _boundary.xMin, _boundary.xMax);
+        pressedPosition.z = Mathf.Clamp(pressedPosition.z, ScreenBoundary.Instance.zMin, ScreenBoundary.Instance.zMax);
+        pressedPosition.x = Mathf.Clamp(pressedPosition.x, ScreenBoundary.Instance.xMin, ScreenBoundary.Instance.xMax);
 
         transform.position = Vector3.MoveTowards(transform.position, pressedPosition, _speed * Time.deltaTime);
     }

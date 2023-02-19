@@ -2,29 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyDictionary : UnitySerializedDictionary<Enemy, int>
-{
-  
-}
 
-public class Score : MonoBehaviour
+public class Score
 {
-    public event Action<int> ScoreChanged;
+    private UnitySerializedDictionary<EnemyTypes, int> _scoresAmountToAdd =
+                         new UnitySerializedDictionary<EnemyTypes, int>()
+                         {
+                             { EnemyTypes.Asteroid , 100 },
+                         };
 
     private int _currentScore = 0;
-    public int Value => _currentScore;
+    public int Value => _currentScore; 
+   
+    public event Action<int> ScoreChangedEvent;
 
-    [SerializeField] private UnitySerializedDictionary<EnemyTypes, int> _scoresAmountToAdd = 
-                         new UnitySerializedDictionary<EnemyTypes, int>();
-  
     public void AddScore(Enemy killedEnemy)
     {
         if(_scoresAmountToAdd.TryGetValue(killedEnemy.EnemyType, out var score))
         {
             _currentScore += score;
-            ScoreChanged?.Invoke(_currentScore);
-        }
-            
+            ScoreChangedEvent?.Invoke(_currentScore);
+        }          
     }
 }
 

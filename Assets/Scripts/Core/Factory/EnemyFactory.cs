@@ -1,58 +1,27 @@
-﻿using System;
-using System.Collections;
+﻿using Assets.Scripts.Core.Utils;
+using System;
 using UnityEngine;
-public class EnemyFactory : MonoBehaviour
+public class EnemyFactory
 {
-    [SerializeField] private Transform _parentForPoolObjects;
-    [SerializeField] private Asteroid[] _asteroidPrefabs;
-    [Header("Timings")]
-    [SerializeField] private float _pauseBeforeFirstWave = 5;
-    [SerializeField] private float _spawnRate = 0.5f;
-    [SerializeField] private float _waveRate = 2;
-    [Header("Count")]
-    [SerializeField] private int _asteroidsInWaveMin = 10;
-    [SerializeField] private int _asteroidsInWaveMax = 50;
-    [Header("Boundaries")]
-    [SerializeField] private float _spawnHeight = 12;
-    [SerializeField] private ScreenBoundary _spawnBoundary;
-    [SerializeField] private WorldBoundary _boundary;
-    [SerializeField] private PoolableObject _objectPrefab;
-
+    private Transform _parentForPoolObjects;
+    private PoolableObject _objectPrefab;
     private ObjectPool<Enemy> _objectsPool;
+
+    public EnemyFactory(Transform parentForPoolObjects, PoolableObject objectPrefab)
+    {
+        _parentForPoolObjects = parentForPoolObjects;
+        _objectPrefab = objectPrefab;
+        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
+        ScreenBoundary.Instance.LeftWorld += _objectsPool.ReturnObjectToPool;
+    }
+
     public event Action<Enemy> EnemyDeath;
 
-    public void Start()
+    public void SpawnEnemy(float spawnHeight)
     {
-        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
-        _boundary.LeftWorld += _objectsPool.ReturnObjectToPool;
-
-        StartCoroutine(Spawn());
-    }
-
-    private IEnumerator Spawn()
-    {
-        yield return new WaitForSeconds(_pauseBeforeFirstWave);
-
-        while (true)
-        {
-            int countAsteroids = UnityEngine.Random.Range(_asteroidsInWaveMin, _asteroidsInWaveMax);
-
-            for (int i = 0; i < countAsteroids; i++)
-            {
-                SpawnEnemy();
-
-                yield return new WaitForSeconds(_spawnRate);
-            }
-
-            yield return new WaitForSeconds(_waveRate);
-        }
-    }
-
-    private void SpawnEnemy()
-    {
-        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(_spawnBoundary.xMin, _spawnBoundary.xMax),
+        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(ScreenBoundary.Instance.xMin, ScreenBoundary.Instance.xMax),
                                                             0,
-                                                            _spawnHeight);
+                                                            spawnHeight);
 
         Enemy spawnedEnemy = (Enemy)_objectsPool.GetObject(spawnPosition);
 

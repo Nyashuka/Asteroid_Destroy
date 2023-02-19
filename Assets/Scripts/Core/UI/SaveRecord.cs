@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Core.View
+namespace Assets.Scripts.Core.UI
 {
     public class SaveRecord : MonoBehaviour
     {

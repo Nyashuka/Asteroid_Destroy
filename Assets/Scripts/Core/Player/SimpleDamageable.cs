@@ -6,8 +6,13 @@ namespace Assets.Scripts.Core.Player
 {
     public class SimpleDamageable : IDamageable
     {
-        [SerializeField] private Health _health;
-
+        private Health _health;
+        
+        public SimpleDamageable(Health health)
+        {
+            _health = health;
+        }
+        
         public void MakeDamage(int damage)
         {
             _health.DecreaseHealth(damage);

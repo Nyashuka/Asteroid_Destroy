@@ -1,16 +1,16 @@
+using Assets.Scripts.Core.Utils;
 using Assets.Scripts.Core.Player.Attack;
 using Assets.Scripts.Core.Player.Attack.Abstract;
 using UnityEngine;
 
-public class PlayerGun : MonoBehaviour
+public class PlayerGun
 {
-    [SerializeField] private Transform _parentForPoolObjects;
+    private Bullet _bulletPrefab;
+    private Transform _bulletSpawnPosition;
+    private float _attackCooldown = 0.5f;
+    private int _countBulletsInPool = 10;
 
-    [SerializeField] private Bullet _bulletPrefab;
-    [SerializeField] private Transform _bulletSpawnPosition;
-    [SerializeField] private float _attackCooldown;
-    [SerializeField] private int _countBulletsInPool;
-    [SerializeField] private WorldBoundary _worldBoundary;
+    private Transform _parentForPoolObjects;
 
     private ObjectPool<Bullet> _bulletPool;
 
@@ -21,29 +21,33 @@ public class PlayerGun : MonoBehaviour
     public IPlayerAttack PlayerAttack => _playerAttack;
     private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
-    private void Start()
+    public PlayerGun(Bullet bulletPrefab, Transform bulletSpawnPosition)
     {
+        _bulletPrefab = bulletPrefab;
+        _bulletSpawnPosition = bulletSpawnPosition;
+
+        _parentForPoolObjects = new GameObject("Parent_For_Pool_Bullets").transform;
         _bulletPool = new ObjectPool<Bullet>(_bulletPrefab, _countBulletsInPool, _parentForPoolObjects);
-        _worldBoundary.LeftWorld += _bulletPool.ReturnObjectToPool;
+        ScreenBoundary.Instance.LeftWorld += _bulletPool.ReturnObjectToPool;
 
         _playerAttack = new SimplePlayerAttack();
     }
 
-    private void Update()
-    {
-        if (IsPaused)
-            return;
+    //private void Update()
+    //{
+    //    if (IsPaused)
+    //        return;
 
+    //    Attack();
+    //}
+
+    public void Attack()
+    {
         if (_nextAttackTime > Time.time)
             return;
 
         _nextAttackTime = Time.time + _attackCooldown;
 
-        Attack();
-    }
-
-    private void Attack()
-    {
         if (Input.GetMouseButton(0) || Input.touchCount == 1)
         {
            _playerAttack.Attack(_bulletPool, _bulletSpawnPosition.position);

@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health
 {
     public event Action<int> HealthChanged;
     public event Action Death;
-
-    [SerializeField] private int _maxHealth;
+    private int _maxHealth;
 
     private int _currentHealth;
     public int CurrentHealth => _currentHealth;
 
-    private void Start()
+    public Health(int healthAmount)
     {
+        _maxHealth = healthAmount;
         _currentHealth = _maxHealth;
     }
 

@@ -9,26 +9,32 @@ using UnityEngine;
 namespace Assets.Scripts.Core.Player
 {
     public class Player : MonoBehaviour, IHealeable, IDamageable
-    {
-        [SelectImplementation][SerializeReference] private IDamageable _damageable = new SimpleDamageable();
-
-        [SerializeField] private Health _health;
-        [SerializeField] private PlayerGun _playerGun;
+    {       
+        [SerializeField] private PlayerMove _playerMove;
+        [SerializeField] private BuffIndicator _buffIndicator;     
+        [SerializeField] private Bullet _bulletPrefab;
+        [SerializeField] private Transform _bulletSpawnPosition;
         [SerializeField] private GameObject _deathVFX;
-        [SerializeField] private BuffIndicator _buffIndicator;
+        [SerializeField] private int _healthAmount;
 
         // private List<TimedBuff> _buffs = new List<TimedBuff>();
         private Dictionary<Type,TimedBuff> _buffs = new Dictionary<Type,TimedBuff>();
 
+        private Health _health;
+        private PlayerGun _playerGun;
+        private IDamageable _damageable;
         public Health Health => _health;
         public PlayerGun PlayerGun => _playerGun;
-        private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
+        public PlayerMove PlayerMove => _playerMove;      
         public IDamageable Damageable => _damageable;
 
         public event Action DeathEvent;
-
+        private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
         private void Start()
         {
+            _playerGun = new PlayerGun(_bulletPrefab, _bulletSpawnPosition);
+            _health = new Health(_healthAmount);
+            _damageable = new SimpleDamageable(_health);
             _health.Death += OnDeath;
         }
 
@@ -36,6 +42,8 @@ namespace Assets.Scripts.Core.Player
         {
             if (IsPaused)
                 return;
+
+            _playerGun.Attack();
 
             foreach (var buff in new List<TimedBuff>(_buffs.Values))
             {
@@ -67,6 +75,11 @@ namespace Assets.Scripts.Core.Player
 
         private void OnTriggerEnter(Collider other)
         {
+             TakeBuff(other);
+        }
+
+        private void TakeBuff(Collider other)
+        {
             // other.TryGetValue<IPermanentBuff>(out var permanent)
             // other.TryGetValue<ITimedBuff>(out var timed)
 
@@ -83,6 +96,7 @@ namespace Assets.Scripts.Core.Player
                 else if (buff is TimedBuff timedBuff)
                 {
                     Type buffType = timedBuff.GetType();
+
                     if (_buffs.ContainsKey(buffType))
                     {
                         _buffs[buffType].End();
@@ -92,7 +106,7 @@ namespace Assets.Scripts.Core.Player
 
                     _buffs.Add(buffType, timedBuff);
                     _buffIndicator.Add(buffType, timedBuff.IndicatorIamge);
-                    timedBuff.Activate();   
+                    timedBuff.Activate();
                 }
             }
         }

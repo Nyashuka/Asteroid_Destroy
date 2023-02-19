@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,6 @@ public class AsteroidSpawner : MonoBehaviour
     [SerializeField] private int _asteroidsInWaveMax;
     [Header("Boundaries")]
     [SerializeField] private float _spawnHeight;
-    [SerializeField] private ScreenBoundary _spawnBoundary;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class AsteroidSpawner : MonoBehaviour
 
             for (int i = 0; i < countAsteroids; i++)
             {          
-                Vector3 spawnPosition = new Vector3(Random.Range(_spawnBoundary.xMin, _spawnBoundary.xMax), 0, _spawnHeight);
+                Vector3 spawnPosition = new Vector3(Random.Range(ScreenBoundary.Instance.xMin, ScreenBoundary.Instance.xMax), 0, _spawnHeight);
                 Quaternion spawnRotation = Quaternion.identity;
                 GameObject hazard = _asteroidPrefabs[Random.Range(0, _asteroidPrefabs.Length)];
 

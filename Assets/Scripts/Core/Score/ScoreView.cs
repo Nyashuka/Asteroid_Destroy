@@ -1,21 +1,25 @@
-﻿
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreView : MonoBehaviour
 {
     [SerializeField] private Text _scoreText;
-    [SerializeField] private Score _score;
+    private Score _score;
 
-    public void Start()
+    public void Init(Score score )
     {
-        _score.ScoreChanged += OnScoreValueChanged;
+        _score = score;
+        _score.ScoreChangedEvent += OnScoreChanged;
     }
 
-    private void OnScoreValueChanged(int newScore)
+    private void OnScoreChanged(int newScore)
     {
         _scoreText.text = newScore.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        _score.ScoreChangedEvent -= OnScoreChanged;
     }
 }
 

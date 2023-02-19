@@ -5,15 +5,17 @@ using UnityEngine;
 public class Enemy : PoolableObject, IDamageable
 {
     [SerializeField] private EnemyTypes _enemyType;
-    [SerializeField] private Health _enemyHealth;
     [SerializeField] private GameObject _deathVFX;
+    [SerializeField] private int _healthAmount;
 
+    private Health _enemyHealth;
     public event Action<Enemy> EnemyDeath;
 
     public EnemyTypes EnemyType => _enemyType;
 
     public void Start()
     {
+        _enemyHealth = new Health(_healthAmount);
         _enemyHealth.Death += AnounceDeath;
     }
 

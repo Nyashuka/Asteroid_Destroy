@@ -1,13 +1,13 @@
+using Assets.Scripts.Core.Game;
 using System.Linq;
 using UnityEngine;
 
-public class BonusFactory : MonoBehaviour
+public class BonusSpawner
 {
-    [SerializeField] private GameObject[] _bonuses;
-    [SerializeField] private int[] _chanceTable;
-    [SerializeField] private int _dropChance;
-
-    [SerializeField] private EnemyFactory _enemyFactory;
+    private GameObject[] _bonuses;
+    private int[] _chanceTable;
+    private int _dropChance;
+    private EnemiesSpawner _enemyFactory;
 
     private int _totalChance;
     
@@ -28,7 +28,7 @@ public class BonusFactory : MonoBehaviour
         {
             if (dropedChance <= _chanceTable[i])
             {
-                Instantiate(_bonuses[i], enemy.transform.position, Quaternion.identity);
+                MonoBehaviour.Instantiate(_bonuses[i], enemy.transform.position, Quaternion.identity);
                 return;
             }
             else

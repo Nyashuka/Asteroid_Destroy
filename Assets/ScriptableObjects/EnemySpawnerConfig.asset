@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a953e905b434d4943b45129b3100049a, type: 3}
+  m_Name: EnemySpawnerConfig
+  m_EditorClassIdentifier: 
+  _parentForPoolObjects: {fileID: 0}
+  _pauseBeforeFirstWave: 5
+  _spawnRate: 0.5
+  _waveRate: 2
+  _asteroidsInWaveMin: 10
+  _asteroidsInWaveMax: 50
+  _spawnHeight: 12
+  _spawnBoundary: {fileID: 0}
+  _enemyPrefab: {fileID: 0}
