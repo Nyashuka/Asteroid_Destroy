@@ -10,9 +10,14 @@ public class BonusSpawner
     private EnemiesSpawner _enemyFactory;
 
     private int _totalChance;
-    
-    public void Start()
+
+    public BonusSpawner(GameObject[] bonuses, int[] chanceTable, EnemiesSpawner enemyFactory)
     {
+        _bonuses = bonuses;
+        _chanceTable = chanceTable;
+        _enemyFactory = enemyFactory;
+
+        _dropChance = 40;
         _enemyFactory.EnemyDeath += Spawn;
         _totalChance = _chanceTable.Sum();
     }

@@ -25,7 +25,12 @@ namespace Assets.Scripts.Core.Player.Bonuses
         {
             BuffEffect buff = buffContainer.GetBuff();
 
-            buff.Init(_player);
+            if(buff is ShieldBuff)
+                _player.SetBuff((ShieldBuff)buff);
+            else if (buff is MultiShotBuff)
+                _player.SetBuff((MultiShotBuff)buff);
+            else if (buff is HealBuff)
+                _player.SetBuff((HealBuff)buff);
 
             if (buff is PermanentBuff permanentBuff)
             {

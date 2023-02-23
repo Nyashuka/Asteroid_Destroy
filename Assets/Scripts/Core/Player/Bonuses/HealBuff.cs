@@ -6,7 +6,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
     {
         private IHealeable _healeableObject;
 
-        public override void Init(Player baffOwner)
+        public void Init(Player baffOwner)
         {
             _healeableObject = baffOwner;
         }

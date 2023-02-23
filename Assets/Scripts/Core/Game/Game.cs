@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private PoolableObject _enemyPrefab;
     [SerializeField] private ScoreView _scoreView;
+    [SerializeField] private GameObject[] _bonusPrefabs;
+    [SerializeField] private int[] _chanceTable;
 
     private EnemiesSpawner _enemiesSpawner;
     private BonusSpawner _bonusSpawner;
@@ -26,7 +28,7 @@ public class Game : MonoBehaviour
         ServicesProvider.Instance.PauseManager.SetPaused(false);
 
         _enemiesSpawner = new EnemiesSpawner(_enemyPrefab);
-        _bonusSpawner = new BonusSpawner();
+        _bonusSpawner = new BonusSpawner(_bonusPrefabs, _chanceTable, _enemiesSpawner);
 
         _player.DeathEvent += EndTheGame;
 

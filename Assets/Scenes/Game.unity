@@ -2835,6 +2835,11 @@ MonoBehaviour:
   _player: {fileID: 1257729101}
   _enemyPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
   _scoreView: {fileID: 1009255782}
+  _bonusPrefabs:
+  - {fileID: 8962897020455806739, guid: 456eeb3830bdab34280517dea5dc265a, type: 3}
+  - {fileID: 8962897020455806739, guid: e66a4b13168fc5b46a2a35648d6c8e0f, type: 3}
+  - {fileID: 8962897020455806739, guid: 95335518da3fd484b99a50779cc8ab93, type: 3}
+  _chanceTable: 280000002800000014000000
 --- !u!1 &1625691605
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,18 +10,23 @@ namespace Assets.Scripts.Core.Player.Bonuses
 
         public override void Activate()
         {
-            _oldDamageable = _buffOwner.Damageable;
             _buffOwner.ChangeDamageable(this);
         }
 
         public void MakeDamage(int damage)
         {
-            _buffOwner.Health.DecreaseHealth(DAMAGE);
+            _buffOwner.MakeDamage(DAMAGE);
         }
 
-        public override void Init(Player buffOwner)
+        public void Init(Player buffOwner, IDamageable damageable)
         {
            _buffOwner = buffOwner;
+           _oldDamageable = damageable;
+        }
+
+        public void SetDamageable(IDamageable damageable)
+        {
+            _oldDamageable = damageable;
         }
 
         public override void End()
@@ -29,4 +34,6 @@ namespace Assets.Scripts.Core.Player.Bonuses
             _buffOwner.ChangeDamageable(_oldDamageable);
         }
     }
+
+    
 }

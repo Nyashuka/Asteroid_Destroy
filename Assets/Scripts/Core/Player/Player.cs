@@ -1,4 +1,5 @@
 using Assets.Scripts.Core.Battle.Abstract;
+using Assets.Scripts.Core.Player.Attack.Abstract;
 using Assets.Scripts.Core.Player.Bonuses;
 using System;
 using UnityEngine;
@@ -21,10 +22,6 @@ namespace Assets.Scripts.Core.Player
         private BuffsContainer _buffsContainer;
         private IDamageable _damageable;       
 
-        public Health Health => _health;
-        public PlayerGun PlayerGun => _playerGun;
-        public PlayerMove PlayerMove => _playerMove;      
-        public IDamageable Damageable => _damageable;
         private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
 
@@ -84,6 +81,26 @@ namespace Assets.Scripts.Core.Player
         public void ChangeDamageable(IDamageable damageable)
         {
             _damageable = damageable;
+        }
+
+        public void SetBuff(ShieldBuff buff)
+        {
+            buff.Init(this, _damageable);
+        }
+
+        public void SetBuff(MultiShotBuff buff)
+        {
+            buff.Init(this, _playerGun.PlayerAttack);
+        }
+
+        public void SetBuff(HealBuff buff)
+        {
+            buff.Init(this);
+        }
+
+        public void ChangeAttackImplementation(IPlayerAttack attackImplementation)
+        {
+            _playerGun.ChangeAttackImplementation(attackImplementation);
         }
     }
 }

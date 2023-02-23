@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core.Game
 {
-    internal class EnemiesSpawner
+    public class EnemiesSpawner
     {
         private readonly float _pauseBeforeFirstWave = 5;
         private readonly float _spawnRate = 0.5f;

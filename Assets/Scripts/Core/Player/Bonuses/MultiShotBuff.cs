@@ -37,21 +37,21 @@ namespace Assets.Scripts.Core.Player.Bonuses
             }
         }
 
-        public override void Init(Player buffOwner)
+        public void Init(Player buffOwner, IPlayerAttack playerAttack)
         {
             _skippBullet = (_countShots - 1) / 2 + 1;
             _buffOwner = buffOwner;
+            _oldAttack = playerAttack;
         }
 
         public override void Activate()
         {
-            _oldAttack = _buffOwner.PlayerGun.PlayerAttack;
-            _buffOwner.PlayerGun.ChangeAttackImplementation(this);
+            _buffOwner.ChangeAttackImplementation(this);
         }
 
         public override void End()
         {
-            _buffOwner.PlayerGun.ChangeAttackImplementation(_oldAttack);
+            _buffOwner.ChangeAttackImplementation(_oldAttack);
         }
     }
 }

@@ -8,6 +8,5 @@ namespace Assets.Scripts.Core.Player.Bonuses.Abstract
         protected bool _buffIsEnded;
         public bool IsFinished => _buffIsEnded;
 
-        public abstract void Init(Player baffOwner);
     }
 }

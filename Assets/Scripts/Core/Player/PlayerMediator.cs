@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Core.Player.Bonuses;
+using UnityEngine;
 
-namespace Assets.Scripts.Core.Player
+namespace Assets.Scripts.Core
 {
     public class PlayerMediator : MonoBehaviour
     {
@@ -14,4 +15,6 @@ namespace Assets.Scripts.Core.Player
         {
         }
     }
+
+    
 }
