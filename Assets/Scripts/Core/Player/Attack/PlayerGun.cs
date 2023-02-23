@@ -26,20 +26,12 @@ public class PlayerGun
         _bulletPrefab = bulletPrefab;
         _bulletSpawnPosition = bulletSpawnPosition;
 
-        _parentForPoolObjects = new GameObject("Parent_For_Pool_Bullets").transform;
+        _parentForPoolObjects = new GameObject("Parent_For_Bullets_Pool").transform;
         _bulletPool = new ObjectPool<Bullet>(_bulletPrefab, _countBulletsInPool, _parentForPoolObjects);
         ScreenBoundary.Instance.LeftWorld += _bulletPool.ReturnObjectToPool;
 
         _playerAttack = new SimplePlayerAttack();
     }
-
-    //private void Update()
-    //{
-    //    if (IsPaused)
-    //        return;
-
-    //    Attack();
-    //}
 
     public void Attack()
     {

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {   
-    [SerializeField] private Text _healthView;
+    [SerializeField] private Text _healthText;
     private Health _playerHealth;
 
-    private void Init(Health playerHealth)
+    public void Init(Health playerHealth)
     {
         _playerHealth = playerHealth;
         _playerHealth.HealthChanged += OnHealthChanged;
@@ -17,6 +17,6 @@ public class HealthBar : MonoBehaviour
 
     private void OnHealthChanged(int value)
     {
-        _healthView.text = value.ToString();
+        _healthText.text = value.ToString();
     }
 }

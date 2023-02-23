@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3590956198841720946}
   - component: {fileID: 3590956198841720947}
-  - component: {fileID: 3590956198841720956}
   - component: {fileID: 3590956198841720952}
   - component: {fileID: 3590956198841720959}
   - component: {fileID: 3590956198841720953}
@@ -131,25 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b086764e1e72f4aa051e673df2f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMove: {fileID: 0}
   _buffIndicator: {fileID: 0}
   _bulletPrefab: {fileID: 0}
   _bulletSpawnPosition: {fileID: 0}
   _deathVFX: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
   _healthAmount: 3
---- !u!114 &3590956198841720956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590956198841720945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64fa5548b75c33a41ada95cc864d3c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 10
 --- !u!54 &3590956198841720952
 Rigidbody:
   m_ObjectHideFlags: 0
