@@ -1619,6 +1619,7 @@ GameObject:
   - component: {fileID: 818033656}
   - component: {fileID: 818033655}
   - component: {fileID: 818033659}
+  - component: {fileID: 818033660}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1729,6 +1730,22 @@ MonoBehaviour:
   _exitToMenuButton: {fileID: 1625691608}
   _pauseButton: {fileID: 826279285}
   _saveRecordButton: {fileID: 2127081817}
+  _saveButton: {fileID: 185491597}
+--- !u!114 &818033660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818033654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23209a55468a4b34fa5bfd73403260b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveRecordPanel: {fileID: 1052228798}
+  _usernameInputField: {fileID: 1823875650}
+  _game: {fileID: 1496539692}
   _saveButton: {fileID: 185491597}
 --- !u!1 &826279283
 GameObject:
@@ -2312,7 +2329,6 @@ GameObject:
   - component: {fileID: 1052228799}
   - component: {fileID: 1052228802}
   - component: {fileID: 1052228801}
-  - component: {fileID: 1052228800}
   m_Layer: 5
   m_Name: save_record_window
   m_TagString: Untagged
@@ -2342,21 +2358,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1052228800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052228798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23209a55468a4b34fa5bfd73403260b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveRecordPanel: {fileID: 1052228798}
-  _usernameInputField: {fileID: 1823875650}
-  _saveButton: {fileID: 185491597}
 --- !u!114 &1052228801
 MonoBehaviour:
   m_ObjectHideFlags: 0

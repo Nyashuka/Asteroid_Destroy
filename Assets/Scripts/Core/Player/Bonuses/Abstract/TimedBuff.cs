@@ -8,7 +8,7 @@ namespace Assets.Scripts.Core.Player.Bonuses.Abstract
         [SerializeField] protected float _duration;
         [SerializeField] Image _indicatorIamge;
         
-        public Image IndicatorIamge => _indicatorIamge;
+        public Image IndicatorImage => _indicatorIamge;
 
 
         public abstract void Activate();

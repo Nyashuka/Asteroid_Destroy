@@ -39,9 +39,9 @@ namespace Assets.Scripts.Core.Player.Bonuses
 
         public void Init(Player buffOwner, IPlayerAttack playerAttack)
         {
-            _skippBullet = (_countShots - 1) / 2 + 1;
-            _buffOwner = buffOwner;
             _oldAttack = playerAttack;
+            _skippBullet = (_countShots - 1) / 2 + 1;
+            _buffOwner = buffOwner;        
         }
 
         public override void Activate()

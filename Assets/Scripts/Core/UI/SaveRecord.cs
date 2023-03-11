@@ -7,7 +7,7 @@ namespace Assets.Scripts.Core.UI
     {
         [SerializeField] private GameObject _saveRecordPanel;
         [SerializeField] private InputField _usernameInputField;
-        [SerializeField] private Score _score;
+        [SerializeField] private Game.Game _game;
         [SerializeField] private Button _saveButton;
 
         private void Start()
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Core.UI
 
         private void Save()
         {
-            ServicesProvider.Instance.PlayerDataManager.SaveSomePlayer(_usernameInputField.text, _score.Value);
+            _game.SaveRecord(_usernameInputField.text);
         }
     }
 }

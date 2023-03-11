@@ -2,6 +2,7 @@ using Assets.Scripts.Core.Utils;
 using Assets.Scripts.Core.Player.Attack;
 using Assets.Scripts.Core.Player.Attack.Abstract;
 using UnityEngine;
+using Assets.Scripts.Core.Player.Bonuses;
 
 public class PlayerGun
 {
@@ -19,7 +20,6 @@ public class PlayerGun
     private IPlayerAttack _playerAttack;
 
     public IPlayerAttack PlayerAttack => _playerAttack;
-    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
     public PlayerGun(Bullet bulletPrefab, Transform bulletSpawnPosition)
     {

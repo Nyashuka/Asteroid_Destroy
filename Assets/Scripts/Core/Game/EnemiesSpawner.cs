@@ -29,12 +29,15 @@ namespace Assets.Scripts.Core.Game
             _enemyFactory = new EnemyFactory(parentForPoolObjects, enemyPrefab);
             _enemyFactory.EnemyDeath += AnounceEntityDeath;
             
-            _source = new CancellationTokenSource();
-
-            Spawn(_source.Token);
+            _source = new CancellationTokenSource();    
         }
 
-        private async void Spawn(CancellationToken token)
+        public void Start()
+        {
+            StartSpawn(_source.Token);
+        }
+
+        private async void StartSpawn(CancellationToken token)
         {
             try
             {
@@ -55,9 +58,13 @@ namespace Assets.Scripts.Core.Game
                     await Task.Delay(Mathf.RoundToInt(_waveRate * 1000), token);
                 }
             }
-            catch (TaskCanceledException)
+            catch (TaskCanceledException e)
             {
-                // pass
+                
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
             }
            
         }

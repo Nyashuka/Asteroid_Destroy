@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 public class EnemyFactory
 {
+    private const byte QUANTITY_OBJECTS = 50;
     private Transform _parentForPoolObjects;
     private PoolableObject _objectPrefab;
     private ObjectPool<Enemy> _objectsPool;
@@ -11,7 +12,7 @@ public class EnemyFactory
     {
         _parentForPoolObjects = parentForPoolObjects;
         _objectPrefab = objectPrefab;
-        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, 50, _parentForPoolObjects);
+        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, QUANTITY_OBJECTS, _parentForPoolObjects);
         ScreenBoundary.Instance.LeftWorld += _objectsPool.ReturnObjectToPool;
     }
 
@@ -19,9 +20,10 @@ public class EnemyFactory
 
     public void SpawnEnemy(float spawnHeight)
     {
-        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(ScreenBoundary.Instance.xMin, ScreenBoundary.Instance.xMax),
-                                                            0,
-                                                            spawnHeight);
+        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(ScreenBoundary.Instance.xMin, 
+                                                                     ScreenBoundary.Instance.xMax),
+                                                                     0,
+                                                                     spawnHeight);
 
         Enemy spawnedEnemy = (Enemy)_objectsPool.GetObject(spawnPosition);
 

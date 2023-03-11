@@ -1,45 +1,56 @@
 ﻿using Assets.Scripts.Core.Player.Bonuses.Abstract;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
+
     public class BuffsContainer
     {
         private Player _player;
         private BuffIndicator _buffIndicator;
         private Dictionary<Type, TimedBuff> _buffs = new Dictionary<Type, TimedBuff>();
 
+        private delegate void InitDelegate(BuffEffect permanentBuff);
+
+        private Dictionary<Type, InitDelegate> _permanentInits;
+        private Dictionary<Type, InitDelegate> _timedInits;
+
         public BuffsContainer(Player player, BuffIndicator buffIndicator)
         {
             _player = player;
             _buffIndicator = buffIndicator;
             _buffs = new Dictionary<Type, TimedBuff>();
+
+
+            _permanentInits = new Dictionary<Type, InitDelegate>
+            {
+                { typeof(HealBuff), (buff) => _player.SetBuff((HealBuff)buff) }
+            };
+
+            _timedInits = new Dictionary<Type, InitDelegate>
+            {
+                { typeof(ShieldBuff), (buff) => _player.SetBuff((ShieldBuff)buff) },
+                { typeof(MultiShotBuff), (buff) => _player.SetBuff((MultiShotBuff)buff) },
+            };
         }
 
         public void AddBuff(BuffContainer buffContainer)
         {
             BuffEffect buff = buffContainer.GetBuff();
 
-            if(buff is ShieldBuff)
-                _player.SetBuff((ShieldBuff)buff);
-            else if (buff is MultiShotBuff)
-                _player.SetBuff((MultiShotBuff)buff);
-            else if (buff is HealBuff)
-                _player.SetBuff((HealBuff)buff);
+            Type buffType = buff.GetType();
 
             if (buff is PermanentBuff permanentBuff)
             {
+                _permanentInits[buffType].Invoke(permanentBuff);
                 permanentBuff.Apply();
+                return;
             }
-            else if (buff is TimedBuff timedBuff)
-            {
-                Type buffType = timedBuff.GetType();
 
+            if(buff is TimedBuff timedBuff)
+            {
                 if (_buffs.ContainsKey(buffType))
                 {
                     _buffs[buffType].End();
@@ -47,8 +58,10 @@ namespace Assets.Scripts.Core.Player.Bonuses
                     _buffs.Remove(buffType);
                 }
 
+                _timedInits[buffType].Invoke(timedBuff);
+
                 _buffs.Add(buffType, timedBuff);
-                _buffIndicator.Add(buffType, timedBuff.IndicatorIamge);
+                _buffIndicator.Add(buffType, timedBuff.IndicatorImage);
                 timedBuff.Activate();
             }
         }

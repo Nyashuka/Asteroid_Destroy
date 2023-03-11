@@ -24,7 +24,6 @@ namespace Assets.Scripts.Core.Player
 
         private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
 
-
         public event Action DeathEvent;
         
 
@@ -85,7 +84,7 @@ namespace Assets.Scripts.Core.Player
 
         public void SetBuff(ShieldBuff buff)
         {
-            buff.Init(this, _damageable);
+            buff.Init(this, _damageable, _health);
         }
 
         public void SetBuff(MultiShotBuff buff)

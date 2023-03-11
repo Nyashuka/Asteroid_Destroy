@@ -6,6 +6,7 @@ namespace Assets.Scripts.Core.Player.Bonuses
     public class ShieldBuff : TimedBuff, IDamageable
     {
         private IDamageable _oldDamageable;
+        private Health _health;
         private const int DAMAGE = 0;
 
         public override void Activate()
@@ -15,17 +16,13 @@ namespace Assets.Scripts.Core.Player.Bonuses
 
         public void MakeDamage(int damage)
         {
-            _buffOwner.MakeDamage(DAMAGE);
+            _health.DecreaseHealth(DAMAGE);
         }
 
-        public void Init(Player buffOwner, IDamageable damageable)
+        public void Init(Player buffOwner, IDamageable damageable, Health health)
         {
-           _buffOwner = buffOwner;
-           _oldDamageable = damageable;
-        }
-
-        public void SetDamageable(IDamageable damageable)
-        {
+            _health = health;
+            _buffOwner = buffOwner;
             _oldDamageable = damageable;
         }
 
@@ -35,5 +32,5 @@ namespace Assets.Scripts.Core.Player.Bonuses
         }
     }
 
-    
+
 }

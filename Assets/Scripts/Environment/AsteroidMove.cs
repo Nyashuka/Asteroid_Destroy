@@ -36,7 +36,7 @@ public class AsteroidMove : MonoBehaviour, IPauseHandler
 
     private void StopAsteroid()
     {
-        _rigidbody.velocity = transform.forward * 0;
-        _rigidbody.angularVelocity = Random.insideUnitSphere * 0;
+        _rigidbody.velocity = new Vector3(0, 0, 0);// transform.forward * 0;
+        _rigidbody.angularVelocity = new Vector3(0, 0, 0);// Random.insideUnitSphere * 0;
     }
 }

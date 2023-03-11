@@ -1,7 +1,4 @@
-using Assets.Scripts.Core.UI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Core.Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -52,25 +49,25 @@ public class GameMenuManager : MonoBehaviour
     private void OnExitToMenuButtonClicked()
     {
         SceneManager.LoadScene("MainMenu");
-        ServicesProvider.Instance.PlayerDataManager.UpdatePlayerData(_game.Score.Value);
+        _game.UpdatePlayerData();
     }
 
     private void OnRestartGameButtonClicked()
     {
-        ServicesProvider.Instance.PauseManager.SetPaused(false);
+        _game.SetPaused(false);
         SceneManager.LoadScene("Game");
     }
 
     private void OnPauseButtonClicked()
     {
-        ServicesProvider.Instance.PauseManager.SetPaused(true);
+        _game.SetPaused(true);
         ShowGeneral();
         _resumeButton.gameObject.SetActive(true);
     }
 
     private void OnResumeButtonClicked()
     {
-        ServicesProvider.Instance.PauseManager.SetPaused(false);
+        _game.SetPaused(false);
         _resumeButton.gameObject.SetActive(false);
         HideGeneral();
     }

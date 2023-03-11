@@ -3,11 +3,8 @@ using UnityEngine;
 
 public class ServicesProvider : MonoBehaviour
 {
-    public JsonSaveSystem SaveSystem { get; private set; }
     public PauseManager PauseManager { get; private set; }
-    public PlayerDataManager PlayerDataManager => _playerDataManager;
-
-    [SerializeField] private PlayerDataManager _playerDataManager;
+    public PlayerDataManager PlayerDataManager { get; private set; }
 
     public static ServicesProvider Instance { get; private set; }
 
@@ -20,13 +17,13 @@ public class ServicesProvider : MonoBehaviour
 
     private void Initialize()
     {
-        SaveSystem = new JsonSaveSystem();
+        PlayerDataManager = new PlayerDataManager(new JsonSaveSystem());
 
         PauseManager = new PauseManager();
-        InitializePauseManger();
+        InitializePauseManager();
     }
 
-    private void InitializePauseManger()
+    private void InitializePauseManager()
     {
         PauseManager.Register(new GamePauseBehaviour());
     }

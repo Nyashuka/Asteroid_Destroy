@@ -2,16 +2,15 @@
 using System.Linq;
 using UnityEngine;
 
-public class PlayerDataManager : MonoBehaviour
+public class PlayerDataManager
 {
     private ISaveSystem _saveSystem;
     public List<PlayerData> PlayersData { get; private set; }
     public PlayerData CurrentPlayer { get; private set; }
 
-    private void Awake()
+    public PlayerDataManager(ISaveSystem saveSystem)
     {
-        DontDestroyOnLoad(this);
-        _saveSystem = ServicesProvider.Instance.SaveSystem;
+        _saveSystem = saveSystem;
 
         SaveData data = _saveSystem.Load();
 
