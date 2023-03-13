@@ -1,4 +1,7 @@
 using Assets.Scripts.Core.Game;
+using Assets.Scripts.Core.Player.Bonuses;
+using Assets.Scripts.Core.Utils;
+using Assets.Scripts.DataStructures;
 using System.Linq;
 using UnityEngine;
 
@@ -6,7 +9,7 @@ public class BonusSpawner
 {
     private GameObject[] _bonuses;
     private int[] _chanceTable;
-    private int _dropChance;
+    private readonly int _dropChance = 10;
     private EnemiesSpawner _enemyFactory;
     private Transform _parentForSpawn;
 
@@ -20,9 +23,10 @@ public class BonusSpawner
         _chanceTable = chanceTable;
         _enemyFactory = enemyFactory;
 
-        _dropChance = 40;
         _enemyFactory.EnemyDeath += Spawn;
         _totalChance = _chanceTable.Sum();
+
+        ScreenBoundary.Instance.LeftWorld += DestroyBuff;
     }
 
     private void Spawn(Enemy enemy)
@@ -37,6 +41,7 @@ public class BonusSpawner
             if (dropedChance <= _chanceTable[i])
             {
                 MonoBehaviour.Instantiate(_bonuses[i], enemy.transform.position, Quaternion.identity, _parentForSpawn);
+                
                 return;
             }
             else
@@ -44,5 +49,11 @@ public class BonusSpawner
                 dropedChance -= _chanceTable[i];
             }
         }
+    }
+
+    private void DestroyBuff(IDestroyable destroyable)
+    {
+        if(destroyable is BuffContainer container)
+            MonoBehaviour.Destroy(container.gameObject);
     }
 }

@@ -1,10 +1,11 @@
 ﻿using Assets.Scripts.Core.Player.Bonuses.Abstract;
+using Assets.Scripts.DataStructures;
 using BetterAttributes.Runtime.Attributes.Select;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.Player.Bonuses
 {
-    public class BuffContainer : MonoBehaviour
+    public class BuffContainer : MonoBehaviour, IDestroyable
     {
         [SelectImplementation] [SerializeReference] private BuffEffect _buff;
 

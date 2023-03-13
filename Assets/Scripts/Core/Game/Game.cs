@@ -26,7 +26,7 @@ namespace Assets.Scripts.Core.Game
             SetPaused(false);
 
             _enemiesSpawner = new EnemiesSpawner(_enemyPrefab);
-            _enemiesSpawner.Start();
+            _enemiesSpawner.StartSpawn();
             _bonusSpawner = new BonusSpawner(_bonusPrefabs, _chanceTable, _enemiesSpawner);
 
             _player.DeathEvent += EndTheGame;

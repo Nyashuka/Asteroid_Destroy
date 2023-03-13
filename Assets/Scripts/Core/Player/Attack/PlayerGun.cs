@@ -3,6 +3,7 @@ using Assets.Scripts.Core.Player.Attack;
 using Assets.Scripts.Core.Player.Attack.Abstract;
 using UnityEngine;
 using Assets.Scripts.Core.Player.Bonuses;
+using Assets.Scripts.DataStructures;
 
 public class PlayerGun
 {
@@ -28,7 +29,7 @@ public class PlayerGun
 
         _parentForPoolObjects = new GameObject("Parent_For_Bullets_Pool").transform;
         _bulletPool = new ObjectPool<Bullet>(_bulletPrefab, _countBulletsInPool, _parentForPoolObjects);
-        ScreenBoundary.Instance.LeftWorld += _bulletPool.ReturnObjectToPool;
+        ScreenBoundary.Instance.LeftWorld += ReturnBulletToPool;
 
         _playerAttack = new SimplePlayerAttack();
     }
@@ -44,6 +45,12 @@ public class PlayerGun
         {
            _playerAttack.Attack(_bulletPool, _bulletSpawnPosition.position);
         }
+    }
+
+    private void ReturnBulletToPool(IDestroyable destroyable)
+    {
+        if (destroyable is PoolableObject poolableObject)
+            _bulletPool.ReturnObjectToPool(poolableObject);
     }
 
     public void ChangeAttackImplementation(IPlayerAttack attackImplementation)

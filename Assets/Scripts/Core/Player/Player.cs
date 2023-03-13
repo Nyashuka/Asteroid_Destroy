@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Core.Player
 {
     public class Player : MonoBehaviour, IHealeable, IDamageable
-    {             
+    {
         [SerializeField] private BuffIndicator _buffIndicator;
         [SerializeField] private HealthBar _healthBar;
         [SerializeField] private Bullet _bulletPrefab;

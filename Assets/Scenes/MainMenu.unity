@@ -2550,8 +2550,9 @@ GameObject:
   - component: {fileID: 1732113130}
   - component: {fileID: 1732113129}
   - component: {fileID: 1732113131}
+  - component: {fileID: 1732113132}
   m_Layer: 0
-  m_Name: view_scripts
+  m_Name: _scripts_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2569,7 +2570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920859fa06098ad4483eafad52a75356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneForStartGame: Game
+  _mainMenu: {fileID: 1732113132}
   _playButton: {fileID: 1591392611}
   _recordsButton: {fileID: 438302308}
   _quitButton: {fileID: 678250088}
@@ -2584,7 +2585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732113128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 324, y: 1720.3201, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2605,6 +2606,18 @@ MonoBehaviour:
   _recordPrefab: {fileID: 1008310338437079000, guid: 1128b8246a891fc4abe66d0c1c54c102, type: 3}
   _recordHeight: 0
   _parent: {fileID: 1092940327}
+--- !u!114 &1732113132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732113128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d53d47c0db05a94c95404e4b82d19c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1741958697
 GameObject:
   m_ObjectHideFlags: 0

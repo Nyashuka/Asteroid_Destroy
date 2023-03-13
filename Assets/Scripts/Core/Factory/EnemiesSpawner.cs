@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -32,12 +31,12 @@ namespace Assets.Scripts.Core.Game
             _source = new CancellationTokenSource();    
         }
 
-        public void Start()
+        public void StartSpawn()
         {
-            StartSpawn(_source.Token);
+            Start(_source.Token);
         }
 
-        private async void StartSpawn(CancellationToken token)
+        private async void Start(CancellationToken token)
         {
             try
             {
@@ -58,7 +57,7 @@ namespace Assets.Scripts.Core.Game
                     await Task.Delay(Mathf.RoundToInt(_waveRate * 1000), token);
                 }
             }
-            catch (TaskCanceledException e)
+            catch (TaskCanceledException)
             {
                 
             }

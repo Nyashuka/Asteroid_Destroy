@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Core.Utils;
+using Assets.Scripts.DataStructures;
 using System;
 using UnityEngine;
 public class EnemyFactory
@@ -13,7 +14,7 @@ public class EnemyFactory
         _parentForPoolObjects = parentForPoolObjects;
         _objectPrefab = objectPrefab;
         _objectsPool = new ObjectPool<Enemy>(_objectPrefab, QUANTITY_OBJECTS, _parentForPoolObjects);
-        ScreenBoundary.Instance.LeftWorld += _objectsPool.ReturnObjectToPool;
+        ScreenBoundary.Instance.LeftWorld += ReturnObjectToPool; 
     }
 
     public event Action<Enemy> EnemyDeath;
@@ -28,6 +29,12 @@ public class EnemyFactory
         Enemy spawnedEnemy = (Enemy)_objectsPool.GetObject(spawnPosition);
 
         spawnedEnemy.EnemyDeath += AnounceEntityDeath;
+    }
+
+    private void ReturnObjectToPool(IDestroyable destroyable)
+    {
+        if (destroyable is PoolableObject poolable)
+            _objectsPool.ReturnObjectToPool(poolable);
     }
 
     public void AnounceEntityDeath(Enemy enemy)

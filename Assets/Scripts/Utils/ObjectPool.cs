@@ -38,6 +38,8 @@ public class ObjectPool<T> where T : PoolableObject
     {
         PoolableObject gotObjet = _objectsPool.Count == 0 ? CreateObject() : _objectsPool.Dequeue();
 
+        //if(gotObjet == null) { return null; }
+
         gotObjet.gameObject.SetActive(true);
         gotObjet.transform.position = position;
         

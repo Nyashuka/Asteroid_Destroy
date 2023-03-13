@@ -1,3 +1,4 @@
+using Assets.Scripts.DataStructures;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core.Utils
 {
+    [RequireComponent(typeof(BoxCollider))]
     public class ScreenBoundary : MonoBehaviour
     {
         public float xMin { get; private set; }
@@ -16,7 +18,7 @@ namespace Assets.Scripts.Core.Utils
         private float _zMaxCorrection; //  2
         private float _zMinCorrection; // 0.5
 
-        public event Action<PoolableObject> LeftWorld;
+        public event Action<IDestroyable> LeftWorld;
 
         private static ScreenBoundary _instance;
         public static ScreenBoundary Instance => _instance;
@@ -34,7 +36,7 @@ namespace Assets.Scripts.Core.Utils
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out PoolableObject poolable))
+            if (other.TryGetComponent(out IDestroyable poolable))
                 LeftWorld?.Invoke(poolable);
         }
 

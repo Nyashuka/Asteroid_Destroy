@@ -1,8 +1,9 @@
 ﻿using Assets.Scripts.Core.Battle.Abstract;
+using Assets.Scripts.DataStructures;
 using System;
 using UnityEngine;
 
-public class Enemy : PoolableObject, IDamageable
+public class Enemy : PoolableObject, IDamageable, IDestroyable
 {
     [SerializeField] private EnemyTypes _enemyType;
     [SerializeField] private GameObject _deathVFX;
