@@ -1,8 +1,8 @@
-﻿
+﻿using Assets.Scripts.Services.ServiceLocator;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PauseManager : IPauseHandler
+
+public class PauseManager : IPauseHandler, IService
 {
     private readonly List<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
 
