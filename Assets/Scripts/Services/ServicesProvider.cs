@@ -20,11 +20,5 @@ public class ServicesProvider : MonoBehaviour
         PlayerDataManager = new PlayerDataManager(new JsonSaveSystem());
 
         PauseManager = new PauseManager();
-        InitializePauseManager();
-    }
-
-    private void InitializePauseManager()
-    {
-        PauseManager.Register(new GamePauseBehaviour());
     }
 }

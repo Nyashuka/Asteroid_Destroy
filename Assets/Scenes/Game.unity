@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &172922221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -268,8 +268,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172922220}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &172922223
@@ -445,8 +445,9 @@ GameObject:
   - component: {fileID: 185491599}
   - component: {fileID: 185491598}
   - component: {fileID: 185491597}
+  - component: {fileID: 185491600}
   m_Layer: 5
-  m_Name: save_button
+  m_Name: save_record_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,6 +555,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185491595}
   m_CullTransparentMesh: 1
+--- !u!225 &185491600
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185491595}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &260111199
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &260111200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1635,8 +1648,9 @@ GameObject:
   - component: {fileID: 818033657}
   - component: {fileID: 818033656}
   - component: {fileID: 818033655}
-  - component: {fileID: 818033659}
   - component: {fileID: 818033660}
+  - component: {fileID: 818033661}
+  - component: {fileID: 818033659}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1739,15 +1753,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _game: {fileID: 1496539692}
-  _menuPanel: {fileID: 1770609272}
-  _saveRecordPanel: {fileID: 1052228798}
-  _gameOverText: {fileID: 1230862326}
+  _gameMenu: {fileID: 818033661}
   _resumeButton: {fileID: 172922223}
   _restartButton: {fileID: 260111202}
   _exitToMenuButton: {fileID: 1625691608}
   _pauseButton: {fileID: 826279285}
-  _saveRecordButton: {fileID: 2127081817}
-  _saveButton: {fileID: 185491597}
+  _openSaveRecordWindowButton: {fileID: 2127081817}
+  _saveRecordButton: {fileID: 185491597}
 --- !u!114 &818033660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1764,6 +1776,27 @@ MonoBehaviour:
   _usernameInputField: {fileID: 1823875650}
   _game: {fileID: 1496539692}
   _saveButton: {fileID: 185491597}
+--- !u!114 &818033661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818033654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb8955e38fdc124faa6a1ead13969d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuPanel: {fileID: 1770609274}
+  _saveRecordPanel: {fileID: 1052228800}
+  _gameOverText: {fileID: 1230862328}
+  _resumeButton: {fileID: 172922222}
+  _restartButton: {fileID: 260111201}
+  _exitToMenuButton: {fileID: 1625691607}
+  _pauseButton: {fileID: 826279288}
+  _openSaveRecordWindowButton: {fileID: 2127081816}
+  _saveRecordButton: {fileID: 185491600}
 --- !u!1 &826279283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1809,7 @@ GameObject:
   - component: {fileID: 826279287}
   - component: {fileID: 826279286}
   - component: {fileID: 826279285}
+  - component: {fileID: 826279288}
   m_Layer: 5
   m_Name: pause_button
   m_TagString: Untagged
@@ -1884,6 +1918,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826279283}
   m_CullTransparentMesh: 1
+--- !u!225 &826279288
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826279283}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &887220201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,6 +2262,7 @@ GameObject:
   - component: {fileID: 1003556029}
   - component: {fileID: 1003556031}
   - component: {fileID: 1003556030}
+  - component: {fileID: 1003556032}
   m_Layer: 5
   m_Name: player_interface
   m_TagString: Untagged
@@ -2284,6 +2331,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003556028}
   m_CullTransparentMesh: 1
+--- !u!225 &1003556032
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003556028}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1009255780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,13 +2405,14 @@ GameObject:
   - component: {fileID: 1052228799}
   - component: {fileID: 1052228802}
   - component: {fileID: 1052228801}
+  - component: {fileID: 1052228800}
   m_Layer: 5
   m_Name: save_record_window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1052228799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2375,6 +2435,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1052228800
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052228798}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &1052228801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,13 +2501,14 @@ GameObject:
   - component: {fileID: 1230862325}
   - component: {fileID: 1230862327}
   - component: {fileID: 1230862326}
+  - component: {fileID: 1230862328}
   m_Layer: 5
   m_Name: game_over_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1230862325
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2497,6 +2570,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230862324}
   m_CullTransparentMesh: 1
+--- !u!225 &1230862328
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230862324}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1249611360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,6 +2800,10 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3590956198841720953, guid: 101155e456499d34b899295f1a63edbe, type: 3}
+      propertyPath: _damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3590956199006965425, guid: 101155e456499d34b899295f1a63edbe, type: 3}
       propertyPath: m_Name
       value: bullets_spawn_position
@@ -2885,7 +2974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1625691606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3090,13 +3179,14 @@ GameObject:
   - component: {fileID: 1770609271}
   - component: {fileID: 1770609273}
   - component: {fileID: 1770609272}
+  - component: {fileID: 1770609274}
   m_Layer: 5
   m_Name: game_menu_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1770609271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3135,7 +3225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.7636738, a: 0.050980393}
+  m_Color: {r: 1, g: 0, b: 0.7636738, a: 0.05490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3160,6 +3250,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770609270}
   m_CullTransparentMesh: 1
+--- !u!225 &1770609274
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770609270}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1823875648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3492,12 +3594,12 @@ GameObject:
   - component: {fileID: 2127081817}
   - component: {fileID: 2127081816}
   m_Layer: 5
-  m_Name: save_record_button
+  m_Name: open_save_record_window_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2127081815
 RectTransform:
   m_ObjectHideFlags: 0

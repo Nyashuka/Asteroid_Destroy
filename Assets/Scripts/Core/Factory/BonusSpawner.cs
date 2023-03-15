@@ -1,5 +1,5 @@
-using Assets.Scripts.Core.Game;
-using Assets.Scripts.Core.Player.Bonuses;
+using Assets.Scripts.Core.GameLogic;
+using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Core.Utils;
 using Assets.Scripts.DataStructures;
 using System.Linq;

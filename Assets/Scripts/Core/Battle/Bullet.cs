@@ -6,11 +6,6 @@ public class Bullet : PoolableObject
 {
     public event Action<PoolableObject> Hit;
 
-    public override void Init()
-    {
-      
-    }
-
     private void OnDisable()
     {
         Hit = null;

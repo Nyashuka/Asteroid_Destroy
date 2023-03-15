@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Game
+namespace Assets.Scripts.Core.GameLogic
 {
     public class EnemiesSpawner
     {

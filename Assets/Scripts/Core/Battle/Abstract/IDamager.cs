@@ -1,7 +1,9 @@
 ﻿
 
+using UnityEngine;
+
 public interface IDamager
 {
-    void MakeDamage();
+    void DoDamage(Collider collider);
 }
 
