@@ -1,4 +1,5 @@
-using Assets.Scripts.DataStructures;
+using Assets.Scripts.Services;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts.Core.Utils
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class ScreenBoundary : MonoBehaviour
+    public class ScreenBoundary : MonoBehaviour, IService
     {
         public float xMin { get; private set; }
         public float xMax { get; private set; }
@@ -20,10 +21,7 @@ namespace Assets.Scripts.Core.Utils
 
         public event Action<IDestroyable> LeftWorld;
 
-        private static ScreenBoundary _instance;
-        public static ScreenBoundary Instance => _instance;
-
-        public void Start()
+        public void Awake()
         {
             InitializeBoundary();
 
@@ -31,7 +29,7 @@ namespace Assets.Scripts.Core.Utils
             _zMaxCorrection = 2;
             _zMinCorrection = 0.5f;
 
-            _instance = this;
+            ServiceLocator.Instance.Register(this);
         }
 
         private void OnTriggerExit(Collider other)

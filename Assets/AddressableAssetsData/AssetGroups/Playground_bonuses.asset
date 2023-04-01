@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Playground_bonuses
+  m_EditorClassIdentifier: 
+  m_GroupName: Playground_bonuses
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8f32c3391add4f84482734657e94a3a3
+  m_SerializeEntries:
+  - m_GUID: e66a4b13168fc5b46a2a35648d6c8e0f
+    m_Address: Assets/Prefabs/buffs/shield_buff.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 456eeb3830bdab34280517dea5dc265a
+    m_Address: Assets/Prefabs/buffs/multi_shot_buff.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 95335518da3fd484b99a50779cc8ab93
+    m_Address: Assets/Prefabs/buffs/heal_buff.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 6e2c8fd083b19904e8741986416e058e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 580e351f682b5154d99e4acb11977ef7, type: 2}
+    - {fileID: 11400000, guid: 15725aa2a07b9394f8f5cf9dcd2a25e2, type: 2}

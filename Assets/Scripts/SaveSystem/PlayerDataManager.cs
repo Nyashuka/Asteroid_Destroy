@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Services.ServiceLocatorSystem;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerDataManager
+public class PlayerDataManager : IService
 {
     private ISaveSystem _saveSystem;
     public List<PlayerData> PlayersData { get; private set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Services.ServiceLocatorSystem;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -21,11 +22,11 @@ namespace Assets.Scripts.Core.GameLogic
         private readonly EnemyFactory _enemyFactory;
         public event Action<Enemy> EnemyDeath;
 
-        public EnemiesSpawner(PoolableObject enemyPrefab)
+        public EnemiesSpawner(EnemyFactory enemyFactory)
         {
             Transform parentForPoolObjects = new GameObject("Transform_Parent_For_Enemies").transform;
 
-            _enemyFactory = new EnemyFactory(parentForPoolObjects, enemyPrefab);
+            _enemyFactory = enemyFactory;
             _enemyFactory.EnemyDeath += AnounceEntityDeath;
             
             _source = new CancellationTokenSource();    
@@ -48,7 +49,7 @@ namespace Assets.Scripts.Core.GameLogic
 
                     for (int i = 0; i < countAsteroids; i++)
                     {
-                        _enemyFactory.SpawnEnemy(_spawnHeight);
+                        _enemyFactory.Create(_spawnHeight);
 
                         await Task.Delay(Mathf.RoundToInt(_spawnRate * 1000), token);
                     }

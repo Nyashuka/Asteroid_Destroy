@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Services.ServiceLocator
+namespace Assets.Scripts.Services.ServiceLocatorSystem
 {
     public interface IService
     {

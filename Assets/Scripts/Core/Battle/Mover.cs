@@ -1,3 +1,4 @@
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,12 @@ using UnityEngine;
 public class Mover : MonoBehaviour, IPauseHandler
 {
     [SerializeField] private float _speed;
-    private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
+    private bool IsPaused = false;
 
+    public void Start()
+    {
+        ServiceLocator.Instance.GetService<PauseManager>().Register(this);
+    }
 
     private void Update()
     {
@@ -18,6 +23,6 @@ public class Mover : MonoBehaviour, IPauseHandler
 
     public void SetPaused(bool isPaused)
     {
-        
+        IsPaused = isPaused;
     }
 }

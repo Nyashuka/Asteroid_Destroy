@@ -1,5 +1,5 @@
 ﻿
-namespace Assets.Scripts.DataStructures
+namespace Assets.Scripts.Services
 {
     public interface IDestroyable
     {

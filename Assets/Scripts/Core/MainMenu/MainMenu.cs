@@ -6,12 +6,12 @@ namespace Assets.Scripts.Core.MainMenu
     public class MainMenu : MonoBehaviour
     {
         private PlayerDataManager _playerDataManager;
-        private LoadSceneManager _loadSceneManager;
+        private ScenesLoader _loadSceneManager;
 
         public void Awake()
         {
             _playerDataManager = new PlayerDataManager(new JsonSaveSystem());
-            _loadSceneManager = new LoadSceneManager();
+            _loadSceneManager = new ScenesLoader();
         }
 
         public void QuitGame()

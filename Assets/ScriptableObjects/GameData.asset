@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31eedc4d1b5647b4ea7536edd92590c8, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  _playerPrefabAssetReference:
+    m_AssetGUID: 101155e456499d34b899295f1a63edbe
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _enemyPrefabAssetReference:
+    m_AssetGUID: bfd844d706eed7c41bc9ff0f57716184
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _playerUIAssetReference:
+    m_AssetGUID: d0826ff0f599c79458970115624fcf2a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _bonuses:
+    list:
+    - Key:
+        m_AssetGUID: 95335518da3fd484b99a50779cc8ab93
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Value: 20
+    - Key:
+        m_AssetGUID: e66a4b13168fc5b46a2a35648d6c8e0f
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Value: 20
+    - Key:
+        m_AssetGUID: 456eeb3830bdab34280517dea5dc265a
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Value: 60
+    keyCollision: 0

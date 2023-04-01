@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.DataStructures;
+﻿using Assets.Scripts.Services;
 using System;
 using UnityEngine;
 public abstract class PoolableObject : MonoBehaviour, IDestroyable

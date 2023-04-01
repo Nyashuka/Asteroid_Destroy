@@ -3,7 +3,8 @@ using Assets.Scripts.Core.PlayersComponents.Attack;
 using Assets.Scripts.Core.PlayersComponents.Attack.Abstract;
 using UnityEngine;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
-using Assets.Scripts.DataStructures;
+using Assets.Scripts.Services;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 
 public class PlayerGun
 {
@@ -29,7 +30,7 @@ public class PlayerGun
 
         _parentForPoolObjects = new GameObject("Parent_For_Bullets_Pool").transform;
         _bulletPool = new ObjectPool<Bullet>(_bulletPrefab, _countBulletsInPool, _parentForPoolObjects);
-        ScreenBoundary.Instance.LeftWorld += ReturnBulletToPool;
+        ServiceLocator.Instance.GetService<ScreenBoundary>().LeftWorld += ReturnBulletToPool;
 
         _playerAttack = new SimplePlayerAttack();
     }

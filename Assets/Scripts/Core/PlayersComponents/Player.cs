@@ -1,15 +1,15 @@
 using Assets.Scripts.Core.Battle.Abstract;
 using Assets.Scripts.Core.PlayersComponents.Attack.Abstract;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
+using Assets.Scripts.Services;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.PlayersComponents
 {
-    public class Player : MonoBehaviour, IHealeable, IDamageable
+    public class Player : MonoBehaviour, IHealeable, IDamageable, IPauseHandler
     {
-        [SerializeField] private BuffIndicator _buffIndicator;
-        [SerializeField] private HealthBar _healthBar;
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private Transform _bulletSpawnPosition;
         [SerializeField] private GameObject _deathVFX;
@@ -20,26 +20,26 @@ namespace Assets.Scripts.Core.PlayersComponents
         private PlayerMove _playerMove;
         private PlayerGun _playerGun;
         private BuffsContainer _buffsContainer;
-        private IDamageable _damageable;       
+        private IDamageable _damageable;
 
-        private bool IsPaused => ServicesProvider.Instance.PauseManager.IsPaused;
+        private bool _isPaused;
 
         public event Action DeathEvent;
-        
+
         private void Start()
         {
             _playerGun = new PlayerGun(_bulletPrefab, _bulletSpawnPosition);
             _playerMove = new PlayerMove(transform, _speed);
             _health = new Health(_healthAmount);
-            _healthBar.Init(_health);
             _damageable = new SimpleDamageable(_health);
-            _buffsContainer = new BuffsContainer(this, _buffIndicator);
             _health.Death += OnDeath;
+
+            UIMediator uIMediator = ServiceLocator.Instance.GetService<UIMediator>();
         }
 
         private void Update()
         {
-            if (IsPaused)
+            if (_isPaused)
                 return;
 
             _playerGun.Attack();
@@ -99,6 +99,20 @@ namespace Assets.Scripts.Core.PlayersComponents
         public void ChangeAttackImplementation(IPlayerAttack attackImplementation)
         {
             _playerGun.ChangeAttackImplementation(attackImplementation);
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            _isPaused = isPaused;
+        }
+
+        private void OnEnable()
+        {
+            ServiceLocator.Instance.GetService<PauseManager>().Register(this);
+        }
+        private void OnDisable()
+        {
+            ServiceLocator.Instance.GetService<PauseManager>().UnRegister(this);
         }
     }
 }

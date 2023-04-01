@@ -18,7 +18,7 @@ public class GameMenuButtons : MonoBehaviour
     [SerializeField] private Button _openSaveRecordWindowButton;
     [SerializeField] private Button _saveRecordButton;
     
-    private LoadSceneManager _loadSceneManager;
+    private ScenesLoader _loadSceneManager;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class GameMenuButtons : MonoBehaviour
 
         _game.GameOverEvent += OnGameOver;
 
-        _loadSceneManager = new LoadSceneManager();
+        _loadSceneManager = new ScenesLoader();
     }
 
     private void OnSaveRecordButtonClicked()

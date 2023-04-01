@@ -1,5 +1,6 @@
 using Assets.Scripts.Core.PlayersComponents.UserInput;
 using Assets.Scripts.Core.Utils;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using UnityEngine;
 
 public class PlayerMove 
@@ -7,6 +8,7 @@ public class PlayerMove
     private float _speed = 5;
     private Transform _transform;
     private IUserInput _userInput;
+    private ScreenBoundary _screenBoundary;
 
     public PlayerMove(Transform transform, float speed)
     {
@@ -20,6 +22,7 @@ public class PlayerMove
         _speed = speed;
         _transform = transform;
         _userInput.MoveEvent += MovePlayer;
+        _screenBoundary = ServiceLocator.Instance.GetService<ScreenBoundary>();
     }
 
     public void Move()
@@ -32,8 +35,8 @@ public class PlayerMove
         pressedPosition.y = _transform.position.y;
         pressedPosition.z += 1f;
 
-        pressedPosition.z = Mathf.Clamp(pressedPosition.z, ScreenBoundary.Instance.zMin, ScreenBoundary.Instance.zMax);
-        pressedPosition.x = Mathf.Clamp(pressedPosition.x, ScreenBoundary.Instance.xMin, ScreenBoundary.Instance.xMax);
+        pressedPosition.z = Mathf.Clamp(pressedPosition.z, _screenBoundary.zMin, _screenBoundary.zMax);
+        pressedPosition.x = Mathf.Clamp(pressedPosition.x, _screenBoundary.xMin, _screenBoundary.xMax);
 
         _transform.position = Vector3.MoveTowards(_transform.position, pressedPosition, _speed * Time.deltaTime);
     }

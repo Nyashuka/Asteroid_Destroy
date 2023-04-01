@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Services.ServiceLocator
+namespace Assets.Scripts.Services.ServiceLocatorSystem
 {
     public abstract class MonoService : MonoBehaviour, IService
     {

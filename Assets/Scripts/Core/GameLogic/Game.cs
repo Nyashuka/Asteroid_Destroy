@@ -1,4 +1,8 @@
-﻿using Assets.Scripts.Core.PlayersComponents;
+﻿using Assets.Scripts.Core.Factory;
+using Assets.Scripts.Core.PlayersComponents;
+using Assets.Scripts.Infrastructure.States;
+using Assets.Scripts.Services;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
 using UnityEngine;
 
@@ -6,49 +10,48 @@ namespace Assets.Scripts.Core.GameLogic
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField] private Player _player;
-        [SerializeField] private PoolableObject _enemyPrefab;
-        [SerializeField] private ScoreView _scoreView;
-        [SerializeField] private GameObject[] _bonusPrefabs;
-        [SerializeField] private int[] _chanceTable;
+        [SerializeField] private UIMediator _uiMediator;
 
-        private EnemiesSpawner _enemiesSpawner;
-        private BonusSpawner _bonusSpawner;
+        private Player _player;
+        private PlayerDataManager _playersDataStorage;
+
+        private EnemiesSpawner _enemySpawner;
+        
         private Score _score;
-
         private bool _isGameOver;
 
-        public PlayerDataManager PlayersDataStorage => ServicesProvider.Instance.PlayerDataManager;
-        public PauseManager PauseManager { get; private set; }
-
+        private PauseManager _pauseManager;
 
         public event Action GameOverEvent;
 
-        private void Start()
+        private async void Start()
         {
-            PauseManager = new PauseManager();
-            SetPaused(false);
+            await ServiceLocator.Instance.GetService<StateMachine>().Enter<GameState>();
 
-            _enemiesSpawner = new EnemiesSpawner(_enemyPrefab);
-            _enemiesSpawner.StartSpawn();
-            _bonusSpawner = new BonusSpawner(_bonusPrefabs, _chanceTable, _enemiesSpawner);
+            _pauseManager = ServiceLocator.Instance.GetService<PauseManager>();
 
+            _enemySpawner = new EnemiesSpawner(ServiceLocator.Instance.GetService<EnemyFactory>());
+            _enemySpawner.EnemyDeath += AddScore;
+            _enemySpawner.StartSpawn();
+
+            _score = new Score();
+
+            ServiceLocator.Instance.Register(_uiMediator);
+
+            _player = ServiceLocator.Instance.GetService<PlayerFactory>().Create();
             _player.DeathEvent += EndTheGame;
 
-            _enemiesSpawner.EnemyDeath += AddScore;
-
-            InitializeScore();
+          
         }
 
-        private void InitializeScore()
+        public void Init()
         {
-            _score = new Score();
-            _scoreView.Init(_score);
+            
         }
 
         public void SetPaused(bool isPause)
         {
-            PauseManager.SetPaused(isPause);
+            _pauseManager.SetPaused(isPause);
         }
 
         private void EndTheGame()
@@ -56,7 +59,7 @@ namespace Assets.Scripts.Core.GameLogic
             _isGameOver = true;
             GameOverEvent?.Invoke();
             Destroy(_player.gameObject);
-            PlayersDataStorage.UpdatePlayerData(_score.Value);
+            _playersDataStorage.UpdatePlayerData(_score.Value);
         }   
 
         private void AddScore(Enemy killedEnemy)
@@ -69,17 +72,17 @@ namespace Assets.Scripts.Core.GameLogic
 
         public void SaveRecord(string text)
         {
-            PlayersDataStorage.SaveSomePlayer(text, _score.Value);
+            _playersDataStorage.SaveSomePlayer(text, _score.Value);
         }
 
         private void OnDestroy()
         {
-            _enemiesSpawner.Destroy();
+            _enemySpawner.Destroy();
         }
 
         public void UpdatePlayerData()
         {
-            PlayersDataStorage.UpdatePlayerData(_score.Value);
+            _playersDataStorage.UpdatePlayerData(_score.Value);
         }
     }
 }

@@ -24,6 +24,7 @@ public class ObjectPool<T> where T : PoolableObject
         {
             _objectsPool.Enqueue(CreateObject());
         }
+        
     }
 
     private PoolableObject CreateObject()

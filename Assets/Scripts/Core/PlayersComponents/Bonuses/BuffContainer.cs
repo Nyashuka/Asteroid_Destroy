@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
-using Assets.Scripts.DataStructures;
+using Assets.Scripts.Services;
 using BetterAttributes.Runtime.Attributes.Select;
 using UnityEngine;
 

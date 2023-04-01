@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Services.ServiceLocator;
+﻿using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Collections.Generic;
 
 

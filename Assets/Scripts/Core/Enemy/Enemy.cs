@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Core.Battle;
 using Assets.Scripts.Core.Battle.Abstract;
-using Assets.Scripts.DataStructures;
+using Assets.Scripts.Services;
 using System;
 using UnityEngine;
 

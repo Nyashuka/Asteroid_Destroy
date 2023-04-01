@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Services.ServiceLocator
+namespace Assets.Scripts.Services.ServiceLocatorSystem
 {
-    public class ServiceLocator : MonoBehaviour, IServiceLocator
+    public class ServiceLocator : IServiceLocator
     {
-        private Dictionary<Type, IService> _services;
+        private Dictionary<Type, IService> _services = new Dictionary<Type, IService>();
 
         private static ServiceLocator _locator = null;
 
@@ -14,15 +14,10 @@ namespace Assets.Scripts.Services.ServiceLocator
         {
             get
             {
-                return _locator;
-            }
-        }
+                if (_locator == null)
+                    _locator = new ServiceLocator();
 
-        public void Awake()
-        {
-            if (_locator == null)
-            {
-                _locator = this;
+                return _locator;
             }
         }
 

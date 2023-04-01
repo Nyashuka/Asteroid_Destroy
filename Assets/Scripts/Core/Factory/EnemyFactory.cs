@@ -1,28 +1,31 @@
 ﻿using Assets.Scripts.Core.Utils;
-using Assets.Scripts.DataStructures;
+using Assets.Scripts.Services;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
 using UnityEngine;
-public class EnemyFactory
+public class EnemyFactory : IService
 {
     private const byte QUANTITY_OBJECTS = 50;
     private Transform _parentForPoolObjects;
-    private PoolableObject _objectPrefab;
+    private PoolableObject _enemyPrefab;
     private ObjectPool<Enemy> _objectsPool;
+    private ScreenBoundary _screenBoundary;
 
-    public EnemyFactory(Transform parentForPoolObjects, PoolableObject objectPrefab)
+    public EnemyFactory(PoolableObject objectPrefab)
     {
-        _parentForPoolObjects = parentForPoolObjects;
-        _objectPrefab = objectPrefab;
-        _objectsPool = new ObjectPool<Enemy>(_objectPrefab, QUANTITY_OBJECTS, _parentForPoolObjects);
-        ScreenBoundary.Instance.LeftWorld += ReturnObjectToPool; 
+        _parentForPoolObjects = new GameObject("parent_for_pooled_enemies").transform; ;
+        _enemyPrefab = objectPrefab;
+        _objectsPool = new ObjectPool<Enemy>(_enemyPrefab, QUANTITY_OBJECTS, _parentForPoolObjects);
+        _screenBoundary = ServiceLocator.Instance.GetService<ScreenBoundary>();
+        _screenBoundary.LeftWorld += ReturnObjectToPool; 
     }
 
     public event Action<Enemy> EnemyDeath;
 
-    public void SpawnEnemy(float spawnHeight)
+    public void Create(float spawnHeight)
     {
-        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(ScreenBoundary.Instance.xMin, 
-                                                                     ScreenBoundary.Instance.xMax),
+        Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(_screenBoundary.xMin,
+                                                                     _screenBoundary.xMax),
                                                                      0,
                                                                      spawnHeight);
 

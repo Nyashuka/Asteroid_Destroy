@@ -1,3 +1,4 @@
+using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +11,14 @@ public class AsteroidMove : MonoBehaviour, IPauseHandler
 
     private void Start()
     {
-        ServicesProvider.Instance.PauseManager.Register(this);
+        ServiceLocator.Instance.GetService<PauseManager>().Register(this);
 
         PushAsteroid();
     }
 
     private void OnDisable()
     {
-        ServicesProvider.Instance.PauseManager.UnRegister(this);
+        ServiceLocator.Instance.GetService<PauseManager>().UnRegister(this);
     }
 
     public void SetPaused(bool isPaused)
