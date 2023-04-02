@@ -1,29 +1,28 @@
-﻿using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Core.PlayersComponents;
+using Assets.Scripts.Core.PlayersComponents.Bonuses;
+using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.PlayersComponents.Bonuses
+namespace Core.PlayersComponents.Bonuses
 {
-
     public class BuffsContainer
     {
-        private Player _player;
-        private BuffIndicator _buffIndicator;
-        private Dictionary<Type, TimedBuff> _buffs = new Dictionary<Type, TimedBuff>();
+        private readonly Player _player;
+        private readonly BuffIndicator _buffIndicator;
+        private readonly Dictionary<Type, TimedBuff> _buffs;
 
         private delegate void InitDelegate(BuffEffect permanentBuff);
-
-        private Dictionary<Type, InitDelegate> _permanentInits;
-        private Dictionary<Type, InitDelegate> _timedInits;
+        private readonly Dictionary<Type, InitDelegate> _permanentInits;
+        private readonly Dictionary<Type, InitDelegate> _timedInits;
 
         public BuffsContainer(Player player, BuffIndicator buffIndicator)
         {
             _player = player;
             _buffIndicator = buffIndicator;
             _buffs = new Dictionary<Type, TimedBuff>();
-
-
+            
             _permanentInits = new Dictionary<Type, InitDelegate>
             {
                 { typeof(HealBuff), (buff) => _player.SetBuff((HealBuff)buff) }
@@ -49,7 +48,7 @@ namespace Assets.Scripts.Core.PlayersComponents.Bonuses
                 return;
             }
 
-            if(buff is TimedBuff timedBuff)
+            if (buff is TimedBuff timedBuff)
             {
                 if (_buffs.ContainsKey(buffType))
                 {

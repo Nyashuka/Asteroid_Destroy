@@ -1,12 +1,10 @@
-﻿
-using Assets.Scripts.Core.Battle.Abstract;
-using UnityEngine;
+﻿using Assets.Scripts.Core.Battle.Abstract;
 
-namespace Assets.Scripts.Core.PlayersComponents
+namespace Core.PlayersComponents
 {
     public class SimpleDamageable : IDamageable
     {
-        private Health _health;
+        private readonly Health _health;
         
         public SimpleDamageable(Health health)
         {

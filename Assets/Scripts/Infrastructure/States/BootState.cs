@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.Services.ServiceLocatorSystem;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Assets.Scripts.Infrastructure.States;
+using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services;
 
-namespace Assets.Scripts.Infrastructure.States
+namespace Infrastructure.States
 {
     public class BootState : IState
     {

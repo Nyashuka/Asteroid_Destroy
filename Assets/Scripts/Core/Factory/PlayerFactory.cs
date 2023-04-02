@@ -1,9 +1,8 @@
 ﻿using Assets.Scripts.Core.PlayersComponents;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
-namespace Assets.Scripts.Core.Factory
+namespace Core.Factory
 {
     public class PlayerFactory : IService
     {
@@ -13,16 +12,14 @@ namespace Assets.Scripts.Core.Factory
         public PlayerFactory(GameObject playerPrefab)
         {
             _playerPrefab = playerPrefab;
-
         }
 
         public Player Create()
         {
-
             if (_player != null)
                 return _player;
 
-            _player = MonoBehaviour.Instantiate(_playerPrefab).GetComponent<Player>();
+            _player = Object.Instantiate(_playerPrefab).GetComponent<Player>();
             return _player;
         }
     }

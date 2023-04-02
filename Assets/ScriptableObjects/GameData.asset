@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31eedc4d1b5647b4ea7536edd92590c8, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  _playerPrefabAssetReference:
+  playerPrefabAssetReference:
     m_AssetGUID: 101155e456499d34b899295f1a63edbe
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _enemyPrefabAssetReference:
+  enemyPrefabAssetReference:
     m_AssetGUID: bfd844d706eed7c41bc9ff0f57716184
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _playerUIAssetReference:
+  playerUIAssetReference:
     m_AssetGUID: d0826ff0f599c79458970115624fcf2a
     m_SubObjectName: 
     m_SubObjectType: 

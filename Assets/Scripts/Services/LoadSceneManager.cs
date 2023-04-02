@@ -1,24 +1,26 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-public class ScenesLoader
+namespace Services
 {
-    private const string GAME_SCENE = "Game";
-    private const string MAIN_MENU_SCENE = "MainMenu";
-
-    public Task LoadMainMenu() 
+    public class ScenesLoader
     {
-        SceneManager.LoadScene(MAIN_MENU_SCENE, LoadSceneMode.Single);
+        private const string GameScene = "Game";
+        private const string MainMenuScene = "MainMenu";
+
+        public Task LoadMainMenu() 
+        {
+            SceneManager.LoadScene(MainMenuScene, LoadSceneMode.Single);
         
-        return Task.CompletedTask;
-    }
+            return Task.CompletedTask;
+        }
 
-    public Task LoadGame()
-    {
-        SceneManager.LoadScene(GAME_SCENE, LoadSceneMode.Single);
+        public Task LoadGame()
+        {
+            SceneManager.LoadScene(GameScene, LoadSceneMode.Single);
 
-        return Task.CompletedTask;
+            return Task.CompletedTask;
+        }
     }
 }
 

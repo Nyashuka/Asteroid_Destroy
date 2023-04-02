@@ -1,9 +1,9 @@
-﻿
-using Assets.Scripts.Infrastructure.States;
+﻿using Assets.Scripts.Infrastructure.States;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Infrastructure.States;
 using UnityEngine;
 
-namespace Assets.Scripts.Services.Bootstrap
+namespace Services.Bootstrap
 {
     [DefaultExecutionOrder(100)]
     public class Bootstrap : MonoBehaviour

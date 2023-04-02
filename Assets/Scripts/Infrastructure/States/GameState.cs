@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Core.Factory;
-using Assets.Scripts.Services;
+﻿using System.Threading.Tasks;
+using Assets.Scripts.Infrastructure.States;
 using Assets.Scripts.Services.ServiceLocatorSystem;
-using System.Threading.Tasks;
+using Core.Factory;
+using Services;
 using UnityEngine;
 
-namespace Assets.Scripts.Infrastructure.States
+namespace Infrastructure.States
 {
     public class GameState : IState
     {

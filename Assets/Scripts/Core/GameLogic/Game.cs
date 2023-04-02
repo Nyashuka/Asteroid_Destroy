@@ -1,17 +1,17 @@
-﻿using Assets.Scripts.Core.Factory;
-using Assets.Scripts.Core.PlayersComponents;
+﻿using Assets.Scripts.Core.PlayersComponents;
 using Assets.Scripts.Infrastructure.States;
 using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
+using Core.Factory;
+using Infrastructure.States;
+using Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.GameLogic
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField] private UIMediator _uiMediator;
-
         private Player _player;
         private PlayerDataManager _playersDataStorage;
 
@@ -36,19 +36,13 @@ namespace Assets.Scripts.Core.GameLogic
 
             _score = new Score();
 
-            ServiceLocator.Instance.Register(_uiMediator);
-
             _player = ServiceLocator.Instance.GetService<PlayerFactory>().Create();
             _player.DeathEvent += EndTheGame;
 
-          
+            _playersDataStorage = ServiceLocator.Instance.GetService<PlayerDataManager>();
+            ServiceLocator.Instance.GetService<PlayerViewContainer>().ScoreView.Init(_score);
         }
-
-        public void Init()
-        {
-            
-        }
-
+        
         public void SetPaused(bool isPause)
         {
             _pauseManager.SetPaused(isPause);

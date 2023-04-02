@@ -4,6 +4,9 @@ using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
+using Core.PlayersComponents;
+using Core.PlayersComponents.Bonuses;
+using Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.PlayersComponents
@@ -34,7 +37,10 @@ namespace Assets.Scripts.Core.PlayersComponents
             _damageable = new SimpleDamageable(_health);
             _health.Death += OnDeath;
 
-            UIMediator uIMediator = ServiceLocator.Instance.GetService<UIMediator>();
+            var playerViewContainer = ServiceLocator.Instance.GetService<PlayerViewContainer>();
+            playerViewContainer.HealthBar.Init(_health);
+            var buffIndicator = playerViewContainer.BuffIndicator;
+            _buffsContainer = new BuffsContainer(this, buffIndicator);
         }
 
         private void Update()

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.States;
 
 namespace Assets.Scripts.Infrastructure.States
 {

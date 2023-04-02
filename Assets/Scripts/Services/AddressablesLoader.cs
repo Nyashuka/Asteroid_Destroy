@@ -1,75 +1,40 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Assets.Scripts.Services
+namespace Services
 {
-    public class LoadedHandleData
-    {
-        public int CountOfRefferences { get; private set; }
-
-        private AsyncOperationHandle<UnityEngine.Object> _handle;
-
-        public LoadedHandleData(AsyncOperationHandle<UnityEngine.Object> handle)
-        {
-            _handle = handle;
-            CountOfRefferences = 1;
-        }
-
-        public AsyncOperationHandle<UnityEngine.Object> GetHandle()
-        {
-            return _handle;
-        }
-
-        public int GetCountOfRefferences()
-        {
-            return CountOfRefferences;
-        }
-
-        public void IncreaseCountOfRefference()
-        {
-            CountOfRefferences++;
-        }
-
-        public void DecreaseCountOfRefference()
-        {
-            CountOfRefferences--;
-        }
-    }
-
     public static class AddressablesLoader
     {
-        private static readonly Dictionary<string, LoadedHandleData> _handlesData = new Dictionary<string, LoadedHandleData>();
+        private static readonly Dictionary<string, LoadedHandleData> HandlesData = new Dictionary<string, LoadedHandleData>();
 
-        public static async Task<T> LoadAsync<T>(string assetGUID) where T : UnityEngine.Object
+        public static async Task<T> LoadAsync<T>(string assetGuid) where T : UnityEngine.Object
         {
-            if (!_handlesData.TryGetValue(assetGUID, out LoadedHandleData handleData))
+            if (!HandlesData.TryGetValue(assetGuid, out LoadedHandleData handleData))
             {
-                var handle = Addressables.LoadAssetAsync<UnityEngine.Object>(assetGUID);
+                var handle = Addressables.LoadAssetAsync<UnityEngine.Object>(assetGuid);
                 LoadedHandleData data = new LoadedHandleData(handle);
-                _handlesData.Add(assetGUID, data);
-                return await _handlesData[assetGUID].GetHandle().Task as T;
+                HandlesData.Add(assetGuid, data);
+                return await HandlesData[assetGuid].GetHandle().Task as T;
             }
 
-            _handlesData[assetGUID].IncreaseCountOfRefference();
+            HandlesData[assetGuid].IncreaseCountOfRefference();
 
             return await handleData.GetHandle().Task as T;
         }
 
-        public static void UnloadAsset(string assetGUID)
+        public static void UnloadAsset(string assetGuid)
         {
-            if (_handlesData.TryGetValue(assetGUID, out LoadedHandleData handleData))
+            if (HandlesData.TryGetValue(assetGuid, out LoadedHandleData handleData))
             {
                 if (handleData.CountOfRefferences > 1)
                 {
-                   _handlesData[assetGUID].DecreaseCountOfRefference();
+                   HandlesData[assetGuid].DecreaseCountOfRefference();
                 }
                 else
                 {
-                    _handlesData.Remove(assetGUID);
-                    Addressables.Release(assetGUID);
+                    HandlesData.Remove(assetGuid);
+                    Addressables.Release(assetGuid);
                 }
             }
         }

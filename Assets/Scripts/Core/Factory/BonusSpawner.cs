@@ -5,6 +5,7 @@ using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Linq;
 using System.Threading.Tasks;
+using Services;
 using UnityEngine;
 
 public class BonusFactory : IService

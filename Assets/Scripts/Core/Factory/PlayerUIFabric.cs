@@ -1,14 +1,12 @@
-﻿using Assets.Scripts.Core.PlayersComponents.Bonuses;
-using Assets.Scripts.Services;
+﻿using System.Threading.Tasks;
+using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Services.ServiceLocatorSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Score;
+using Services;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace Assets.Scripts.Core.Factory
+namespace Core.Factory
 {
     public class PlayerUIFabric : IService
     {
@@ -27,7 +25,7 @@ namespace Assets.Scripts.Core.Factory
 
             GameObject ui = await AddressablesLoader.LoadAsync<GameObject>(prefabContainer.GameData.PlayerUIAssetReference.AssetGUID);
 
-            MonoBehaviour.Instantiate(ui, canvasTransform);
+            Object.Instantiate(ui, canvasTransform);
         }
     }
 }
