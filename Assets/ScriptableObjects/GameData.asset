@@ -28,23 +28,5 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   _bonuses:
-    list:
-    - Key:
-        m_AssetGUID: 95335518da3fd484b99a50779cc8ab93
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      Value: 20
-    - Key:
-        m_AssetGUID: e66a4b13168fc5b46a2a35648d6c8e0f
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      Value: 20
-    - Key:
-        m_AssetGUID: 456eeb3830bdab34280517dea5dc265a
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      Value: 60
+    list: []
     keyCollision: 0

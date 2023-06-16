@@ -9,11 +9,11 @@ namespace Infrastructure.States
 {
     public class GameState : IState
     {
-        private StateMachine _stateMachine;
+        private GameStateMachine _gameStateMachine;
 
-        public GameState(StateMachine stateMachine)
+        public GameState(GameStateMachine gameStateMachine)
         {
-            _stateMachine = stateMachine;
+            _gameStateMachine = gameStateMachine;
         }
 
         private async Task Init()

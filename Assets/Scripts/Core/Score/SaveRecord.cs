@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Core.GameLogic;
+using Core.GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Assets.Scripts.Core.UI
     {
         [SerializeField] private GameObject _saveRecordPanel;
         [SerializeField] private InputField _usernameInputField;
-        [SerializeField] private Game _game;
+        [SerializeField] private GameOld gameOld;
         [SerializeField] private Button _saveButton;
 
         private void Start()
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Core.UI
 
         private void Save()
         {
-            _game.SaveRecord(_usernameInputField.text);
+            gameOld.SaveRecord(_usernameInputField.text);
         }
     }
 }

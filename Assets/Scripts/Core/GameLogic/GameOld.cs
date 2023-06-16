@@ -1,23 +1,23 @@
-﻿using Assets.Scripts.Core.PlayersComponents;
+﻿using System;
+using Assets.Scripts.Core.GameLogic;
+using Assets.Scripts.Core.PlayersComponents;
 using Assets.Scripts.Infrastructure.States;
-using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
-using System;
 using Core.Factory;
 using Infrastructure.States;
 using Services;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.GameLogic
+namespace Core.GameLogic
 {
-    public class Game : MonoBehaviour
+    public class GameOld : MonoBehaviour
     {
         private Player _player;
         private PlayerDataManager _playersDataStorage;
 
         private EnemiesSpawner _enemySpawner;
         
-        private Score _score;
+        private global::Score _score;
         private bool _isGameOver;
 
         private PauseManager _pauseManager;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Core.GameLogic
 
         private async void Start()
         {
-            await ServiceLocator.Instance.GetService<StateMachine>().Enter<GameState>();
+            await ServiceLocator.Instance.GetService<GameStateMachine>().Enter<GameState>();
 
             _pauseManager = ServiceLocator.Instance.GetService<PauseManager>();
 
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Core.GameLogic
             _enemySpawner.EnemyDeath += AddScore;
             _enemySpawner.StartSpawn();
 
-            _score = new Score();
+            _score = new global::Score();
 
             _player = ServiceLocator.Instance.GetService<PlayerFactory>().Create();
             _player.DeathEvent += EndTheGame;

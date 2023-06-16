@@ -6,12 +6,12 @@ using Infrastructure.States;
 
 namespace Assets.Scripts.Infrastructure.States
 {
-    public class StateMachine : IService
+    public class GameStateMachine : IService
     {
         private readonly Dictionary<Type, IState> _states = new Dictionary<Type, IState>();
         private IState _currentState;
 
-        public StateMachine()
+        public GameStateMachine()
         {
             _states.Add(typeof(BootState), new BootState(this));
             _states.Add(typeof(GameState), new GameState(this));

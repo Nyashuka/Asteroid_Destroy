@@ -1,14 +1,13 @@
-using Assets.Scripts.Core.GameLogic;
 using Assets.Scripts.Core.GameMenu;
+using Core.GameLogic;
 using Services;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameMenuButtons : MonoBehaviour
 {
     [Header("General")]
-    [SerializeField] private Game _game;
+    [SerializeField] private GameOld gameOld;
     [SerializeField] private GameMenu _gameMenu;
 
     [Header("Buttons")]
@@ -30,7 +29,7 @@ public class GameMenuButtons : MonoBehaviour
         _openSaveRecordWindowButton.onClick.AddListener(OnOpenSaveRecordButtonClicked);
         _saveRecordButton.onClick.AddListener(OnSaveRecordButtonClicked);
 
-        _game.GameOverEvent += OnGameOver;
+        gameOld.GameOverEvent += OnGameOldOver;
 
         _loadSceneManager = new ScenesLoader();
     }
@@ -47,29 +46,29 @@ public class GameMenuButtons : MonoBehaviour
 
     private void OnExitToMenuButtonClicked()
     {
-        _game.UpdatePlayerData();
+        gameOld.UpdatePlayerData();
         _loadSceneManager.LoadMainMenu();  
     }
 
     private void OnRestartGameButtonClicked()
     {
-        _game.SetPaused(false);
+        gameOld.SetPaused(false);
         _loadSceneManager.LoadGame();
     }
 
     private void OnPauseButtonClicked()
     {
-        _game.SetPaused(true);
+        gameOld.SetPaused(true);
         _gameMenu.ShowPauseWindow();
     }
 
     private void OnResumeButtonClicked()
     {
-        _game.SetPaused(false);
+        gameOld.SetPaused(false);
         _gameMenu.ClosePauseWindow();
     }
 
-    private void OnGameOver()
+    private void OnGameOldOver()
     {
         _gameMenu.ShowGameOverWindow();
     }
