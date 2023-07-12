@@ -1,13 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using Core.PlayersComponents.Bonuses;
+using Core.PlayersComponents.Bonuses.Abstract;
+using UnityEngine;
 
-public class BonusData
+namespace Core.Factory
 {
-    public readonly GameObject prefab;
-    public readonly int dropChance = 10;
-
-    public BonusData(GameObject bonusPrefab, int dropChance)
+    [Serializable]
+    public class BonusData
     {
-        this.prefab = bonusPrefab;
-        this.dropChance = dropChance;
+        [SerializeField] private BuffContainer prefab;
+        [SerializeField] private int dropChance;
+
+        public BuffContainer Prefab => prefab;
+        public int DropChance => dropChance;
+    
+        public BonusData(BuffContainer bonusPrefab, int dropChance)
+        {
+            prefab = bonusPrefab;
+            this.dropChance = dropChance;
+        }
     }
 }

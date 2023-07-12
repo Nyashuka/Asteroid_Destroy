@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Assets.Scripts.Services.Pause
+namespace Services.Pause
 {
     public class GamePauseBehaviour : IPauseHandler
     {

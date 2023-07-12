@@ -24,8 +24,6 @@ public class GameMenuButtons : MonoBehaviour
     {
         _pauseButton.onClick.AddListener(OnPauseButtonClicked);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
-        _restartButton.onClick.AddListener(OnRestartGameButtonClicked);
-        _exitToMenuButton.onClick.AddListener(OnExitToMenuButtonClicked);
         _openSaveRecordWindowButton.onClick.AddListener(OnOpenSaveRecordButtonClicked);
         _saveRecordButton.onClick.AddListener(OnSaveRecordButtonClicked);
 
@@ -42,18 +40,6 @@ public class GameMenuButtons : MonoBehaviour
     private void OnOpenSaveRecordButtonClicked()
     {
        _gameMenu.OpenSaveRecordWindow();
-    }
-
-    private void OnExitToMenuButtonClicked()
-    {
-        gameOld.UpdatePlayerData();
-        _loadSceneManager.LoadMainMenu();  
-    }
-
-    private void OnRestartGameButtonClicked()
-    {
-        gameOld.SetPaused(false);
-        _loadSceneManager.LoadGame();
     }
 
     private void OnPauseButtonClicked()

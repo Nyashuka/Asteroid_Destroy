@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.Services.ServiceLocatorSystem;
 
-namespace Assets.Scripts.Services.ServiceLocatorSystem
+namespace Services.ServiceLocatorSystem
 {
     public class ServiceLocator : IServiceLocator
     {

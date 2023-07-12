@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
-using Assets.Scripts.Services;
-using BetterAttributes.Runtime.Attributes.Select;
+﻿using Assets.Scripts.Services;
+using Better.Attributes.Runtime.Select;
+using Core.PlayersComponents.Bonuses.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.PlayersComponents.Bonuses
+namespace Core.PlayersComponents.Bonuses
 {
     public class BuffContainer : MonoBehaviour, IDestroyable
     {

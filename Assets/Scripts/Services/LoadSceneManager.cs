@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Better.Extensions.Runtime.AsyncExtension;
 using UnityEngine.SceneManagement;
 
 namespace Services
@@ -6,20 +7,10 @@ namespace Services
     public class ScenesLoader
     {
         private const string GameScene = "Game";
-        private const string MainMenuScene = "MainMenu";
 
-        public Task LoadMainMenu() 
+        public async Task LoadGame() 
         {
-            SceneManager.LoadScene(MainMenuScene, LoadSceneMode.Single);
-        
-            return Task.CompletedTask;
-        }
-
-        public Task LoadGame()
-        {
-            SceneManager.LoadScene(GameScene, LoadSceneMode.Single);
-
-            return Task.CompletedTask;
+            await SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Single);
         }
     }
 }

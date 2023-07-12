@@ -1,8 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.PlayersComponents;
+using Core.PlayersComponents.Bonuses;
 using Core.Score;
 using Services;
+using Services.ServiceLocatorSystem;
+using UIModule;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -23,7 +27,7 @@ namespace Core.Factory
         {
             PrefabsContainer prefabContainer = ServiceLocator.Instance.GetService<PrefabsContainer>();
 
-            GameObject ui = await AddressablesLoader.LoadAsync<GameObject>(prefabContainer.GameData.PlayerUIAssetReference.AssetGUID);
+            PlayerHUD ui = prefabContainer.GameData.PlayerUIAssetReference;
 
             Object.Instantiate(ui, canvasTransform);
         }

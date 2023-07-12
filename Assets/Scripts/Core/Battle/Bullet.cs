@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Core.Battle.Abstract;
 using System;
 using UnityEngine;
+using Utils;
 
 public class Bullet : PoolableObject
 {

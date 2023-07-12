@@ -1,6 +1,9 @@
 ﻿using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.PlayersComponents;
+using Core.PlayersComponents.Bonuses;
 using Core.Score;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Services

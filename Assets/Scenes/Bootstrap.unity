@@ -180,3 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: fd53f721f8dd9f04fb145bdc4678e66e, type: 2}
+  uiData: {fileID: 11400000, guid: e2a01581e29c2e544bdeb06fdd77caea, type: 2}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.PlayersComponents.Bonuses.Abstract;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract

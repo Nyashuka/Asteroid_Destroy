@@ -1,66 +1,69 @@
-﻿using Assets.Scripts.Services.ServiceLocatorSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services.ServiceLocatorSystem;
 
-public class PlayerDataManager : IService
+namespace SaveSystem
 {
-    private ISaveSystem _saveSystem;
-    public List<PlayerData> PlayersData { get; private set; }
-    public PlayerData CurrentPlayer { get; private set; }
-
-    public PlayerDataManager(ISaveSystem saveSystem)
+    public class PlayerDataManager : IService
     {
-        _saveSystem = saveSystem;
+        private readonly ISaveSystem _saveSystem;
+        public List<PlayerData> PlayersData { get; private set; }
+        public PlayerData CurrentPlayer { get; private set; }
 
-        SaveData data = _saveSystem.Load();
-
-        PlayersData = data.GetPlayersData();
-        CurrentPlayer = data.GetMainPlayer(); ;
-    }
-
-    public PlayerData TryGetPlayer(string username)
-    {
-        PlayerData player = null;
-
-        try
+        public PlayerDataManager(ISaveSystem saveSystem)
         {
-            player = PlayersData.First(x => x.Username.ToLower() == username.ToLower());
+            _saveSystem = saveSystem;
+
+            SaveData data = _saveSystem.Load();
+
+            PlayersData = data.GetPlayersData();
+            CurrentPlayer = data.GetMainPlayer(); ;
         }
-        catch (System.Exception)
+
+        public PlayerData TryGetPlayer(string username)
         {
+            PlayerData player = null;
+
+            try
+            {
+                player = PlayersData.First(x => x.Username.ToLower() == username.ToLower());
+            }
+            catch (System.Exception)
+            {
             
+            }
+
+            return player;
         }
 
-        return player;
-    }
-
-    public void UpdatePlayerData(int score)
-    {
-        CurrentPlayer.UpdateScore(score);
-
-        SaveData();
-    }
-
-    public void SaveSomePlayer(string username, int score)
-    {
-        var player = TryGetPlayer(username);
-
-        if (player != null)
+        public void UpdatePlayerData(int score)
         {
-            player.UpdateScore(score);
+            CurrentPlayer.UpdateScore(score);
+
+            SaveData();
         }
-        else
+
+        public void SaveSomePlayer(string username, int score)
         {
-            PlayersData.Add(new PlayerData(username, score));
+            var player = TryGetPlayer(username);
+
+            if (player != null)
+            {
+                player.UpdateScore(score);
+            }
+            else
+            {
+                PlayersData.Add(new PlayerData(username, score));
+            }
+
+            SaveData();
         }
 
-        SaveData();
-    }
-
-    public void SaveData()
-    {
-        _saveSystem.Save(new SaveData(CurrentPlayer, PlayersData));
+        public void SaveData()
+        {
+            _saveSystem.Save(new SaveData(CurrentPlayer, PlayersData));
+        }
     }
 }
 

@@ -1,11 +1,14 @@
 ﻿using System;
-using Assets.Scripts.Core.GameLogic;
 using Assets.Scripts.Core.PlayersComponents;
 using Assets.Scripts.Infrastructure.States;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.Enemies;
 using Core.Factory;
 using Infrastructure.States;
+using SaveSystem;
 using Services;
+using Services.Pause;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Core.GameLogic
@@ -17,7 +20,7 @@ namespace Core.GameLogic
 
         private EnemiesSpawner _enemySpawner;
         
-        private global::Score _score;
+        private global::Core.Score.Score _score;
         private bool _isGameOver;
 
         private PauseManager _pauseManager;
@@ -31,10 +34,9 @@ namespace Core.GameLogic
             _pauseManager = ServiceLocator.Instance.GetService<PauseManager>();
 
             _enemySpawner = new EnemiesSpawner(ServiceLocator.Instance.GetService<EnemyFactory>());
-            _enemySpawner.EnemyDeath += AddScore;
             _enemySpawner.StartSpawn();
 
-            _score = new global::Score();
+            _score = new Score.Score();
 
             _player = ServiceLocator.Instance.GetService<PlayerFactory>().Create();
             _player.DeathEvent += EndTheGame;
@@ -69,7 +71,7 @@ namespace Core.GameLogic
             _playersDataStorage.SaveSomePlayer(text, _score.Value);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _enemySpawner.Destroy();
         }

@@ -1,11 +1,9 @@
-using Assets.Scripts.Services;
-using Assets.Scripts.Services.ServiceLocatorSystem;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Services;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Utils
+namespace Utils
 {
     [RequireComponent(typeof(BoxCollider))]
     public class ScreenBoundary : MonoBehaviour, IService
@@ -23,13 +21,11 @@ namespace Assets.Scripts.Core.Utils
 
         public void Awake()
         {
-            InitializeBoundary();
+            InitializeBoundary(Camera.main);
 
             _xCorrection = -0.3f;
             _zMaxCorrection = 2;
             _zMinCorrection = 0.5f;
-
-            ServiceLocator.Instance.Register(this);
         }
 
         private void OnTriggerExit(Collider other)
@@ -38,20 +34,17 @@ namespace Assets.Scripts.Core.Utils
                 LeftWorld?.Invoke(poolable);
         }
 
-        private void InitializeBoundary()
+        private void InitializeBoundary(Camera camera)
         {
-            //zMax = _zMaxCorrection;
-            //zMin = _zMinCorrection;
-
             float widthScreen = Screen.width;
             float heightScreen = Screen.height;
 
-            zMax = Camera.main.orthographicSize - _zMaxCorrection;
-            zMin = -Camera.main.orthographicSize + _zMinCorrection;
-
+            zMax = camera.orthographicSize - _zMaxCorrection;
+            zMin = -camera.orthographicSize + _zMinCorrection;
+            
             if (widthScreen < heightScreen)
             {
-                float x = widthScreen / heightScreen * Camera.main.orthographicSize;
+                float x = widthScreen / heightScreen * camera.orthographicSize;
 
                 xMin = -x - _xCorrection;
                 xMax = x + _xCorrection;

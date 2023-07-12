@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Services.ServiceLocatorSystem;
+using UnityEngine;
+using Utils;
 
 namespace Infrastructure.Bootstrap
 {
@@ -6,7 +8,7 @@ namespace Infrastructure.Bootstrap
     public class Bootstrap : MonoBehaviour
     {
         private Game _game;
-        
+
         public async void Awake()
         {
             DontDestroyOnLoad(gameObject);

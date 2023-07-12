@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Services.ServiceLocatorSystem
+﻿using Services.ServiceLocatorSystem;
+
+namespace Assets.Scripts.Services.ServiceLocatorSystem
 {
     public interface IServiceLocator
     {

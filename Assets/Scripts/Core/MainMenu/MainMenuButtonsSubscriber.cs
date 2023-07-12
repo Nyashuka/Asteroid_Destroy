@@ -6,7 +6,7 @@ namespace Assets.Scripts.Core.MainMenu
 {
     public class MainMenuButtonsSubscriber : MonoBehaviour
     {
-        [SerializeField] private MainMenu _mainMenu;
+        [SerializeField] private global::Core.MainMenu.MainMenu _mainMenu;
         [Header("Buttons")]
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _recordsButton;
@@ -20,16 +20,11 @@ namespace Assets.Scripts.Core.MainMenu
 
         public void Start()
         {
-            _playButton.onClick.AddListener(OnPlayButtonClicked);
             _quitButton.onClick.AddListener(OnQuitButtonClicked);
             _recordsButton.onClick.AddListener(OnRecordButtonClicked);
             _backButton.onClick.AddListener(OnBackButtonClicked);
         }
-
-        private void OnPlayButtonClicked()
-        {
-            _mainMenu.StartGame();
-        }
+        
         private void OnQuitButtonClicked()
         {
             _mainMenu.QuitGame();

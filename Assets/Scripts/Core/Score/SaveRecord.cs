@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Core.GameLogic;
-using Core.GameLogic;
+﻿using Core.GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
 

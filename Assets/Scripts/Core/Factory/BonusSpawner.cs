@@ -1,47 +1,48 @@
-using Assets.Scripts.Core.GameLogic;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
-using Assets.Scripts.Core.Utils;
 using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Enemies;
+using Core.Factory;
+using Core.PlayersComponents.Bonuses;
+using Core.PlayersComponents.Bonuses.Abstract;
 using Services;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
+using Utils;
 
 public class BonusFactory : IService
 {
-    private BonusData[] _bonusDatas;
+    private BonusData[] _bonusData;
     private readonly int _dropChance = 10;
-    private Transform _parentForSpawn;
+    private readonly Transform _parentForSpawn;
 
     private int _totalChance;
 
     public BonusFactory()
     {
-        Task task = new Task(InitBonusesPrefabsAndChanseTable);
-        task.Start();  
-        task.Wait();    
+        InitBonusesPrefabsAndChanceTable();
 
         _parentForSpawn = new GameObject("parent_for_bonuses").transform;   
     }
 
-    private async void InitBonusesPrefabsAndChanseTable()
+    private void InitBonusesPrefabsAndChanceTable()
     {
         PrefabsContainer prefabsContainer = ServiceLocator.Instance.GetService<PrefabsContainer>();
 
-        _bonusDatas = new BonusData[prefabsContainer.GameData.Bonuses.Count];
+        _bonusData = new BonusData[prefabsContainer.GameData.Bonuses.Length];
         int i = 0;
 
-        foreach (var prefab in prefabsContainer.GameData.Bonuses)
+        foreach (var bonusData in prefabsContainer.GameData.Bonuses)
         {
-            GameObject bonus =
-                (await AddressablesLoader.LoadAsync<GameObject>(prefab.Key.AssetGUID)).GetComponent<GameObject>();
+            BuffContainer bonus = bonusData.Prefab;
 
-            _bonusDatas[i] = new BonusData(bonus, prefab.Value);
+            _bonusData[i] = new BonusData(bonus, bonusData.DropChance);
             i++;
         }
 
-        _totalChance = _bonusDatas.Select(x => x.dropChance).Sum();
+        _totalChance = _bonusData.Select(x => x.DropChance).Sum();
 
         ServiceLocator.Instance.GetService<EnemyFactory>().EnemyDeath += Create;
         ServiceLocator.Instance.GetService<ScreenBoundary>().LeftWorld += DestroyBuff;
@@ -52,19 +53,19 @@ public class BonusFactory : IService
         if (Random.Range(0, 100) > _dropChance)
             return;
 
-        int dropedChance = Random.Range(0, _totalChance);
+        int dropChance = Random.Range(0, _totalChance);
 
-        for (int i = 0; i < _bonusDatas.Length; i++)
+        for (int i = 0; i < _bonusData.Length; i++)
         {
-            if (dropedChance <= _bonusDatas[i].dropChance)
+            if (dropChance <= _bonusData[i].DropChance)
             {
-                MonoBehaviour.Instantiate(_bonusDatas[i].prefab, enemy.transform.position, Quaternion.identity, _parentForSpawn);
+                MonoBehaviour.Instantiate(_bonusData[i].Prefab, enemy.transform.position, Quaternion.identity, _parentForSpawn);
 
                 return;
             }
             else
             {
-                dropedChance -= _bonusDatas[i].dropChance;
+                dropChance -= _bonusData[i].DropChance;
             }
         }
     }

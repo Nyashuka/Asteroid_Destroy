@@ -119,9 +119,9 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: ShieldBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
+      type: {class: ShieldBuff, ns: Assets.Scripts.Core.PlayersComponents.Bonuses, asm: Assembly-CSharp}
       data:
-        _duration: 10
+        _duration: 2
         _indicatorIamge: {fileID: 1540494725614848250, guid: 6bb6da620d72bf248831141d039c6213, type: 3}
 --- !u!1001 &2246821821824442197
 PrefabInstance:

@@ -1,59 +1,61 @@
 ﻿using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
-public class ObjectPool<T> where T : PoolableObject
+namespace Utils
 {
-    private readonly Transform _parentForPoolObjects;
-    private readonly PoolableObject _objectPrefab;
-    private readonly int _quantityObjects = 100;
-
-    private readonly Queue<PoolableObject> _objectsPool = new Queue<PoolableObject>();
-
-    public ObjectPool(PoolableObject objectPrefab, int quantityObjects, Transform parentObject)
+    public class ObjectPool<T> where T : PoolableObject
     {
-        _parentForPoolObjects = parentObject;
-        _objectPrefab = objectPrefab;
-        _quantityObjects = quantityObjects;
-        Init();
-    }
+        private readonly Transform _parentForPoolObjects;
+        private readonly PoolableObject _objectPrefab;
+        private readonly int _quantityObjects = 100;
 
-    private void Init()
-    {
-        for (int i = 0; i < _quantityObjects; i++)
+        private readonly Queue<PoolableObject> _objectsPool = new Queue<PoolableObject>();
+
+        public ObjectPool(PoolableObject objectPrefab, int quantityObjects, Transform parentObject)
         {
-            _objectsPool.Enqueue(CreateObject());
+            _parentForPoolObjects = parentObject;
+            _objectPrefab = objectPrefab;
+            _quantityObjects = quantityObjects;
+            Init();
         }
+
+        private void Init()
+        {
+            for (int i = 0; i < _quantityObjects; i++)
+            {
+                _objectsPool.Enqueue(CreateObject());
+            }
         
-    }
+        }
 
-    private PoolableObject CreateObject()
-    {
-        PoolableObject createdObject = Object.Instantiate(_objectPrefab, _parentForPoolObjects);
-        createdObject.gameObject.SetActive(false);
+        private PoolableObject CreateObject()
+        {
+            PoolableObject createdObject = Object.Instantiate(_objectPrefab, _parentForPoolObjects);
+            createdObject.gameObject.SetActive(false);
 
-        return createdObject;
-    }
+            return createdObject;
+        }
 
-    public PoolableObject GetObject(Vector3 position)
-    {
-        PoolableObject gotObjet = _objectsPool.Count == 0 ? CreateObject() : _objectsPool.Dequeue();
+        public PoolableObject GetObject(Vector3 position)
+        {
+            PoolableObject gotObjet = _objectsPool.Count == 0 ? CreateObject() : _objectsPool.Dequeue();
 
-        //if(gotObjet == null) { return null; }
+            //if(gotObjet == null) { return null; }
 
-        gotObjet.gameObject.SetActive(true);
-        gotObjet.transform.position = position;
+            gotObjet.gameObject.SetActive(true);
+            gotObjet.transform.position = position;
         
-        return gotObjet;
-    }
+            return gotObjet;
+        }
 
-    public void ReturnObjectToPool(PoolableObject objectToReturn)
-    {
-        if (!(objectToReturn is T))
-            return;
+        public void ReturnObjectToPool(PoolableObject objectToReturn)
+        {
+            if (!(objectToReturn is T))
+                return;
 
-        _objectsPool.Enqueue(objectToReturn);
-        objectToReturn.gameObject.SetActive(false);
-    }
+            _objectsPool.Enqueue(objectToReturn);
+            objectToReturn.gameObject.SetActive(false);
+        }
     
+    }
 }

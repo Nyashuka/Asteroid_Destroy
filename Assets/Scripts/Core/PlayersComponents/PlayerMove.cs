@@ -1,7 +1,8 @@
 using Assets.Scripts.Core.PlayersComponents.UserInput;
-using Assets.Scripts.Core.Utils;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
+using Utils;
 
 public class PlayerMove 
 {

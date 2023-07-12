@@ -12,21 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31eedc4d1b5647b4ea7536edd92590c8, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  playerPrefabAssetReference:
-    m_AssetGUID: 101155e456499d34b899295f1a63edbe
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  enemyPrefabAssetReference:
-    m_AssetGUID: bfd844d706eed7c41bc9ff0f57716184
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  playerUIAssetReference:
-    m_AssetGUID: d0826ff0f599c79458970115624fcf2a
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  _bonuses:
-    list: []
-    keyCollision: 0
+  playerPrefab: {fileID: 3590956198841720947, guid: 101155e456499d34b899295f1a63edbe, type: 3}
+  enemyPrefab: {fileID: 7047841575345638961, guid: bfd844d706eed7c41bc9ff0f57716184, type: 3}
+  playerHUD: {fileID: 7075190043902870813, guid: d0826ff0f599c79458970115624fcf2a, type: 3}
+  screenBoundary: {fileID: 4523142927675021902, guid: bbe8cde828a3bdf4b90ca81019c8f84b, type: 3}
+  bonuses:
+  - prefab: {fileID: 3781694081702443920, guid: 95335518da3fd484b99a50779cc8ab93, type: 3}
+    dropChance: 25
+  - prefab: {fileID: 9067075787590182339, guid: 456eeb3830bdab34280517dea5dc265a, type: 3}
+    dropChance: 25
+  - prefab: {fileID: 3781694081702443920, guid: e66a4b13168fc5b46a2a35648d6c8e0f, type: 3}
+    dropChance: 50

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2901840108852920921}
   - component: {fileID: 5186746902875067011}
   - component: {fileID: 3577556005540979385}
-  - component: {fileID: 3781694081702443920}
+  - component: {fileID: 9067075787590182339}
   m_Layer: 8
   m_Name: multi_shot_buff
   m_TagString: Untagged
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: -5
---- !u!114 &3781694081702443920
+--- !u!114 &9067075787590182339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,9 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: MultiShotBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
+      type: {class: MultiShotBuff, ns: Assets.Scripts.Core.PlayersComponents.Bonuses, asm: Assembly-CSharp}
       data:
-        _duration: 10
+        _duration: 2
         _indicatorIamge: {fileID: 8951516472881170265, guid: 6401fd1ecef947e47b9c2c004ba45761, type: 3}
         _distanceBetweenBullets: 0.3
         _countShots: 3

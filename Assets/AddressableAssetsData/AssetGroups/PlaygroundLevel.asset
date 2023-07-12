@@ -29,6 +29,14 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/player_interface.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 206fc2d940b14b94d8f2308b5ed9c712
+    m_Address: Assets/Prefabs/UI/UIController.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 563039993434361428dca8af759774b9
+    m_Address: Assets/Prefabs/UI/Pages/main.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6e2c8fd083b19904e8741986416e058e, type: 2}
   m_SchemaSet:

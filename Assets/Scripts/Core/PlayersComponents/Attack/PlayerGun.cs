@@ -1,10 +1,11 @@
-using Assets.Scripts.Core.Utils;
 using Assets.Scripts.Core.PlayersComponents.Attack;
 using Assets.Scripts.Core.PlayersComponents.Attack.Abstract;
 using UnityEngine;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Services;
 using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services.ServiceLocatorSystem;
+using Utils;
 
 public class PlayerGun
 {

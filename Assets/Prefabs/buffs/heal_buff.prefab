@@ -114,12 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85440dc117bd6db409b0273c9e00f48a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buff:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: HealBuff, ns: Assets.Scripts.Core.Player.Bonuses, asm: Assembly-CSharp}
 --- !u!1001 &2173875131181808199
 PrefabInstance:
   m_ObjectHideFlags: 0

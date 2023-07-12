@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.Services.Scriptable;
-using Assets.Scripts.Services.ServiceLocatorSystem;
+﻿using Assets.Scripts.Services.ServiceLocatorSystem;
+using DataStructures.Scriptable;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Services
@@ -11,8 +12,10 @@ namespace Services
             ServiceLocator.Instance.Register(this);
         }
 
-        [SerializeField] private GameAssetRefferencesScriptableObject gameData;
+        [SerializeField] private GameAssetReferencesScriptableObject gameData;
+        [SerializeField] private UIAssetReferencesScriptableObject uiData;
 
-        public GameAssetRefferencesScriptableObject GameData => gameData;
+        public GameAssetReferencesScriptableObject GameData => gameData;
+        public UIAssetReferencesScriptableObject UIData => uiData;
     }
 }

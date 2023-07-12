@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Core.PlayersComponents.Attack.Abstract;
 using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
 using UnityEngine;
+using Utils;
 
 namespace Assets.Scripts.Core.PlayersComponents.Bonuses
 {

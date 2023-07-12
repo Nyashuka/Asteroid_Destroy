@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Core.PlayersComponents;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
 using Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract;
+using Core.PlayersComponents.Bonuses.Abstract;
 using UnityEngine;
 
 namespace Core.PlayersComponents.Bonuses

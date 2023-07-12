@@ -1,27 +1,21 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
-using Assets.Scripts.Services.ServiceLocatorSystem;
+using SaveSystem;
 using Services;
 using Services.EventBusService;
+using Services.ServiceLocatorSystem;
 
 namespace Infrastructure.States
 {
     public class BootState : IState
     {
-        private GameStateMachine _gameStateMachine;
-
-        public BootState(GameStateMachine gameStateMachine)
-        {
-            _gameStateMachine = gameStateMachine;
-        }
-
         public async Task Enter()
         {
-            RegisterServices();
-
             ScenesLoader scenesLoader = new ScenesLoader();
-
+            
             await scenesLoader.LoadGame();
+            
+            RegisterServices();
         }
 
         private void RegisterServices()
@@ -29,7 +23,7 @@ namespace Infrastructure.States
             ServiceLocator.Instance.Register(new PlayerDataManager(new JsonSaveSystem()));
             ServiceLocator.Instance.Register(new EventBus());
         }
-
+        
         public void Exit()
         {
             

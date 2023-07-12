@@ -1,4 +1,5 @@
-using Assets.Scripts.Services.Pause;
+using SaveSystem;
+using Services.Pause;
 using UnityEngine;
 
 public class ServicesProvider : MonoBehaviour

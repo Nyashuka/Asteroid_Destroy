@@ -1,18 +1,37 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
+using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services;
+using Services.EventBusModule;
+using Services.EventBusService;
+using Services.ServiceLocatorSystem;
+using UIModule;
+using UnityEngine;
 
 namespace Infrastructure.States
 {
     public class LoadMainMenuState : IState
     {
-        public Task Enter()
+        public async Task Enter()
         {
-            throw new System.NotImplementedException();
+            InitializeMainMenu();
+        }
+        
+        private void InitializeMainMenu()
+        {
+            PrefabsContainer prefabsContainer = ServiceLocator.Instance.GetService<PrefabsContainer>();
+
+            UIController uiController = Object.Instantiate(prefabsContainer.UIData.UIDocument);
+            EventBus eventBus = ServiceLocator.Instance.GetService<EventBus>();
+            ServiceLocator.Instance.Register(uiController);
+            uiController.Initialize(eventBus);
+            
+            eventBus.Raise(EventBusDefinitions.MainMenuLoaded, new EmptyEventBusArgs());
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

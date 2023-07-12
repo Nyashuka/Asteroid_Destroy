@@ -3,47 +3,44 @@ using Assets.Scripts.Infrastructure.States;
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using Core.Factory;
 using Services;
+using Services.EventBusService;
+using Services.Pause;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
+using Utils;
 
 namespace Infrastructure.States
 {
     public class GameState : IState
     {
-        private GameStateMachine _gameStateMachine;
-
-        public GameState(GameStateMachine gameStateMachine)
-        {
-            _gameStateMachine = gameStateMachine;
-        }
-
-        private async Task Init()
+        private Task Init()
         {
             try
             {
-                PrefabsContainer dataContainer = ServiceLocator.Instance.GetService<PrefabsContainer>();
-
-                string enemyPrefabGUID = dataContainer.GameData.EnemyPrefabAssetReference.AssetGUID;
-                GameObject enemyPrefab = await AddressablesLoader.LoadAsync<GameObject>(enemyPrefabGUID);
-
-                string playerPrefabGUID = dataContainer.GameData.PlayerPrefabAssetReference.AssetGUID;
-                GameObject playerPrefab = await AddressablesLoader.LoadAsync<GameObject>(playerPrefabGUID);
+                PrefabsContainer prefabsContainer = ServiceLocator.Instance.GetService<PrefabsContainer>();
 
                 PauseManager pauseManager = new PauseManager();
                 ServiceLocator.Instance.Register(pauseManager);
 
-                PlayerFactory playerFactory = new PlayerFactory(playerPrefab);
+                PlayerFactory playerFactory = new PlayerFactory(prefabsContainer.GameData.PlayerPrefab);
                 ServiceLocator.Instance.Register(playerFactory);
+
+                ScreenBoundary boundary = Object.Instantiate(prefabsContainer.GameData.ScreenBoundaryPrefab);
+                ServiceLocator.Instance.Register(boundary);
+                
+                EnemyFactory enemyFactory = new EnemyFactory(prefabsContainer.GameData.EnemyPrefab, boundary, 
+                    ServiceLocator.Instance.GetService<EventBus>());
+                ServiceLocator.Instance.Register(enemyFactory);
 
                 BonusFactory bonusSpawner = new BonusFactory();
                 ServiceLocator.Instance.Register(bonusSpawner);
-
-                EnemyFactory enemyFactory = new EnemyFactory(enemyPrefab.GetComponent<PoolableObject>());
-                ServiceLocator.Instance.Register(enemyFactory);
             }
             catch (System.Exception e)
             {
                 Debug.Log(e);
             }
+
+            return Task.CompletedTask;
         }
 
 

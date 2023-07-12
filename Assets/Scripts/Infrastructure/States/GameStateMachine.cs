@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Services.ServiceLocatorSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Infrastructure.States;
+using Assets.Scripts.Infrastructure.States;
+using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services.ServiceLocatorSystem;
 
-namespace Assets.Scripts.Infrastructure.States
+namespace Infrastructure.States
 {
     public class GameStateMachine : IService
     {
@@ -13,8 +14,9 @@ namespace Assets.Scripts.Infrastructure.States
 
         public GameStateMachine()
         {
-            _states.Add(typeof(BootState), new BootState(this));
-            _states.Add(typeof(GameState), new GameState(this));
+            _states.Add(typeof(BootState), new BootState());
+            _states.Add(typeof(LoadMainMenuState), new LoadMainMenuState());
+            _states.Add(typeof(GameState), new GameState());
         }
 
         public async Task Enter<T>() where T : IState

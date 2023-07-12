@@ -1,30 +1,33 @@
-﻿using Assets.Scripts.Services.ServiceLocatorSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Services.ServiceLocatorSystem;
+using Services.ServiceLocatorSystem;
 
-
-public class PauseManager : IPauseHandler, IService
+namespace Services.Pause
 {
-    private readonly List<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
-
-    public bool IsPaused { get; private set; }
-
-    public void Register(IPauseHandler pauseHandler)
+    public class PauseManager : IPauseHandler, IService
     {
-        _pauseHandlers.Add(pauseHandler);
-    }
+        private readonly List<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
 
-    public void UnRegister(IPauseHandler pauseHandler)
-    {
-        _pauseHandlers.Remove(pauseHandler);
-    }
+        public bool IsPaused { get; private set; }
 
-    public void SetPaused(bool isPaused)
-    {
-        IsPaused = isPaused;    
-
-        foreach (var handler in _pauseHandlers)
+        public void Register(IPauseHandler pauseHandler)
         {
-            handler.SetPaused(isPaused);
+            _pauseHandlers.Add(pauseHandler);
+        }
+
+        public void UnRegister(IPauseHandler pauseHandler)
+        {
+            _pauseHandlers.Remove(pauseHandler);
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            IsPaused = isPaused;    
+
+            foreach (var handler in _pauseHandlers)
+            {
+                handler.SetPaused(isPaused);
+            }
         }
     }
 }

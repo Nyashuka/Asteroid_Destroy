@@ -7,6 +7,8 @@ using System;
 using Core.PlayersComponents;
 using Core.PlayersComponents.Bonuses;
 using Services;
+using Services.Pause;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.Core.PlayersComponents

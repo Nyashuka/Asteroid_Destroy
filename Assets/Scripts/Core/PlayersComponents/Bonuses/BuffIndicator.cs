@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Core.PlayersComponents.Bonuses
+namespace Core.PlayersComponents.Bonuses
 {
     public class BuffIndicator : MonoBehaviour
     {
-        [SerializeField] private GameObject _buffIndicatorPanel;
-        private Dictionary<Type, Image> _buffs = new Dictionary<Type, Image>();
+        [SerializeField] private Transform buffIndicatorTransform;
+        private readonly Dictionary<Type, Image> _buffs = new Dictionary<Type, Image>();
 
         public void Add(Type type, Image image)
         {
-            _buffs.Add(type, Instantiate(image, _buffIndicatorPanel.transform));
+            _buffs.Add(type, Instantiate(image, buffIndicatorTransform));
         }
 
         public void Remove(Type type)

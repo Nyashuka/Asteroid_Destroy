@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Core.PlayersComponents;
 
-namespace Assets.Scripts.Core.PlayersComponents.Bonuses.Abstract
+namespace Core.PlayersComponents.Bonuses.Abstract
 {
     public abstract class BuffEffect 
     {

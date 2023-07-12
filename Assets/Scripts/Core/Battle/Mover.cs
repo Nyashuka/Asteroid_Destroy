@@ -1,6 +1,8 @@
 using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Services.Pause;
+using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 public class Mover : MonoBehaviour, IPauseHandler
