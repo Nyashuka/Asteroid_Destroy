@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Core.PlayersComponents;
 using Core.Enemies;
 using Core.Factory;
+using Core.PlayerComponents;
 using Core.PlayersComponents.Bonuses;
 using Core.PlayersComponents.Bonuses.Abstract;
 using UIModule;

@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
-using Assets.Scripts.Services.ServiceLocatorSystem;
 using Core.Factory;
+using Core.Pause;
+using Core.Services.ServiceLocatorSystem;
 using Services;
 using Services.EventBusService;
 using Services.Pause;
-using Services.ServiceLocatorSystem;
 using UnityEngine;
 using Utils;
 

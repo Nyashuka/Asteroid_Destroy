@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Core.Battle.Abstract;
+﻿using Core.Battle.Abstract;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Battle
+namespace Core.Battle
 {
     public class SimpleDamager : IDamager
     {
-        private int _damage;
+        private readonly int _damage;
 
         public SimpleDamager(int damage)
         {

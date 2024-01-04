@@ -92,10 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ca9c9efc2f94549a60bdb2159aa937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyType: 0
-  _deathVFX: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
-  _healthAmount: 1
-  _damageAmount: 1
+  enemyType: 0
+  deathVFX: {fileID: 100004, guid: 2857e183f4cd3df4e9096e5b578bd32f, type: 3}
+  healthAmount: 1
+  damageAmount: 1
 --- !u!1 &4929926448619037331
 GameObject:
   m_ObjectHideFlags: 0

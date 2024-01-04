@@ -7,7 +7,7 @@ namespace Utils
     {
         private readonly Transform _parentForPoolObjects;
         private readonly PoolableObject _objectPrefab;
-        private readonly int _quantityObjects = 100;
+        private readonly int _quantityObjects;
 
         private readonly Queue<PoolableObject> _objectsPool = new Queue<PoolableObject>();
 
@@ -25,7 +25,6 @@ namespace Utils
             {
                 _objectsPool.Enqueue(CreateObject());
             }
-        
         }
 
         private PoolableObject CreateObject()

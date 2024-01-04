@@ -1,15 +1,19 @@
 ﻿using System;
+using SaveSystem.ScoreSaver;
 
-[Serializable]
-public class PlayerDataDTO
+namespace SaveSystem.DTOs
 {
-    public string username;
-    public int maxScore;
-
-    public PlayerDataDTO(PlayerData playerData)
+    [Serializable]
+    public class PlayerDataDTO
     {
-        username = playerData.Username;
-        maxScore = playerData.MaxScore;
+        public string username;
+        public int maxScore;
+
+        public PlayerDataDTO(PlayerScoreData playerScoreData)
+        {
+            username = playerScoreData.Username;
+            maxScore = playerScoreData.MaxScore;
+        }
     }
 }
 

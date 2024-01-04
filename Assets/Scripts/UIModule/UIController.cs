@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.Services.ServiceLocatorSystem;
 using Services.EventBusModule;
 using Services.EventBusService;
-using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace UIModule
@@ -13,11 +12,14 @@ namespace UIModule
         [SerializeField] private GameEndMenu gameEndMenu;
         [SerializeField] private PlayerHUD playerHUD;
 
+        private EventBus _eventBus;
         private UIElement _currentUIElement;
         private Stack<UIElement> _uiElementsHistory;
 
         public void Initialize(EventBus eventBus)
         {
+            _eventBus = eventBus;
+            
             RegisterServices(eventBus);
         }
 
@@ -35,23 +37,35 @@ namespace UIModule
 
         private void OpenMainMenu(EventBusArgs args)
         {
-            ChangeUIElement(mainMenu);
+            MainMenuUI mainMenuUI = ChangeUIElement(mainMenu);
+            mainMenuUI.PlayButtonClicked += RaisePlayButtonClicked;
         }
 
         private void OpenGameEndMenu(EventBusArgs args)
         {
             ChangeUIElement(gameEndMenu);
         }
+        
+        private async void RaisePlayButtonClicked()
+        {
+            _eventBus
+                .Raise(EventBusDefinitions.PlayButtonClicked, new EmptyEventBusArgs());
+            await _eventBus
+                .RaiseAsync(EventBusDefinitions.PlayButtonClicked, new EmptyEventBusArgs());
+        }
 
-        private void ChangeUIElement(UIElement newUIElement)
+        private T ChangeUIElement<T>(T newUIElement) where T : UIElement
         {
             if (_currentUIElement != null && _currentUIElement.GetType().Name != newUIElement.GetType().Name)
                 Destroy(_currentUIElement.gameObject);
             
-            _currentUIElement = Instantiate(newUIElement, transform);
+            T uiElement = Instantiate(newUIElement, transform);
+            _currentUIElement = uiElement;
 
             _currentUIElement.Initialize();
             _currentUIElement.Show();
+
+            return uiElement;
         }
     }
 }

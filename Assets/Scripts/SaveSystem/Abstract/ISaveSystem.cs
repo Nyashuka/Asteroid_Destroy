@@ -1,7 +1,10 @@
 
 
-public interface ISaveSystem
+namespace SaveSystem.Abstract
 {
-    void Save(SaveData saveData);
-    SaveData Load();
+    public interface ISaveSystem
+    {
+        void Save(SaveData saveData);
+        SaveData Load();
+    }
 }

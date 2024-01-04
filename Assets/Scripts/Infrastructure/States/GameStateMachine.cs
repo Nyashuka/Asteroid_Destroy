@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
-using Assets.Scripts.Services.ServiceLocatorSystem;
-using Services.ServiceLocatorSystem;
+using Core.Services.ServiceLocatorSystem;
 
 namespace Infrastructure.States
 {

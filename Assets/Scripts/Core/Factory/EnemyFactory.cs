@@ -1,9 +1,8 @@
 ﻿using System;
 using Assets.Scripts.Services;
-using Assets.Scripts.Services.ServiceLocatorSystem;
 using Core.Enemies;
+using Core.Services.ServiceLocatorSystem;
 using Services.EventBusService;
-using Services.ServiceLocatorSystem;
 using UnityEngine;
 using Utils;
 

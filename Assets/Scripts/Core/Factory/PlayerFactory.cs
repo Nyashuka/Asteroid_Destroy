@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.Core.PlayersComponents;
-using Assets.Scripts.Services.ServiceLocatorSystem;
-using Services.ServiceLocatorSystem;
+using Core.PlayerComponents;
+using Core.Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Core.Factory

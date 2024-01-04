@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Core.PlayersComponents.Bonuses;
-using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.PlayerComponents;
 using Core.PlayersComponents;
 using Core.PlayersComponents.Bonuses;
 using Core.Score;
+using Core.Services.ServiceLocatorSystem;
 using Services;
-using Services.ServiceLocatorSystem;
 using UIModule;
 using UnityEngine;
 using Object = UnityEngine.Object;

@@ -1,8 +1,8 @@
-using Assets.Scripts.Services.ServiceLocatorSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Core.Pause;
+using Core.Services.ServiceLocatorSystem;
 using Services.Pause;
-using Services.ServiceLocatorSystem;
 using UnityEngine;
 
 public class AsteroidMove : MonoBehaviour, IPauseHandler

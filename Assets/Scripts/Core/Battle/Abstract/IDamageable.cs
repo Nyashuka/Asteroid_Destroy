@@ -1,5 +1,5 @@
 ﻿
-namespace Assets.Scripts.Core.Battle.Abstract
+namespace Core.Battle.Abstract
 {
     public interface IDamageable
     {

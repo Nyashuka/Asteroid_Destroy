@@ -130,13 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b086764e1e72f4aa051e673df2f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buffIndicator: {fileID: 0}
-  _healthBar: {fileID: 0}
-  _bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
-  _bulletSpawnPosition: {fileID: 3590956199006965426}
-  _deathVFX: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
-  _healthAmount: 3
-  _speed: 10
+  bulletPrefab: {fileID: 1411384483104590101, guid: b8ae63c3eda792d4a9408cbeca4afc4e, type: 3}
+  bulletSpawnPosition: {fileID: 3590956199006965426}
+  deathVFX: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 3}
+  healthAmount: 3
+  speed: 10
 --- !u!54 &3590956198841720952
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e5f02effd8c9341905493530edf25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  damage: 1
 --- !u!1 &3590956199006965425
 GameObject:
   m_ObjectHideFlags: 0

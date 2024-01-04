@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using SaveSystem.ScoreSaver;
 using UnityEngine;
 
 public class RecordsListView : MonoBehaviour
 {
-    [SerializeField] private RecordView _recordPrefab;
-    [SerializeField] private int _recordHeight;
-    [SerializeField] private RectTransform _parent;
+    [SerializeField] private RecordView recordPrefab;
+    [SerializeField] private int recordHeight;
+    [SerializeField] private RectTransform parent;
 
     public void Start()
     {
-        List<PlayerData> playerData = ServicesProvider.Instance.PlayerDataManager.PlayersData;
+        List<PlayerScoreData> playerData = ServicesProvider.Instance.PlayerDataManager.PlayersData;
         playerData.Sort();
         playerData.Reverse();
 
-        float size = _recordHeight * playerData.Count;
+        float size = recordHeight * playerData.Count;
 
-        if(size > _parent.sizeDelta.y)
-            _parent.sizeDelta = new Vector2(0, size);    
+        if(size > parent.sizeDelta.y)
+            parent.sizeDelta = new Vector2(0, size);    
 
         foreach (var player in playerData)
         {
-            _recordPrefab.Init(player.Username, player.MaxScore);
-            Instantiate(_recordPrefab, _parent);
+            recordPrefab.Init(player.Username, player.MaxScore);
+            Instantiate(recordPrefab, parent);
         }
     }
 

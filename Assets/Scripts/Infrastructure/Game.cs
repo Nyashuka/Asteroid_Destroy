@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Core.Enemies;
 using Core.Factory;
+using Core.Pause;
 using Core.Score;
+using Core.Services.ServiceLocatorSystem;
 using Infrastructure.States;
 using SaveSystem;
 using Services.EventBusModule;
 using Services.EventBusService;
 using Services.Pause;
-using Services.ServiceLocatorSystem;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

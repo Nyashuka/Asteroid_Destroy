@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Threading.Tasks;
-using Services.EventBusModule;
-using Services.EventBusService;
-using Services.ServiceLocatorSystem;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,34 +11,26 @@ namespace UIModule
         [SerializeField] private Button recordsButton;
         [SerializeField] private Button quitButton;
         [SerializeField] private Button settingsButton;
-
-        [SerializeField] private EventBus _eventBus;
+        public event Action PlayButtonClicked;
+        
         public override void Show()
         {
-            if (!gameObject.activeSelf)
-                gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
-            /*
-            maxScoreText.text = ServiceLocator.Instance.GetService<PlayerDataManager>()
-                .CurrentPlayer.MaxScore
-                .ToString();
-                */
 
         public override void Initialize()
         {
-            _eventBus = ServiceLocator.Instance.GetService<EventBus>();
-            
-            playButton.onClick.AddListener(RaisePlayButtonClicked);
+            playButton.onClick.AddListener(OnPlayButtonClicked);
         }
         
-
-        private async void RaisePlayButtonClicked()
+        private void OnPlayButtonClicked()
         {
-            _eventBus
-                .Raise(EventBusDefinitions.PlayButtonClicked, new EmptyEventBusArgs());
-            await _eventBus
-                .RaiseAsync(EventBusDefinitions.PlayButtonClicked, new EmptyEventBusArgs());
+            PlayButtonClicked?.Invoke();
+        }
 
+        private void OnDestroy()
+        {
+            PlayButtonClicked = null;
         }
     }
 }

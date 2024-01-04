@@ -122,44 +122,44 @@
       }
     },
     "com.uurha.betterattributes": {
-      "version": "1.8.21",
+      "version": "2.1.45",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.uurha.bettereditortools": "0.9.5"
+        "com.uurha.bettereditortools": "1.0.67"
       },
       "url": "https://package.openupm.com"
     },
     "com.uurha.betterdatastructures": {
-      "version": "0.1.0",
-      "depth": 1,
+      "version": "0.1.1",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.uurha.bettereditortools": {
-      "version": "0.9.5",
-      "depth": 0,
+      "version": "1.0.67",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.uurha.betterdatastructures": "0.1.0",
-        "com.uurha.betterextensions": "1.1.7"
+        "com.uurha.betterdatastructures": "0.1.1",
+        "com.uurha.betterextensions": "1.1.96"
       },
       "url": "https://package.openupm.com"
     },
     "com.uurha.betterextensions": {
-      "version": "1.1.7",
-      "depth": 1,
+      "version": "1.1.96",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.uurha.betterscenemanagement": {
-      "version": "0.2.3",
+      "version": "0.2.54",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.uurha.bettereditortools": "0.9.3"
+        "com.uurha.bettereditortools": "1.0.62"
       },
       "url": "https://package.openupm.com"
     },

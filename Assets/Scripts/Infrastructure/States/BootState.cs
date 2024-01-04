@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
+using Core.Services.ServiceLocatorSystem;
 using SaveSystem;
 using Services;
 using Services.EventBusService;
-using Services.ServiceLocatorSystem;
+using UnityEngine.SceneManagement;
 
 namespace Infrastructure.States
 {
@@ -13,7 +14,7 @@ namespace Infrastructure.States
         {
             ScenesLoader scenesLoader = new ScenesLoader();
             
-            await scenesLoader.LoadGame();
+            await scenesLoader.LoadGame(LoadSceneMode.Additive);
             
             RegisterServices();
         }

@@ -1,7 +1,8 @@
 ﻿
-using Core.Enemies;
-
-public class EnemyShip : Enemy
+namespace Core.Enemies
 {
+    public class EnemyShip : Enemy
+    {
+    }
 }
 

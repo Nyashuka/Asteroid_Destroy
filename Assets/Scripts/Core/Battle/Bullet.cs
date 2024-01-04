@@ -1,23 +1,26 @@
-﻿using Assets.Scripts.Core.Battle.Abstract;
-using System;
+﻿using System;
+using Core.Battle.Abstract;
 using UnityEngine;
 using Utils;
 
-public class Bullet : PoolableObject
+namespace Core.Battle
 {
-    public event Action<PoolableObject> Hit;
-
-    private void OnDisable()
+    public class Bullet : PoolableObject
     {
-        Hit = null;
-    }
+        public event Action<PoolableObject> Hit;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        private void OnDisable()
         {
-            damageable.MakeDamage(1);
-            Hit?.Invoke(this);
+            Hit = null;
+        }
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.MakeDamage(1);
+                Hit?.Invoke(this);
+            }
         }
     }
 }

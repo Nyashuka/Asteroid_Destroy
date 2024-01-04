@@ -1,6 +1,6 @@
 using System;
 using Assets.Scripts.Services;
-using Services.ServiceLocatorSystem;
+using Core.Services.ServiceLocatorSystem;
 using UnityEngine;
 
 namespace Utils

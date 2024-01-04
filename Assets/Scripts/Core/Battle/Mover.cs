@@ -1,30 +1,30 @@
-using Assets.Scripts.Services.ServiceLocatorSystem;
-using System.Collections;
-using System.Collections.Generic;
-using Services.Pause;
-using Services.ServiceLocatorSystem;
+using Core.Pause;
+using Core.Services.ServiceLocatorSystem;
 using UnityEngine;
 
-public class Mover : MonoBehaviour, IPauseHandler
+namespace Core.Battle
 {
-    [SerializeField] private float _speed;
-    private bool IsPaused = false;
-
-    public void Start()
+    public class Mover : MonoBehaviour, IPauseHandler
     {
-        ServiceLocator.Instance.GetService<PauseManager>().Register(this);
-    }
+        [SerializeField] private float speed;
+        private bool _isPaused = false;
 
-    private void Update()
-    {
-        if (IsPaused)
-            return;
+        public void Start()
+        {
+            ServiceLocator.Instance.GetService<PauseManager>().Register(this);
+        }
 
-        transform.Translate(0,0, _speed * Time.deltaTime);
-    }
+        private void Update()
+        {
+            if (_isPaused)
+                return;
 
-    public void SetPaused(bool isPaused)
-    {
-        IsPaused = isPaused;
+            transform.Translate(0,0, speed * Time.deltaTime);
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            _isPaused = isPaused;
+        }
     }
 }

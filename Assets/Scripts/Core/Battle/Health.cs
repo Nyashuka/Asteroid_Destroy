@@ -1,49 +1,49 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class Health
+namespace Core.Battle
 {
-    public event Action<int> HealthChanged;
-    public event Action Death;
-    private int _maxHealth;
-
-    private int _currentHealth;
-    public int CurrentHealth => _currentHealth;
-
-    public Health(int healthAmount)
+    public class Health
     {
-        _maxHealth = healthAmount;
-        _currentHealth = _maxHealth;
-    }
+        public event Action<int> HealthChanged;
+        public event Action Death;
+        private readonly int _maxHealth;
 
-    public void IncreaseHealth()
-    {
-        if (_currentHealth == _maxHealth)
-            return;
+        private int _currentHealth;
+        public int CurrentHealth => _currentHealth;
 
-        _currentHealth++;
-
-        HealthChanged?.Invoke(_currentHealth);
-    }
-
-    public void DecreaseHealth(int countHealth)
-    {
-        _currentHealth -= countHealth;
-
-        if (_currentHealth <= 0)
+        public Health(int healthAmount)
         {
-            _currentHealth = 0;
-            Death?.Invoke();
+            _maxHealth = healthAmount;
+            _currentHealth = _maxHealth;
         }
 
-        HealthChanged?.Invoke(_currentHealth);
-    }
+        public void IncreaseHealth()
+        {
+            if (_currentHealth == _maxHealth)
+                return;
 
-    public void Reset()
-    {
-        _currentHealth = _maxHealth;
-    }
+            _currentHealth++;
 
+            HealthChanged?.Invoke(_currentHealth);
+        }
+
+        public void DecreaseHealth(int countHealth)
+        {
+            _currentHealth -= countHealth;
+
+            if (_currentHealth <= 0)
+            {
+                _currentHealth = 0;
+                Death?.Invoke();
+            }
+
+            HealthChanged?.Invoke(_currentHealth);
+        }
+
+        public void Reset()
+        {
+            _currentHealth = _maxHealth;
+        }
+
+    }
 }

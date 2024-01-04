@@ -1,14 +1,17 @@
-﻿using Assets.Scripts.Core.Battle.Abstract;
+﻿using Core.Battle.Abstract;
 using UnityEngine;
 
-public class Damager : MonoBehaviour
+namespace Core.Battle
 {
-    [SerializeField] private int _damage;
-    public void OnTriggerEnter(Collider collider)
+    public class Damager : MonoBehaviour
     {
-        if (collider.gameObject.TryGetComponent(out IDamageable damageable))
+        [SerializeField] private int damage;
+        public void OnTriggerEnter(Collider collider)
         {
-            damageable.MakeDamage(_damage);
+            if (collider.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.MakeDamage(damage);
+            }
         }
     }
 }

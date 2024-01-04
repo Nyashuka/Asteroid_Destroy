@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Assets.Scripts.Infrastructure.States;
-using Assets.Scripts.Services.ServiceLocatorSystem;
+using Core.Services.ServiceLocatorSystem;
 using Services;
 using Services.EventBusModule;
 using Services.EventBusService;
-using Services.ServiceLocatorSystem;
 using UIModule;
 using UnityEngine;
 

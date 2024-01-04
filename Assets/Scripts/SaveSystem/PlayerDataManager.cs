@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Services.ServiceLocatorSystem;
-using Services.ServiceLocatorSystem;
+using Core.Services.ServiceLocatorSystem;
+using SaveSystem.Abstract;
+using SaveSystem.ScoreSaver;
 
 namespace SaveSystem
 {
     public class PlayerDataManager : IService
     {
         private readonly ISaveSystem _saveSystem;
-        public List<PlayerData> PlayersData { get; private set; }
-        public PlayerData CurrentPlayer { get; private set; }
+        public List<PlayerScoreData> PlayersData { get; private set; }
+        public PlayerScoreData CurrentPlayerScore { get; private set; }
 
         public PlayerDataManager(ISaveSystem saveSystem)
         {
@@ -18,28 +19,28 @@ namespace SaveSystem
             SaveData data = _saveSystem.Load();
 
             PlayersData = data.GetPlayersData();
-            CurrentPlayer = data.GetMainPlayer(); ;
+            CurrentPlayerScore = data.GetMainPlayer(); ;
         }
 
-        public PlayerData TryGetPlayer(string username)
+        public PlayerScoreData TryGetPlayer(string username)
         {
-            PlayerData player = null;
+            PlayerScoreData playerScore = null;
 
             try
             {
-                player = PlayersData.First(x => x.Username.ToLower() == username.ToLower());
+                playerScore = PlayersData.First(x => x.Username.ToLower() == username.ToLower());
             }
             catch (System.Exception)
             {
             
             }
 
-            return player;
+            return playerScore;
         }
 
         public void UpdatePlayerData(int score)
         {
-            CurrentPlayer.UpdateScore(score);
+            CurrentPlayerScore.UpdateScore(score);
 
             SaveData();
         }
@@ -54,7 +55,7 @@ namespace SaveSystem
             }
             else
             {
-                PlayersData.Add(new PlayerData(username, score));
+                PlayersData.Add(new PlayerScoreData(username, score));
             }
 
             SaveData();
@@ -62,7 +63,7 @@ namespace SaveSystem
 
         public void SaveData()
         {
-            _saveSystem.Save(new SaveData(CurrentPlayer, PlayersData));
+            _saveSystem.Save(new SaveData(CurrentPlayerScore, PlayersData));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
-using Core.PlayersComponents.Bonuses;
-using Core.PlayersComponents.Bonuses.Abstract;
+using Core.PlayerComponents.Bonuses;
 using UnityEngine;
 
 namespace Core.Factory

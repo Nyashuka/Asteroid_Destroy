@@ -18,7 +18,7 @@ namespace Core.Enemies
 
         private readonly float _spawnHeight = 12;
 
-        private CancellationTokenSource _source;
+        private readonly CancellationTokenSource _source;
 
         private readonly EnemyFactory _enemyFactory;
 
@@ -48,26 +48,38 @@ namespace Core.Enemies
                 {
                     int countAsteroids = UnityEngine.Random.Range(_asteroidsInWaveMin, _asteroidsInWaveMax);
 
+                    if (token.IsCancellationRequested) return;
+                    
                     for (int i = 0; i < countAsteroids; i++)
                     {
                         _enemyFactory.Create(_spawnHeight);
-
+                        
+                        if (token.IsCancellationRequested) return;
+                        
                         await Task.Delay(Mathf.RoundToInt(_spawnRate * 1000), token);
+                        
+                        if (token.IsCancellationRequested) return;
                     }
 
-
                     await Task.Delay(Mathf.RoundToInt(_waveRate * 1000), token);
+                    
+                    if (token.IsCancellationRequested) return;
                 }
             }
-            catch (TaskCanceledException)
+            catch (TaskCanceledException e)
             {
-                
+                Debug.Log(e);
             }
             catch (Exception e)
             {
                 Debug.Log(e);
             }
            
+        }
+
+        private void OnDisable()
+        {
+            Destroy();
         }
 
         public void Destroy()

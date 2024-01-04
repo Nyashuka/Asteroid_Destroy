@@ -1,7 +1,7 @@
 ﻿using System;
-using Assets.Scripts.Core.Battle;
-using Assets.Scripts.Core.Battle.Abstract;
 using Assets.Scripts.Services;
+using Core.Battle;
+using Core.Battle.Abstract;
 using UnityEngine;
 using Utils;
 
@@ -9,22 +9,22 @@ namespace Core.Enemies
 {
     public class Enemy : PoolableObject, IDamageable, IDestroyable
     {
-        [SerializeField] private EnemyTypes _enemyType;
-        [SerializeField] private GameObject _deathVFX;
-        [SerializeField] private int _healthAmount;
-        [SerializeField] private int _damageAmount;
+        [SerializeField] private EnemyTypes enemyType;
+        [SerializeField] private GameObject deathVFX;
+        [SerializeField] private int healthAmount;
+        [SerializeField] private int damageAmount;
 
         private Health _enemyHealth;
         private IDamager _damager;
         public event Action<Enemy> EnemyDeath;
 
-        public EnemyTypes EnemyType => _enemyType;
+        public EnemyTypes EnemyType => enemyType;
 
         public void Start()
         {
-            _enemyHealth = new Health(_healthAmount);
-            _enemyHealth.Death += AnounceDeath;
-            _damager = new SimpleDamager(_damageAmount);
+            _enemyHealth = new Health(healthAmount);
+            _enemyHealth.Death += AnnounceDeath;
+            _damager = new SimpleDamager(damageAmount);
         }
 
         private void OnDisable()
@@ -42,9 +42,9 @@ namespace Core.Enemies
             _enemyHealth.Reset();
         }
 
-        public void AnounceDeath()
+        private void AnnounceDeath()
         {
-            Destroy(Instantiate(_deathVFX, transform.position, transform.rotation), 1f);
+            Destroy(Instantiate(deathVFX, transform.position, transform.rotation), 1f);
             EnemyDeath?.Invoke(this);
         }
 

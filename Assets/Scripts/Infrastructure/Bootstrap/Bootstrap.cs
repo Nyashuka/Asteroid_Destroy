@@ -1,6 +1,5 @@
-﻿using Services.ServiceLocatorSystem;
-using UnityEngine;
-using Utils;
+﻿using UnityEngine;
+
 
 namespace Infrastructure.Bootstrap
 {
@@ -11,8 +10,6 @@ namespace Infrastructure.Bootstrap
 
         public async void Awake()
         {
-            DontDestroyOnLoad(gameObject);
-
             _game = new Game();
             
             await _game.Boot();
